@@ -3,7 +3,6 @@ import React from 'react';
 import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
 import { GenerativeMeditation } from './components/GenerativeMeditation';
-import BreathingExercise from './components/BreathingExercise';
 import { Reminder } from './components/Reminder';
 import { useLanguage } from './context/LanguageContext';
 import { translations } from './i18n/translations';
@@ -20,6 +19,7 @@ interface TimerProps {
 const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
   const [secondsLeft, setSecondsLeft] = React.useState(duration);
   const [isCompleted, setIsCompleted] = React.useState(false);
+  const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('inhale');
 
   React.useEffect(() => {
     if (secondsLeft <= 0) {
@@ -74,9 +74,24 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
     return () => clearInterval(intervalId);
   }, [secondsLeft, onClose]);
 
+  React.useEffect(() => {
+    if (isCompleted) return;
+
+    const phaseInterval = setInterval(() => {
+      setPhase(prev => (prev === 'inhale' ? 'exhale' : 'inhale'));
+    }, 4000); // Switch every 4 seconds for 4-4 breathing
+
+    setPhase('inhale');
+
+    return () => clearInterval(phaseInterval);
+  }, [isCompleted]);
+
+  const phaseText = phase === 'inhale' ? t('breatheIn') : t('breatheOut');
+  const circleAnimationClass = phase === 'inhale' ? 'scale-110' : 'scale-100';
+
   return (
     <div className="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in" aria-modal="true" role="dialog">
-      <div className="relative text-center text-white p-4">
+      <div className="relative text-center text-white p-4 w-full">
         {isCompleted ? (
           <div className="flex flex-col items-center justify-center animate-fade-in">
             <div className="w-24 h-24 bg-teal-500 rounded-full flex items-center justify-center mb-4">
@@ -87,16 +102,27 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
           </div>
         ) : (
           <>
-            <button onClick={onClose} className="absolute -top-12 right-0 sm:top-0 sm:-right-16 text-slate-400 hover:text-white transition-colors text-2xl font-mono" aria-label={t('closeTimer')}>
+            <button onClick={onClose} className="absolute -top-12 right-4 sm:top-0 sm:-right-12 text-slate-400 hover:text-white transition-colors text-2xl font-mono" aria-label={t('closeTimer')}>
               [x]
             </button>
             <h2 className="text-3xl font-bold mb-4">{practice.title}</h2>
             <p className="text-slate-300 text-lg mb-8 max-w-sm mx-auto whitespace-pre-wrap px-4">{practice.description}</p>
-            <div className="relative w-52 h-52 mx-auto flex items-center justify-center bg-slate-700/50 rounded-full border-4 border-slate-600">
-              <span className="absolute inset-0 flex items-center justify-center text-6xl font-bold tracking-tighter tabular-nums">
-                {secondsLeft}
-              </span>
+            
+            <div className="relative w-64 h-64 mx-auto flex items-center justify-center">
+              <div 
+                className={`absolute w-full h-full bg-teal-500/30 rounded-full transition-transform duration-[4000ms] ease-in-out ${circleAnimationClass}`}
+              />
+              <div className="absolute w-full h-full rounded-full border-2 border-slate-600" />
+              
+              <div className="z-10 flex flex-col items-center">
+                <span className="text-3xl font-semibold mb-2">{phaseText}</span>
+                <span className="text-6xl font-bold tracking-tighter tabular-nums">
+                  {secondsLeft}
+                </span>
+              </div>
             </div>
+            
+            <p className="mt-8 text-slate-300 max-w-sm mx-auto">{t('coherenceBenefit')}</p>
           </>
         )}
       </div>
@@ -110,7 +136,6 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
 const App: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [activePractice, setActivePractice] = React.useState<Practice | null>(null);
-  const [showBreathingExercise, setShowBreathingExercise] = React.useState(false);
   const [duration, setDuration] = React.useState(60);
 
   const durationOptions = React.useMemo(() => [
@@ -123,18 +148,15 @@ const App: React.FC = () => {
   
   const handleSelectPractice = (practice: Practice) => {
     setActivePractice(practice);
-    setShowBreathingExercise(practice.id === 'six-second-breathing');
   };
 
   const handleCloseModals = () => {
     setActivePractice(null);
-    setShowBreathingExercise(false);
   };
 
   return (
     <>
-      {activePractice && (showBreathingExercise ? 
-        <BreathingExercise practice={activePractice} duration={duration} onClose={handleCloseModals} t={t} /> :
+      {activePractice && (
         <Timer practice={activePractice} duration={duration} onClose={handleCloseModals} t={t} />
       )}
       <div className="bg-slate-50 min-h-screen text-slate-800 antialiased">

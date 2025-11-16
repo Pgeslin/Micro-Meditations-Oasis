@@ -31,6 +31,7 @@ export const translations = {
     breatheIn: 'Breathe In...',
     breatheOut: 'Breathe Out...',
     breathingInstruction: 'Follow the circle, inhaling as it grows and exhaling as it shrinks.',
+    coherenceBenefit: 'This 4-4 breathing rhythm, known as cardiac coherence, is proven to reduce stress.',
 
     // Reminder Component
     reminderTitle: 'Set a Mindful Reminder',
@@ -130,6 +131,7 @@ export const translations = {
     breatheIn: 'Inspirez...',
     breatheOut: 'Expirez...',
     breathingInstruction: 'Suivez le cercle, en inspirant lorsqu\'il grandit et en expirant lorsqu\'il rétrécit.',
+    coherenceBenefit: 'Ce rythme respiratoire 4-4, connu sous le nom de cohérence cardiaque, est reconnu pour réduire le stress.',
     
     // Reminder Component
     reminderTitle: 'Définir un Rappel de Pleine Conscience',
