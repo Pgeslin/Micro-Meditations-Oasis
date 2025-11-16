@@ -270,6 +270,7 @@ export const translations = {
           }
         },
         { 
+          id: 'rain',
           title: 'RAIN', 
           icon: 'RainIcon',
           description: 'A soft four-step pause: recognise, allow, investigate, nurture.',
@@ -282,6 +283,7 @@ export const translations = {
           }
         },
         { 
+          id: 'stop',
           title: 'STOP', 
           icon: 'StopIcon',
           description: 'Stop, breathe, observe, and proceed with clarity.',
@@ -570,6 +572,7 @@ export const translations = {
         }
       },
       { 
+        id: 'rain',
         title: 'RAIN (FR)', 
         icon: 'RainIcon',
         description: 'Une pause douce en quatre étapes : reconnaître, accepter, investiguer, nourrir.',
@@ -582,6 +585,7 @@ export const translations = {
         }
       },
       { 
+        id: 'stop',
         title: 'STOP (FR)', 
         icon: 'StopIcon',
         description: 'S\'arrêter, respirer, observer, et continuer avec clarté.',

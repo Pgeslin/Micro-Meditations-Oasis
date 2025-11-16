@@ -165,9 +165,10 @@ const App: React.FC = () => {
 
   const allPractices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
   
-  const structuredPractices = allPractices.filter(p => p.title === 'RAIN' || p.title === 'STOP' || p.title === 'RAIN (FR)' || p.title === 'STOP (FR)');
-  const corePractices = allPractices.filter(p => !structuredPractices.some(sp => sp.title === p.title));
-  
+  const structuredPracticeIds = ['rain', 'stop'];
+  const structuredPractices = allPractices.filter(p => p.id && structuredPracticeIds.includes(p.id));
+  const corePractices = allPractices.filter(p => !p.id || !structuredPracticeIds.includes(p.id));
+
   const visiblePractices = showAllPractices ? corePractices : corePractices.slice(0, 8);
   
   const handleSelectPractice = (practice: Practice) => {
@@ -226,10 +227,10 @@ const App: React.FC = () => {
               muted
               playsInline
               className="absolute top-0 left-0 w-full h-full object-cover z-0"
-              poster="https://images.pexels.com/photos/1528640/pexels-photo-1528640.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              poster="https://images.pexels.com/videos/4784435/pexels-photo-4784435.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             >
               <source
-                src="https://videos.pexels.com/video-files/4434246/4434246-hd_1920_1080_25fps.mp4"
+                src="https://videos.pexels.com/video-files/4784435/4784435-hd_1280_720_25fps.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
