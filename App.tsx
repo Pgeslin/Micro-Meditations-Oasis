@@ -21,6 +21,9 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
   const [isCompleted, setIsCompleted] = React.useState(false);
   const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('exhale');
 
+  const isSixSecondBreathing = practice.id === 'six-second-breathing';
+  const phaseDuration = isSixSecondBreathing ? 6000 : 4000;
+
   React.useEffect(() => {
     if (secondsLeft <= 0) {
       if (window.navigator && window.navigator.vibrate) {
@@ -79,15 +82,16 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
 
     const phaseInterval = setInterval(() => {
       setPhase(prev => (prev === 'inhale' ? 'exhale' : 'inhale'));
-    }, 4000); // Switch every 4 seconds for 4-4 breathing
+    }, phaseDuration);
 
     setPhase('inhale');
 
     return () => clearInterval(phaseInterval);
-  }, [isCompleted]);
+  }, [isCompleted, phaseDuration]);
 
   const phaseText = phase === 'inhale' ? t('breatheIn') : t('breatheOut');
   const circleAnimationClass = phase === 'inhale' ? 'scale-125' : 'scale-95';
+  const benefitText = isSixSecondBreathing ? t('sixSecondBenefit') : t('coherenceBenefit');
 
   return (
     <div className="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in" aria-modal="true" role="dialog">
@@ -102,15 +106,23 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
           </div>
         ) : (
           <>
-            <button onClick={onClose} className="absolute -top-12 right-4 sm:top-0 sm:-right-12 text-slate-400 hover:text-white transition-colors text-2xl font-mono" aria-label={t('closeTimer')}>
-              [x]
+            <button 
+              onClick={onClose} 
+              className="absolute top-6 left-6 z-10 flex items-center gap-2 text-slate-300 hover:text-white transition-colors" 
+              aria-label={t('backButton')}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              <span className="font-semibold text-lg">{t('backButton')}</span>
             </button>
-            <h2 className="text-3xl font-bold mb-4">{practice.title}</h2>
+            <h2 className="text-3xl font-bold mb-4 pt-16 sm:pt-0">{practice.title}</h2>
             <p className="text-slate-300 text-lg mb-8 max-w-sm mx-auto whitespace-pre-wrap px-4">{practice.description}</p>
             
             <div className="relative w-64 h-64 mx-auto flex items-center justify-center">
               <div 
-                className={`absolute w-full h-full bg-teal-500/30 rounded-full transition-transform duration-[4000ms] ease-in-out ${circleAnimationClass}`}
+                className={`absolute w-full h-full bg-teal-500/30 rounded-full transition-transform ease-in-out ${circleAnimationClass}`}
+                style={{ transitionDuration: `${phaseDuration}ms` }}
               />
               <div className="absolute w-full h-full rounded-full border-2 border-slate-600" />
               
@@ -122,7 +134,7 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
               </div>
             </div>
             
-            <p className="mt-8 text-slate-300 max-w-sm mx-auto">{t('coherenceBenefit')}</p>
+            <p className="mt-8 text-slate-300 max-w-sm mx-auto">{benefitText}</p>
           </>
         )}
       </div>

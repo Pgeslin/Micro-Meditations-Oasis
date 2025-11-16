@@ -24,7 +24,7 @@ export const translations = {
     footerLink: 'Learn more…',
     
     // Timer & Breathing Exercise
-    closeTimer: 'Close timer',
+    backButton: 'Back',
     complete: 'Complete',
     timerCompleteMessage: 'You\'ve found your moment of calm.',
     breathingCompleteMessage: 'Nicely done. Carry this calm with you.',
@@ -32,6 +32,7 @@ export const translations = {
     breatheOut: 'Breathe Out...',
     breathingInstruction: 'Follow the circle, inhaling as it grows and exhaling as it shrinks.',
     coherenceBenefit: 'This 4-4 breathing rhythm, known as cardiac coherence, is proven to reduce stress.',
+    sixSecondBenefit: 'This slow, rhythmic 6-6 breathing activates the body\'s "rest and digest" response, helping to lower heart rate and reduce stress.',
 
     // Reminder Component
     reminderTitle: 'Set a Mindful Reminder',
@@ -124,7 +125,7 @@ export const translations = {
     footerLink: 'En savoir plus…',
 
     // Timer & Breathing Exercise
-    closeTimer: 'Fermer le minuteur',
+    backButton: 'Retour',
     complete: 'Terminé',
     timerCompleteMessage: 'Vous avez trouvé votre moment de calme.',
     breathingCompleteMessage: 'Bien joué. Gardez ce calme avec vous.',
@@ -132,6 +133,7 @@ export const translations = {
     breatheOut: 'Expirez...',
     breathingInstruction: 'Suivez le cercle, en inspirant lorsqu\'il grandit et en expirant lorsqu\'il rétrécit.',
     coherenceBenefit: 'Ce rythme respiratoire 4-4, connu sous le nom de cohérence cardiaque, est reconnu pour réduire le stress.',
+    sixSecondBenefit: 'Cette respiration lente et rythmée en 6-6 active la réponse de "repos et digestion" du corps, aidant à réduire la fréquence cardiaque et le stress.',
     
     // Reminder Component
     reminderTitle: 'Définir un Rappel de Pleine Conscience',
