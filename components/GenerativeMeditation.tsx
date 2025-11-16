@@ -147,6 +147,7 @@ export const GenerativeMeditation: React.FC = () => {
 
     if (isPlaying) {
       audioSourceRef.current?.stop();
+      setIsPlaying(false);
     } else {
       if (audioContextRef.current.state === 'suspended') {
         audioContextRef.current.resume();
@@ -180,13 +181,13 @@ export const GenerativeMeditation: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto scroll-mt-8">
+    <div ref={containerRef} className="animated-gradient p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto scroll-mt-8">
       <div className="text-center">
-        <div className="inline-block bg-teal-100 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+        <div className="inline-block bg-white/80 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-4 backdrop-blur-sm">
           Powered by AI
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t('genTitle')}</h2>
-        <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
+        <p className="text-center text-slate-700 mb-8 max-w-2xl mx-auto">
           {t('genSubtitle')}
         </p>
       </div>
@@ -199,10 +200,10 @@ export const GenerativeMeditation: React.FC = () => {
                 <button
                   key={theme}
                   onClick={() => setSelectedTheme(theme)}
-                  className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 ${
+                  className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                     selectedTheme === theme
                       ? 'bg-teal-600 text-white shadow'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      : 'bg-white/70 text-slate-700 hover:bg-white'
                   }`}
                 >
                   {theme}
@@ -218,10 +219,10 @@ export const GenerativeMeditation: React.FC = () => {
                 <button
                   key={duration.value}
                   onClick={() => setSelectedDuration(duration.value)}
-                  className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 ${
+                  className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                     selectedDuration === duration.value
                       ? 'bg-teal-600 text-white shadow'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      : 'bg-white/70 text-slate-700 hover:bg-white'
                   }`}
                 >
                   {duration.label}
@@ -229,7 +230,7 @@ export const GenerativeMeditation: React.FC = () => {
               ))}
             </div>
             {selectedDuration > 60 && (
-              <p className="text-center text-sm text-slate-500 mt-4 animate-fade-in px-4">
+              <p className="text-center text-sm text-slate-600 mt-4 animate-fade-in px-4 bg-white/50 rounded-full py-1 max-w-sm mx-auto">
                 {t('genDurationWarning')}
               </p>
             )}
@@ -242,11 +243,11 @@ export const GenerativeMeditation: React.FC = () => {
               <button
                 key={voice.name}
                 onClick={() => setSelectedVoice(voice.name)}
-                className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 ${
+                className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                   selectedVoice === voice.name
                     ? 'bg-teal-600 text-white shadow'
-                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                }`}
+                    : 'bg-white/70 text-slate-700 hover:bg-white'
+                  }`}
               >
                 {voice.displayName}
               </button>
@@ -271,7 +272,7 @@ export const GenerativeMeditation: React.FC = () => {
           )}
         </button>
         {isLoading && !generatedScript && (
-          <p className="text-slate-500 text-sm mt-4 animate-fade-in">
+          <p className="text-slate-600 text-sm mt-4 animate-fade-in">
             {t('genCraftingMessage')}
           </p>
         )}

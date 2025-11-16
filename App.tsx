@@ -97,8 +97,9 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onBack, onComplete, t
   const benefitText = isSixSecondBreathing ? t('sixSecondBenefit') : t('coherenceBenefit');
 
   return (
-    <div className="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in" aria-modal="true" role="dialog">
-      <div className="relative text-center text-white p-4 w-full">
+    <div className="fixed inset-0 bg-slate-900 flex items-center justify-center z-50 animate-fade-in overflow-hidden" aria-modal="true" role="dialog">
+      <div className="timer-background" />
+      <div className="relative text-center text-white p-4 w-full z-10">
         {isCompleted ? (
           <div className="flex flex-col items-center justify-center animate-fade-in">
             <div className="w-24 h-24 bg-teal-500 rounded-full flex items-center justify-center mb-4">
@@ -154,6 +155,7 @@ const App: React.FC = () => {
   const [practiceForTimer, setPracticeForTimer] = React.useState<Practice | null>(null);
   const [completedPractice, setCompletedPractice] = React.useState<Practice | null>(null);
   const [duration, setDuration] = React.useState(60);
+  const [showAllPractices, setShowAllPractices] = React.useState(false);
 
   const durationOptions = React.useMemo(() => [
     { label: t('durations.d30s'), value: 30 },
@@ -161,7 +163,12 @@ const App: React.FC = () => {
     { label: t('durations.d2m'), value: 120 },
   ], [t]);
 
-  const practices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
+  const allPractices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
+  
+  const structuredPractices = allPractices.filter(p => p.title === 'RAIN' || p.title === 'STOP' || p.title === 'RAIN (FR)' || p.title === 'STOP (FR)');
+  const corePractices = allPractices.filter(p => !structuredPractices.some(sp => sp.title === p.title));
+  
+  const visiblePractices = showAllPractices ? corePractices : corePractices.slice(0, 8);
   
   const handleSelectPractice = (practice: Practice) => {
     setViewedPractice(practice);
@@ -211,49 +218,64 @@ const App: React.FC = () => {
           t={t}
         />
       )}
-      <div className="bg-slate-50 min-h-screen text-slate-800 antialiased">
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-
-          <div className="flex justify-end mb-4 -mt-4">
-            <div className="flex items-center bg-slate-200/75 rounded-full p-1">
-              <button
-                onClick={() => setLanguage('en')}
-                aria-pressed={language === 'en'}
-                className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
-                  language === 'en'
-                    ? 'bg-white text-teal-700 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-800'
-                }`}
-              >
-                English
-              </button>
-              <button
-                onClick={() => setLanguage('fr')}
-                aria-pressed={language === 'fr'}
-                className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
-                  language === 'fr'
-                    ? 'bg-white text-teal-700 shadow-sm'
-                    : 'text-slate-600 hover:text-slate-800'
-                }`}
-              >
-                Français
-              </button>
+      <div className="min-h-screen text-slate-800 antialiased">
+          <header className="relative text-center overflow-hidden shadow-lg">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-0 left-0 w-full h-full object-cover z-0"
+              poster="https://images.pexels.com/photos/1528640/pexels-photo-1528640.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            >
+              <source
+                src="https://videos.pexels.com/video-files/4434246/4434246-hd_1920_1080_25fps.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+            <div className="relative z-10 bg-slate-900/50 pt-20 pb-24 sm:pt-28 sm:pb-32">
+               <div className="absolute top-4 right-4 z-20">
+                    <div className="flex items-center bg-slate-200/25 rounded-full p-1 backdrop-blur-sm">
+                        <button
+                            onClick={() => setLanguage('en')}
+                            aria-pressed={language === 'en'}
+                            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                            language === 'en'
+                                ? 'bg-white/90 text-teal-800 shadow-sm'
+                                : 'text-white hover:bg-white/20'
+                            }`}
+                        >
+                            English
+                        </button>
+                        <button
+                            onClick={() => setLanguage('fr')}
+                            aria-pressed={language === 'fr'}
+                            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                            language === 'fr'
+                                ? 'bg-white/90 text-teal-800 shadow-sm'
+                                : 'text-white hover:bg-white/20'
+                            }`}
+                        >
+                            Français
+                        </button>
+                    </div>
+                </div>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4">
+                {t('heroTitle')}
+              </h1>
+              <p className="mt-4 max-w-3xl mx-auto text-lg md:text-2xl font-medium text-slate-200">
+                {t('heroSubtitle')}
+              </p>
             </div>
-          </div>
-
-
-          <header className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-slate-900 mb-4">
-              {t('heroTitle')}
-            </h1>
-            <p className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-slate-600">
-              {t('heroSubtitle')}
-            </p>
+            <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-slate-50 to-transparent"></div>
           </header>
+
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 -mt-16">
 
           <div className="max-w-4xl mx-auto space-y-12">
             
-            <div className="bg-slate-100/70 rounded-2xl py-12 px-8 space-y-12">
+            <div className="bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-sm">
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whyTitle')}</h2>
                 <div className="grid md:grid-cols-2 gap-8 text-slate-700 leading-relaxed">
@@ -284,12 +306,12 @@ const App: React.FC = () => {
             </section>
           </div>
 
-          <section className="mt-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2 text-center">{t('toolkitTitle')}</h2>
-            <p className="text-center text-slate-600 mb-10 max-w-2xl mx-auto">
+          <section className="mt-20 bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('toolkitTitle')}</h2>
+            <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
               {t('toolkitSubtitle')}
             </p>
-            <p className="text-center text-teal-800 italic mb-10 max-w-2xl mx-auto">
+            <p className="text-center text-xl text-teal-800 mb-10 max-w-2xl mx-auto">
               {t('guidedEntry')}
             </p>
             
@@ -312,8 +334,9 @@ const App: React.FC = () => {
               </div>
             </div>
 
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">{t('corePracticesTitle')}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {practices.map((practice) => (
+              {visiblePractices.map((practice) => (
                 <PracticeCard
                   key={practice.title}
                   practice={practice}
@@ -321,6 +344,32 @@ const App: React.FC = () => {
                 />
               ))}
             </div>
+            
+            {corePractices.length > 8 && (
+              <div className="text-center mt-10">
+                <button
+                  onClick={() => setShowAllPractices(!showAllPractices)}
+                  className="bg-slate-200 text-slate-700 font-semibold py-2 px-6 rounded-lg hover:bg-slate-300 transition-colors"
+                >
+                  {showAllPractices ? t('showLessButton') : t('showMoreButton')}
+                </button>
+              </div>
+            )}
+            
+            {structuredPractices.length > 0 && (
+              <div className="mt-16">
+                 <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">{t('structuredPausesTitle')}</h3>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto gap-8">
+                    {structuredPractices.map((practice) => (
+                      <PracticeCard
+                        key={practice.title}
+                        practice={practice}
+                        onSelect={handleSelectPractice}
+                      />
+                    ))}
+                 </div>
+              </div>
+            )}
           </section>
 
           <section className="mt-20">
@@ -329,6 +378,14 @@ const App: React.FC = () => {
 
           <section className="mt-20">
             <GenerativeMeditation />
+          </section>
+          
+          <section className="mt-20">
+            <div className="bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
+              <p className="max-w-3xl mx-auto text-slate-700 text-lg italic leading-relaxed">
+                {t('whyItMattersText')}
+              </p>
+            </div>
           </section>
 
           <section className="mt-20">
@@ -348,12 +405,6 @@ const App: React.FC = () => {
                 {t('continueJourneyButton')}
               </a>
             </div>
-          </section>
-
-          <section className="mt-16 text-center">
-            <p className="max-w-3xl mx-auto text-slate-600 text-lg italic leading-relaxed px-4">
-              {t('whyItMattersText')}
-            </p>
           </section>
 
         </main>

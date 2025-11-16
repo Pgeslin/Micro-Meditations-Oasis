@@ -11,6 +11,8 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
+        background-color: #f8fafc; /* bg-slate-50 */
+        background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23e2e8f0" fill-opacity="0.4" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H5z"/%3E%3C/g%3E%3C/svg%3E');
       }
       @keyframes fadeIn {
         from { opacity: 0; }
@@ -18,6 +20,29 @@
       }
       .animate-fade-in {
         animation: fadeIn 0.3s ease-in-out;
+      }
+      @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .animated-gradient {
+        background: linear-gradient(-45deg, #e0f2f1, #b2dfdb, #80cbc4, #4db6ac);
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
+      }
+      @keyframes deepSpace {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      }
+      .timer-background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200vmax;
+        height: 200vmax;
+        background: radial-gradient(circle, rgba(13, 148, 136, 0.4) 0%, rgba(15, 23, 42, 0) 60%);
+        animation: deepSpace 60s linear infinite;
       }
     </style>
   <script type="importmap">

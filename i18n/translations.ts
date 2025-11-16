@@ -17,6 +17,10 @@ export const translations = {
     toolkitSubtitle: 'Choose a practice that resonates with you and set your preferred duration.',
     guidedEntry: 'Take a breath. Slow down for a moment. Then choose the practice that calls you.',
     setDuration: 'Set Duration:',
+    corePracticesTitle: 'Core Practices',
+    structuredPausesTitle: 'Structured Pauses',
+    showMoreButton: 'Show More Practices',
+    showLessButton: 'Show Less',
     continueJourneyTitle: 'Continue Your Journey',
     continueJourneyText: 'A bilingual (English/French) mindful AI companion grounded in the MBSR tradition. KAZE embodies mindfulness through dialogue, reflection, and poetic presence. Unlike other mindfulness tools, it doesn’t instruct — it listens, holds space, and co-practices awareness with you.',
     continueJourneyButton: 'Visit Kaze Mindfulness Dojo',
@@ -46,13 +50,15 @@ export const translations = {
 
     // Reminder Component
     reminderTitle: 'Set a Mindful Reminder',
-    reminderSubtitle: 'Let us gently nudge you to take a pause later in your day.',
+    reminderSubtitle: 'Schedule gentle nudges to take a pause throughout your day.',
     notificationsDenied: 'Notifications for this site are currently turned off. To use reminders, please enable them in your browser settings. You can often find this option by clicking the lock icon in the address bar.',
-    reminderSetFor: 'A mindful reminder is set for',
-    clearReminder: 'Clear Reminder',
-    in15min: 'In 15 min',
-    in1hour: 'In 1 hour',
-    in4hours: 'In 4 hours',
+    enableNotifications: 'Enable Reminders',
+    addReminder: 'Add Reminder',
+    saveReminder: 'Save',
+    cancel: 'Cancel',
+    noRemindersSet: 'No reminders set. Add one to get started!',
+    removeReminder: 'Remove reminder for',
+    reminderSet: 'Reminder set for',
     
     // Generative Meditation Component
     genTitle: 'Create Your Own Moment',
@@ -109,6 +115,7 @@ export const translations = {
         { 
           id: 'six-second-breathing', 
           title: 'Six-Second Breathing', 
+          icon: 'BreathIcon',
           description: 'A slow inhale, a slow exhale.\nLet the rhythm settle you and steady the nervous system.',
           details: {
             what: 'A simple technique where you intentionally slow your breath to a rhythm of approximately six seconds for the inhale and six seconds for the exhale. It\'s a powerful way to consciously regulate your body\'s stress response.',
@@ -120,6 +127,7 @@ export const translations = {
         },
         { 
           title: 'Release the shoulders', 
+          icon: 'ShoulderReleaseIcon',
           description: 'Feel the weight slide down the arms.\nOne soft breath melts the tension in the traps.',
           details: {
             what: 'A quick physical action to consciously let go of the tension we commonly hold in our neck and shoulder area.',
@@ -131,6 +139,7 @@ export const translations = {
         },
         { 
           title: 'Three slow breaths', 
+          icon: 'ThreeBreathsIcon',
           description: 'Three quiet breaths to pause, reset, and return.',
           details: {
             what: 'The simple act of pausing whatever you are doing to take three deliberate, unhurried breaths, giving them your full attention.',
@@ -142,6 +151,7 @@ export const translations = {
         },
         { 
           title: 'Soften the jaw and face', 
+          icon: 'JawSoftIcon',
           description: 'Unclench the jaw, relax the cheeks.\nLet the face remember ease.',
           details: {
             what: 'A focused instruction to consciously relax the small, often-tense muscles around your jaw, mouth, and forehead.',
@@ -153,6 +163,7 @@ export const translations = {
         },
         { 
           title: 'Come back into the body', 
+          icon: 'BodyScanIcon',
           description: 'Feel the feet on the ground, the legs, the belly.\nA simple way home.',
           details: {
             what: 'A grounding technique that shifts your attention from the busy world of your thoughts down into the physical sensations of your body.',
@@ -164,6 +175,7 @@ export const translations = {
         },
         { 
           title: 'Warm the hands, warm the mind', 
+          icon: 'SoothingTouchIcon',
           description: 'Rub your hands gently and rest them on heart or belly.\nWarmth finds its way inside.',
           details: {
             what: 'A self-soothing gesture that uses physical warmth and gentle pressure to create a sense of comfort and safety.',
@@ -175,6 +187,7 @@ export const translations = {
         },
         { 
           title: 'Listen to the nearest sound', 
+          icon: 'SoundIcon',
           description: 'Let the world come to you.\nNotice the closest sound, then the next.',
           details: {
             what: 'An auditory mindfulness practice where you gently shift your attention to the sounds happening around you, without judging or analyzing them.',
@@ -186,6 +199,7 @@ export const translations = {
         },
         { 
           title: 'One breath before responding', 
+          icon: 'BreathIcon',
           description: 'A single breath creates space.\nA moment to choose your words with clarity.',
           details: {
             what: 'The intentional practice of taking one full, conscious breath after someone speaks to you and before you reply.',
@@ -197,6 +211,7 @@ export const translations = {
         },
         { 
           title: 'Slow exhale to settle', 
+          icon: 'SlowExhaleIcon',
           description: 'A long, soft out-breath.\nLet the system drop a gear.',
           details: {
             what: 'Focusing on making your exhalation slightly longer than your inhalation. This is often called "physiological sighing."',
@@ -208,6 +223,7 @@ export const translations = {
         },
         { 
           title: 'Soften the eyes', 
+          icon: 'SoftenEyesIcon',
           description: 'Relax the gaze.\nShift from tunnel vision into wider seeing.',
           details: {
             what: 'Consciously relaxing the muscles around your eyes and allowing your gaze to become unfocused and wide, taking in your peripheral vision.',
@@ -219,6 +235,7 @@ export const translations = {
         },
         { 
           title: 'One thing you’re grateful for', 
+          icon: 'GratitudeIcon',
           description: 'Rest with one quiet moment of gratitude.\nLet it touch you.',
           details: {
             what: 'A brief mental exercise to intentionally bring to mind one specific thing, person, or experience you feel genuinely grateful for.',
@@ -230,6 +247,7 @@ export const translations = {
         },
         { 
           title: 'Reset your posture', 
+          icon: 'PostureIcon',
           description: 'Lengthen the spine, soften the shoulders.\nA simple realignment.',
           details: {
             what: 'A conscious check-in and gentle adjustment of your physical posture to create a more upright, open, and balanced alignment.',
@@ -241,6 +259,7 @@ export const translations = {
         },
         { 
           title: 'A hand on the heart', 
+          icon: 'HeartIcon',
           description: 'A gentle touch to meet yourself with care.',
           details: {
             what: 'The simple, compassionate act of placing a hand over your heart or another comforting place on your body.',
@@ -252,6 +271,7 @@ export const translations = {
         },
         { 
           title: 'RAIN', 
+          icon: 'RainIcon',
           description: 'A soft four-step pause: recognise, allow, investigate, nurture.',
           details: {
             what: 'RAIN is an acronym for a four-step mindfulness practice to navigate difficult emotions: Recognize, Allow, Investigate, and Nurture.',
@@ -263,6 +283,7 @@ export const translations = {
         },
         { 
           title: 'STOP', 
+          icon: 'StopIcon',
           description: 'Stop, breathe, observe, and proceed with clarity.',
           details: {
             what: 'STOP is an acronym for a four-step practice to interrupt autopilot mode and bring mindful awareness to the present moment: Stop, Take a breath, Observe, and Proceed.',
@@ -296,6 +317,10 @@ export const translations = {
     toolkitSubtitle: 'Choisissez une pratique qui résonne avec vous et définissez votre durée préférée.',
     guidedEntry: 'Prenez une respiration. Ralentissez un instant. Puis choisissez la pratique qui vous appelle.',
     setDuration: 'Durée :',
+    corePracticesTitle: 'Pratiques Essentielles',
+    structuredPausesTitle: 'Pauses Structurées',
+    showMoreButton: 'Voir Plus de Pratiques',
+    showLessButton: 'Voir Moins',
     continueJourneyTitle: 'Poursuivez Votre Voyage',
     continueJourneyText: 'Un compagnon IA bilingue (anglais/français) et conscient, ancré dans la tradition MBSR. KAZE incarne la pleine conscience à travers le dialogue, la réflexion et une présence poétique. Contrairement à d\'autres outils de pleine conscience, il n\'instruit pas — il écoute, offre un espace et co-pratique la conscience avec vous.',
     continueJourneyButton: 'Visiter le Dojo de Pleine Conscience Kaze',
@@ -325,13 +350,15 @@ export const translations = {
 
     // Reminder Component
     reminderTitle: 'Définir un Rappel de Pleine Conscience',
-    reminderSubtitle: 'Laissez-nous vous encourager doucement à faire une pause plus tard dans votre journée.',
+    reminderSubtitle: 'Programmez de doux rappels pour faire une pause tout au long de votre journée.',
     notificationsDenied: 'Les notifications pour ce site sont actuellement désactivées. Pour utiliser les rappels, veuillez les activer dans les paramètres de votre navigateur. Vous pouvez souvent trouver cette option en cliquant sur l\'icône de cadenas dans la barre d\'adresse.',
-    reminderSetFor: 'Un rappel de pleine conscience est défini pour',
-    clearReminder: 'Effacer le Rappel',
-    in15min: 'Dans 15 min',
-    in1hour: 'Dans 1 heure',
-    in4hours: 'Dans 4 heures',
+    enableNotifications: 'Activer les rappels',
+    addReminder: 'Ajouter un rappel',
+    saveReminder: 'Enregistrer',
+    cancel: 'Annuler',
+    noRemindersSet: 'Aucun rappel défini. Ajoutez-en un pour commencer !',
+    removeReminder: 'Supprimer le rappel pour',
+    reminderSet: 'Rappel défini pour',
 
     // Generative Meditation Component
     genTitle: 'Créez Votre Propre Moment',
@@ -388,6 +415,7 @@ export const translations = {
       { 
         id: 'six-second-breathing', 
         title: 'Respiration de Six Secondes', 
+        icon: 'BreathIcon',
         description: 'Une inspiration lente, une expiration lente.\nLaissez le rythme vous apaiser et stabiliser le système nerveux.',
         details: {
           what: 'Une technique simple où vous ralentissez intentionnellement votre respiration à un rythme d\'environ six secondes pour l\'inspiration et six secondes pour l\'expiration. C\'est un moyen puissant de réguler consciemment la réponse au stress de votre corps.',
@@ -399,6 +427,7 @@ export const translations = {
       },
       { 
         title: 'Relâcher les épaules', 
+        icon: 'ShoulderReleaseIcon',
         description: 'Sentez le poids glisser le long des bras.\nUn souffle doux fait fondre la tension dans les trapèzes.',
         details: {
           what: 'Une action physique rapide pour laisser consciemment partir la tension que nous accumulons couramment dans la région du cou et des épaules.',
@@ -410,6 +439,7 @@ export const translations = {
       },
       { 
         title: 'Trois respirations lentes', 
+        icon: 'ThreeBreathsIcon',
         description: 'Trois respirations calmes pour faire une pause, se réinitialiser et revenir.',
         details: {
           what: 'L\'acte simple de marquer une pause dans ce que vous faites pour prendre trois respirations délibérées et calmes, en leur accordant toute votre attention.',
@@ -421,6 +451,7 @@ export const translations = {
       },
       { 
         title: 'Détendre la mâchoire et le visage', 
+        icon: 'JawSoftIcon',
         description: 'Desserrez la mâchoire, détendez les joues.\nLaissez le visage se souvenir de la facilité.',
         details: {
           what: 'Une instruction ciblée pour détendre consciemment les petits muscles, souvent tendus, autour de votre mâchoire, de votre bouche et de votre front.',
@@ -432,6 +463,7 @@ export const translations = {
       },
       { 
         title: 'Revenir dans le corps', 
+        icon: 'BodyScanIcon',
         description: 'Sentez les pieds sur le sol, les jambes, le ventre.\nUn simple chemin de retour à la maison.',
         details: {
           what: 'Une technique d\'ancrage qui déplace votre attention du monde agité de vos pensées vers les sensations physiques de votre corps.',
@@ -443,6 +475,7 @@ export const translations = {
       },
       { 
         title: 'Réchauffer les mains, réchauffer l\'esprit', 
+        icon: 'SoothingTouchIcon',
         description: 'Frottez doucement vos mains et posez-les sur le cœur ou le ventre.\nLa chaleur trouve son chemin à l\'intérieur.',
         details: {
           what: 'Un geste auto-apaisant qui utilise la chaleur physique et une légère pression pour créer un sentiment de confort et de sécurité.',
@@ -454,6 +487,7 @@ export const translations = {
       },
       { 
         title: 'Écouter le son le plus proche', 
+        icon: 'SoundIcon',
         description: 'Laissez le monde venir à vous.\nRemarquez le son le plus proche, puis le suivant.',
         details: {
           what: 'Une pratique de pleine conscience auditive où vous déplacez doucement votre attention vers les sons qui vous entourent, sans les juger ni les analyser.',
@@ -465,6 +499,7 @@ export const translations = {
       },
       { 
         title: 'Une respiration avant de répondre', 
+        icon: 'BreathIcon',
         description: 'Une seule respiration crée de l\'espace.\nUn moment pour choisir vos mots avec clarté.',
         details: {
           what: 'La pratique intentionnelle de prendre une respiration complète et consciente après que quelqu\'un vous a parlé et avant que vous ne répondiez.',
@@ -476,6 +511,7 @@ export const translations = {
       },
       { 
         title: 'Expiration lente pour s\'apaiser', 
+        icon: 'SlowExhaleIcon',
         description: 'Une expiration longue et douce.\nLaissez le système ralentir d\'un cran.',
         details: {
           what: 'Se concentrer sur le fait de rendre votre expiration légèrement plus longue que votre inspiration. Ceci est parfois appelé le "soupir physiologique".',
@@ -487,6 +523,7 @@ export const translations = {
       },
       { 
         title: 'Adoucir le regard', 
+        icon: 'SoftenEyesIcon',
         description: 'Détendez le regard.\nPassez de la vision en tunnel à une vision plus large.',
         details: {
           what: 'Détendre consciemment les muscles autour de vos yeux et permettre à votre regard de devenir défocalisé et large, en intégrant votre vision périphérique.',
@@ -498,6 +535,7 @@ export const translations = {
       },
       { 
         title: 'Une chose pour laquelle vous êtes reconnaissant(e)', 
+        icon: 'GratitudeIcon',
         description: 'Reposez-vous avec un moment calme de gratitude.\nLaissez-le vous toucher.',
         details: {
           what: 'Un bref exercice mental pour se remémorer intentionnellement une chose, une personne ou une expérience spécifique pour laquelle vous ressentez une gratitude sincère.',
@@ -509,6 +547,7 @@ export const translations = {
       },
       { 
         title: 'Réajuster votre posture', 
+        icon: 'PostureIcon',
         description: 'Allongez la colonne vertébrale, détendez les épaules.\nUn simple réalignement.',
         details: {
           what: 'Une vérification consciente et un ajustement doux de votre posture physique pour créer un alignement plus droit, ouvert et équilibré.',
@@ -520,6 +559,7 @@ export const translations = {
       },
       { 
         title: 'Une main sur le cœur', 
+        icon: 'HeartIcon',
         description: 'Un toucher doux pour vous accueillir avec bienveillance.',
         details: {
           what: 'L\'acte simple et compatissant de placer une main sur votre cœur ou un autre endroit réconfortant de votre corps.',
@@ -530,7 +570,8 @@ export const translations = {
         }
       },
       { 
-        title: 'RAIN', 
+        title: 'RAIN (FR)', 
+        icon: 'RainIcon',
         description: 'Une pause douce en quatre étapes : reconnaître, accepter, investiguer, nourrir.',
         details: {
           what: 'RAIN est un acronyme pour une pratique de pleine conscience en quatre étapes pour naviguer les émotions difficiles : Reconnaître, Accepter, Investiguer et Nourrir (Nurture).',
@@ -541,7 +582,8 @@ export const translations = {
         }
       },
       { 
-        title: 'STOP', 
+        title: 'STOP (FR)', 
+        icon: 'StopIcon',
         description: 'S\'arrêter, respirer, observer, et continuer avec clarté.',
         details: {
           what: 'STOP est un acronyme pour une pratique en quatre étapes pour interrompre le mode pilote automatique et amener une conscience attentive au moment présent : S\'arrêter, Prendre une respiration, Observer et Procéder.',
