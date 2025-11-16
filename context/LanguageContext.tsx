@@ -12,14 +12,9 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    // Check localStorage for a saved language, default to 'en'
-    const savedLang = typeof window !== 'undefined' ? (localStorage.getItem('app-language') as Language) : null;
-    return savedLang || 'en';
-  });
+  const [language, setLanguageState] = useState<Language>('en');
 
   const setLanguage = (lang: Language) => {
-    localStorage.setItem('app-language', lang);
     setLanguageState(lang);
   };
 

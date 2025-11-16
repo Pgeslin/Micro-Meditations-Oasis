@@ -8,32 +8,6 @@ import { Reminder } from './components/Reminder';
 import { useLanguage } from './context/LanguageContext';
 import { translations } from './i18n/translations';
 
-// --- Language Selector Component ---
-const LanguageSelector: React.FC<{ onSelect: (lang: 'en' | 'fr') => void }> = ({ onSelect }) => {
-  return (
-    <div className="fixed inset-0 bg-slate-900 bg-opacity-95 z-50 flex items-center justify-center animate-fade-in">
-      <div className="text-center text-white">
-        <h1 className="text-3xl font-bold mb-8">Select Language / Choisir la langue</h1>
-        <div className="flex gap-4">
-          <button
-            onClick={() => onSelect('en')}
-            className="bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors duration-300"
-          >
-            English
-          </button>
-          <button
-            onClick={() => onSelect('fr')}
-            className="bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors duration-300"
-          >
-            Français
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
 // --- Timer Component ---
 
 interface TimerProps {
@@ -137,7 +111,6 @@ const App: React.FC = () => {
   const [activePractice, setActivePractice] = React.useState<Practice | null>(null);
   const [showBreathingExercise, setShowBreathingExercise] = React.useState(false);
   const [duration, setDuration] = React.useState(60);
-  const [isLangSelected, setIsLangSelected] = React.useState(!!localStorage.getItem('app-language'));
 
   const durationOptions = React.useMemo(() => [
     { label: t('durations.d30s'), value: 30 },
@@ -159,15 +132,6 @@ const App: React.FC = () => {
     setActivePractice(null);
     setShowBreathingExercise(false);
   };
-  
-  const handleLanguageSelect = (lang: 'en' | 'fr') => {
-    setLanguage(lang);
-    setIsLangSelected(true);
-  };
-
-  if (!isLangSelected) {
-    return <LanguageSelector onSelect={handleLanguageSelect} />;
-  }
 
   return (
     <>
@@ -175,6 +139,34 @@ const App: React.FC = () => {
       {showBreathingExercise && <BreathingExercise duration={duration} onClose={handleCloseModals} t={t} />}
       <div className="bg-slate-50 min-h-screen text-slate-800 antialiased">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+
+          <div className="flex justify-end mb-4 -mt-4">
+            <div className="flex items-center bg-slate-200/75 rounded-full p-1">
+              <button
+                onClick={() => setLanguage('en')}
+                aria-pressed={language === 'en'}
+                className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                  language === 'en'
+                    ? 'bg-white text-teal-700 shadow-sm'
+                    : 'text-slate-600 hover:text-slate-800'
+                }`}
+              >
+                English
+              </button>
+              <button
+                onClick={() => setLanguage('fr')}
+                aria-pressed={language === 'fr'}
+                className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                  language === 'fr'
+                    ? 'bg-white text-teal-700 shadow-sm'
+                    : 'text-slate-600 hover:text-slate-800'
+                }`}
+              >
+                Français
+              </button>
+            </div>
+          </div>
+
 
           <header className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-slate-900 mb-4">
