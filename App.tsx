@@ -106,27 +106,67 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose }) => {
 // --- Main App Component ---
 
 const practices: Practice[] = [
-    {
+  {
     id: 'six-second-breathing',
     title: 'Six-Second Breathing',
-    description: 'Steady six-second inhales and exhales to regulate the nervous system and lower anxiety.',
+    description: 'A slow inhale, a slow exhale.\nLet the rhythm settle you and steady the nervous system.',
   },
   {
-    title: 'Breath Check-in',
-    description: 'Take three conscious breaths. Feel the air fill your lungs on the inhale, and release all tension on the exhale.',
+    title: 'Release the shoulders',
+    description: 'Feel the weight slide down the arms.\nOne soft breath melts the tension in the traps.',
   },
   {
-    title: 'Sensory Grounding',
-    description: 'Notice five specific sensations around you (sight, sound, touch, smell, taste) to anchor yourself in the present moment.',
+    title: 'Three slow breaths',
+    description: 'Three quiet breaths to pause, reset, and return.',
   },
   {
-    title: 'Gratitude Pause',
-    description: 'Bring to mind one simple thing you genuinely appreciate right now. It could be your coffee, a sunny day, or a favorite song.',
+    title: 'Soften the jaw and face',
+    description: 'Unclench the jaw, relax the cheeks.\nLet the face remember ease.',
   },
   {
-    title: 'Micro-Movement',
-    description: 'Step away from your screen. Do a one-minute stretch, or take a quick walk to a window and back to reset your body and mind.',
-  }
+    title: 'Come back into the body',
+    description: 'Feel the feet on the ground, the legs, the belly.\nA simple way home.',
+  },
+  {
+    title: 'Warm the hands, warm the mind',
+    description: 'Rub your hands gently and rest them on heart or belly.\nWarmth finds its way inside.',
+  },
+  {
+    title: 'Listen to the nearest sound',
+    description: 'Let the world come to you.\nNotice the closest sound, then the next.',
+  },
+  {
+    title: 'One breath before responding',
+    description: 'A single breath creates space.\nA moment to choose your words with clarity.',
+  },
+  {
+    title: 'Slow exhale to settle',
+    description: 'A long, soft out-breath.\nLet the system drop a gear.',
+  },
+  {
+    title: 'Soften the eyes',
+    description: 'Relax the gaze.\nShift from tunnel vision into wider seeing.',
+  },
+  {
+    title: 'One thing you’re grateful for',
+    description: 'Rest with one quiet moment of gratitude.\nLet it touch you.',
+  },
+  {
+    title: 'Reset your posture',
+    description: 'Lengthen the spine, soften the shoulders.\nA simple realignment.',
+  },
+  {
+    title: 'A hand on the heart',
+    description: 'A gentle touch to meet yourself with care.',
+  },
+  {
+    title: 'RAIN',
+    description: 'A soft four-step pause: recognise, allow, investigate, nurture.',
+  },
+  {
+    title: 'STOP',
+    description: 'Stop, breathe, observe, and proceed with clarity.',
+  },
 ];
 
 const durationOptions = [
@@ -194,10 +234,6 @@ const App: React.FC = () => {
               </p>
             </section>
             
-            <section className="mt-16">
-             <GenerativeMeditation />
-            </section>
-
             <section className="bg-teal-600 text-white p-8 rounded-2xl shadow-lg">
               <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">How Can 60 Seconds Actually Work?</h2>
               <p className="text-center max-w-3xl mx-auto text-teal-100 leading-relaxed">
@@ -243,10 +279,17 @@ const App: React.FC = () => {
             </div>
           </section>
 
+          <section className="mt-20">
+            <GenerativeMeditation />
+          </section>
+
         </main>
         
         <footer className="text-center py-8 text-slate-500">
           <p>Breathe in, breathe out. Your moment of calm is always available.</p>
+          <p className="mt-4 text-sm text-slate-400">
+            Created by Pierre ‘Satch’ Geslin, mindfulness trainer and haiku poet in the Adelaide Hills of South Australia. <a href="https://pgeslin.substack.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-teal-600 transition-colors">Learn more…</a>
+          </p>
         </footer>
       </div>
     </>

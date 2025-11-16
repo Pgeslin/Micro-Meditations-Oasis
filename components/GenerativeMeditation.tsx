@@ -38,14 +38,24 @@ async function decodeAudioData(
 
 const themes = ['Focus', 'Relaxation', 'Energy', 'Gratitude', 'Mindfulness', 'Stress Relief', 'Sleep'];
 
+const durations = [
+  { label: '1 min', value: 60 },
+  { label: '2 min', value: 120 },
+  { label: '3 min', value: 180 },
+];
+
 const voices = [
   { name: 'Kore', displayName: 'Calm (Female)' },
   { name: 'Puck', displayName: 'Gentle (Male)' },
   { name: 'Zephyr', displayName: 'Bright (Female)' },
+  { name: 'Charon', displayName: 'Deep (Male)' },
+  { name: 'Fenrir', displayName: 'Warm (Male)' },
 ];
+
 
 export const GenerativeMeditation: React.FC = () => {
   const [selectedTheme, setSelectedTheme] = React.useState<string | null>(null);
+  const [selectedDuration, setSelectedDuration] = React.useState<number>(60);
   const [selectedVoice, setSelectedVoice] = React.useState<string>('Kore');
   const [generatedScript, setGeneratedScript] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -85,7 +95,9 @@ export const GenerativeMeditation: React.FC = () => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
       
       // 1. Generate the meditation script
-      const prompt = `You are a mindfulness expert. Write a short, soothing, one-minute guided meditation script focusing on the theme of '${selectedTheme}'. The script should be easy for a beginner to follow and under 150 words. Do not use markdown or any special formatting. Just provide the script text.`;
+      const durationInMinutes = selectedDuration / 60;
+      const wordCount = durationInMinutes * 150; // Approx. 150 words per minute
+      const prompt = `You are a mindfulness expert. Write a short, soothing, ${durationInMinutes}-minute guided meditation script focusing on the theme of '${selectedTheme}'. The script should be easy for a beginner to follow and be approximately ${wordCount} words. Do not use markdown or any special formatting. Just provide the script text.`;
       
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
@@ -167,7 +179,7 @@ export const GenerativeMeditation: React.FC = () => {
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Create Your Own Moment</h2>
         <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
-          Feeling something else? Select a theme and let our AI craft a unique, one-minute guided meditation just for you.
+          Feeling something else? Select a theme and let our AI craft a unique, guided meditation just for you.
         </p>
       </div>
       
@@ -190,9 +202,33 @@ export const GenerativeMeditation: React.FC = () => {
               ))}
             </div>
         </div>
+
+        <div>
+           <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">2. Select a Duration</h3>
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+              {durations.map(duration => (
+                <button
+                  key={duration.value}
+                  onClick={() => setSelectedDuration(duration.value)}
+                  className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 ${
+                    selectedDuration === duration.value
+                      ? 'bg-teal-600 text-white shadow'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  {duration.label}
+                </button>
+              ))}
+            </div>
+            {selectedDuration > 60 && (
+              <p className="text-center text-sm text-slate-500 mt-4 animate-fade-in px-4">
+                Longer meditations take a little more time to craft. For a quicker experience, you might like to try the 1-minute option first!
+              </p>
+            )}
+        </div>
         
         <div>
-          <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">2. Choose a Voice</h3>
+          <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">3. Choose a Voice</h3>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {voices.map(voice => (
               <button
@@ -227,6 +263,11 @@ export const GenerativeMeditation: React.FC = () => {
             'Craft My Meditation'
           )}
         </button>
+        {isLoading && (
+          <p className="text-slate-500 text-sm mt-4 animate-fade-in">
+            Preparing your personal meditation and voice guidance. Thank you for your patience.
+          </p>
+        )}
       </div>
       
       {error && <p className="text-red-500 text-center mt-6">{error}</p>}
