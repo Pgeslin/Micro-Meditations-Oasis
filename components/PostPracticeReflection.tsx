@@ -49,13 +49,14 @@ export const PostPracticeReflection: React.FC<PostPracticeReflectionProps> = ({ 
 
         <main className="p-6 pt-0">
           {!aiResponse && !error && (
-            <div className="animate-fade-in">
-              <p className="text-slate-600 mb-4 text-center">{t('reflection.prompt', practice.title)}</p>
+            <div className="animate-fade-in text-center">
+              <p className="text-slate-600 mb-4">{t('reflection.intro')}</p>
+              <p className="text-slate-700 font-semibold mb-4">{t('reflection.prompt', practice.title)}</p>
               <textarea
                 value={reflection}
                 onChange={(e) => setReflection(e.target.value)}
                 placeholder={t('reflection.placeholder')}
-                className="w-full h-32 p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-shadow duration-200"
+                className="w-full h-32 p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-shadow duration-200 text-left"
                 disabled={isLoading}
                 aria-label="Your reflection"
               />

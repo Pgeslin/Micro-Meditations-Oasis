@@ -88,6 +88,7 @@ export const translations = {
     
     reflection: {
       title: 'Reflect on Your Practice',
+      intro: 'Putting your experience into words helps solidify its benefits. This is a private space for you to acknowledge what you noticed. Share a few thoughts, and our AI companion will offer a gentle, supportive response to close your practice.',
       prompt: (practiceTitle: string) => `What did you notice during your "${practiceTitle}" practice?`,
       placeholder: 'Take a moment to describe your experience...',
       submitButton: 'Submit Reflection',
@@ -361,6 +362,7 @@ export const translations = {
     
     reflection: {
       title: 'Réfléchissez à votre pratique',
+      intro: 'Mettre des mots sur votre expérience aide à en consolider les bienfaits. C\'est un espace privé pour vous, pour reconnaître ce que vous avez remarqué. Partagez quelques pensées, et notre compagnon IA offrira une réponse douce et encourageante pour conclure votre pratique.',
       prompt: (practiceTitle: string) => `Qu'avez-vous remarqué pendant votre pratique de "${practiceTitle}" ?`,
       placeholder: 'Prenez un moment pour décrire votre expérience...',
       submitButton: 'Soumettre la réflexion',
