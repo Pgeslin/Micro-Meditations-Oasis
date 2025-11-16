@@ -19,7 +19,7 @@ interface TimerProps {
 const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
   const [secondsLeft, setSecondsLeft] = React.useState(duration);
   const [isCompleted, setIsCompleted] = React.useState(false);
-  const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('inhale');
+  const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('exhale');
 
   React.useEffect(() => {
     if (secondsLeft <= 0) {
