@@ -238,11 +238,11 @@ const App: React.FC = () => {
               loop
               muted
               playsInline
-              className="absolute top-0 left-0 w-full h-full object-cover z-0"
-              poster="https://images.pexels.com/photos/1684151/pexels-photo-1684151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              className="absolute top-0 left-0 w-full h-full object-cover z-0 filter brightness-90"
+              poster="https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             >
               <source
-                src="https://videos.pexels.com/video-files/7578516/7578516-hd_1920_1080_25fps.mp4"
+                src="https://videos.pexels.com/video-files/853874/853874-hd_1920_1080_25fps.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.

@@ -3,7 +3,7 @@ export const translations = {
   en: {
     // App Component
     heroTitle: 'The Power of the Pause',
-    heroSubtitle: 'Find your moment of calm. Discover the art of peace and focus in under 60 seconds, in English or French.',
+    heroSubtitle: 'Your tiny oasis for one-minute pauses. Find your calm amidst the waves of a busy life.',
     whyTitle: 'Why Is Everyone Talking About This?',
     needResetTitle: 'The Need for a Reset',
     needResetText: 'Digital overload is real. Constant notifications and endless scrolling leave our minds cluttered. Micro-meditations offer a quick, accessible way to hit the reset button, cutting through the noise without a huge time commitment.',
@@ -310,7 +310,7 @@ export const translations = {
   fr: {
     // App Component
     heroTitle: 'Le Pouvoir de la Pause',
-    heroSubtitle: 'Trouvez votre moment de calme. Découvrez l\'art de la paix et de la concentration en moins de 60 secondes, en français ou en anglais.',
+    heroSubtitle: 'Votre petite oasis pour des pauses d\'une minute. Trouvez votre calme au milieu des vagues d\'une vie bien remplie.',
     whyTitle: 'Pourquoi Tout le Monde en Parle ?',
     needResetTitle: 'Le Besoin d\'une Remise à Zéro',
     needResetText: 'La surcharge numérique est réelle. Les notifications constantes et le défilement infini encombrent nos esprits. Les micro-méditations offrent un moyen rapide et accessible d\'appuyer sur le bouton de réinitialisation, pour percer le bruit sans un engagement de temps énorme.',
