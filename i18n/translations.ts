@@ -1,5 +1,4 @@
 
-
 export const translations = {
   en: {
     // App Component
@@ -65,6 +64,7 @@ export const translations = {
     noRemindersSet: 'No reminders set. Add one to get started!',
     removeReminder: 'Remove reminder for',
     reminderSet: 'Reminder set for',
+    reminderError: 'Could not schedule the reminder for that time. Please try again.',
     
     // Generative Meditation Component
     genTitle: 'Create Your Own Moment',
@@ -373,6 +373,7 @@ export const translations = {
     noRemindersSet: 'Aucun rappel défini. Ajoutez-en un pour commencer !',
     removeReminder: 'Supprimer le rappel pour',
     reminderSet: 'Rappel défini pour',
+    reminderError: 'Impossible de programmer le rappel pour cette heure. Veuillez réessayer.',
 
     // Generative Meditation Component
     genTitle: 'Créez Votre Propre Moment',
