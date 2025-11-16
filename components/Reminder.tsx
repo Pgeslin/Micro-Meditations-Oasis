@@ -27,21 +27,28 @@ export const Reminder: React.FC = () => {
       icon: '/favicon.ico',
     });
     // Remove the reminder that just fired
-    setReminders(prev => prev.filter(r => r !== time));
-    try {
-        const savedReminders = JSON.parse(localStorage.getItem(REMINDER_STORAGE_KEY) || '[]');
-        const updatedReminders = savedReminders.filter((r: string) => r !== time);
-        localStorage.setItem(REMINDER_STORAGE_KEY, JSON.stringify(updatedReminders));
-    } catch(e) {
-        console.error("Error updating localStorage after notification", e);
-    }
+    setReminders(prev => {
+        const updatedReminders = prev.filter(r => r !== time);
+        try {
+            localStorage.setItem(REMINDER_STORAGE_KEY, JSON.stringify(updatedReminders));
+        } catch(e) {
+            console.error("Error updating localStorage after notification", e);
+        }
+        return updatedReminders;
+    });
   }, [t]);
 
   const scheduleReminder = useCallback((time: string) => {
     const now = new Date();
     const [hour, minute] = time.split(':').map(Number);
-    const reminderDate = new Date();
+    
+    let reminderDate = new Date();
     reminderDate.setHours(hour, minute, 0, 0);
+
+    // If the reminder time is in the past for today, schedule it for tomorrow
+    if (reminderDate.getTime() < now.getTime()) {
+      reminderDate.setDate(reminderDate.getDate() + 1);
+    }
 
     const delay = reminderDate.getTime() - now.getTime();
 
@@ -74,12 +81,9 @@ export const Reminder: React.FC = () => {
       
       try {
         const savedReminders: string[] = JSON.parse(localStorage.getItem(REMINDER_STORAGE_KEY) || '[]');
-        const validReminders = savedReminders.filter(time => scheduleReminder(time));
-        
-        if (validReminders.length !== savedReminders.length) {
-            localStorage.setItem(REMINDER_STORAGE_KEY, JSON.stringify(validReminders));
-        }
-        setReminders(validReminders.sort());
+        // Reschedule all saved reminders for their next available time
+        savedReminders.forEach(time => scheduleReminder(time));
+        setReminders(savedReminders.sort());
       } catch (e) {
         console.error("Failed to parse reminders from localStorage", e);
         localStorage.removeItem(REMINDER_STORAGE_KEY);
