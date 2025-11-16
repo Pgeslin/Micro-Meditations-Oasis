@@ -2,6 +2,7 @@
 import React from 'react';
 import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
+import { PracticeDetail } from './components/PracticeDetail';
 import { GenerativeMeditation } from './components/GenerativeMeditation';
 import { Reminder } from './components/Reminder';
 import { useLanguage } from './context/LanguageContext';
@@ -147,7 +148,8 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
 
 const App: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
-  const [activePractice, setActivePractice] = React.useState<Practice | null>(null);
+  const [viewedPractice, setViewedPractice] = React.useState<Practice | null>(null);
+  const [practiceForTimer, setPracticeForTimer] = React.useState<Practice | null>(null);
   const [duration, setDuration] = React.useState(60);
 
   const durationOptions = React.useMemo(() => [
@@ -159,17 +161,33 @@ const App: React.FC = () => {
   const practices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
   
   const handleSelectPractice = (practice: Practice) => {
-    setActivePractice(practice);
+    setViewedPractice(practice);
   };
 
   const handleCloseModals = () => {
-    setActivePractice(null);
+    setViewedPractice(null);
+    setPracticeForTimer(null);
+  };
+
+  const handleStartPractice = () => {
+    if (viewedPractice) {
+      setPracticeForTimer(viewedPractice);
+      setViewedPractice(null);
+    }
   };
 
   return (
     <>
-      {activePractice && (
-        <Timer practice={activePractice} duration={duration} onClose={handleCloseModals} t={t} />
+      {viewedPractice && !practiceForTimer && (
+        <PracticeDetail 
+          practice={viewedPractice}
+          onClose={() => setViewedPractice(null)}
+          onStart={handleStartPractice}
+          t={t}
+        />
+      )}
+      {practiceForTimer && (
+        <Timer practice={practiceForTimer} duration={duration} onClose={handleCloseModals} t={t} />
       )}
       <div className="bg-slate-50 min-h-screen text-slate-800 antialiased">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
