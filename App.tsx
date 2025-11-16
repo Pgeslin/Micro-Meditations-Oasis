@@ -6,7 +6,6 @@ import { PracticeCard } from './components/PracticeCard';
 import { PracticeDetail } from './components/PracticeDetail';
 import { PostPracticeReflection } from './components/PostPracticeReflection';
 import { GenerativeMeditation } from './components/GenerativeMeditation';
-import { Reminder } from './components/Reminder';
 import { useLanguage } from './context/LanguageContext';
 import { translations } from './i18n/translations';
 import * as Icons from './components/IconComponents';
@@ -418,10 +417,6 @@ const App: React.FC = () => {
                  </div>
               </div>
             )}
-          </section>
-
-          <section className="mt-20">
-            <Reminder />
           </section>
 
           <section className="mt-20">

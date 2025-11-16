@@ -52,19 +52,6 @@ export const translations = {
     practiceDetailWhen: 'When to use it',
     practiceDetailWhere: 'Where to practice',
     startPracticeButton: 'Start Practice',
-
-    // Reminder Component
-    reminderTitle: 'Set a Mindful Reminder',
-    reminderSubtitle: 'Schedule gentle nudges to take a pause throughout your day.',
-    notificationsDenied: 'Notifications for this site are currently turned off. To use reminders, please enable them in your browser settings. You can often find this option by clicking the lock icon in the address bar.',
-    enableNotifications: 'Enable Reminders',
-    addReminder: 'Add Reminder',
-    saveReminder: 'Save',
-    cancel: 'Cancel',
-    noRemindersSet: 'No reminders set. Add one to get started!',
-    removeReminder: 'Remove reminder for',
-    reminderSet: 'Reminder set for',
-    reminderError: 'Could not schedule the reminder for that time. Please try again.',
     
     // Generative Meditation Component
     genTitle: 'Create Your Own Moment',
@@ -98,10 +85,6 @@ export const translations = {
       brightFemale: 'Bright (Female)',
       deepMale: 'Deep (Male)',
       warmMale: 'Warm (Male)',
-    },
-    notification: {
-      title: 'Time for a Mindful Moment',
-      body: 'Click here to take a short pause and reset your day.',
     },
     
     reflection: {
@@ -362,19 +345,6 @@ export const translations = {
     practiceDetailWhere: 'Où pratiquer',
     startPracticeButton: 'Commencer la Pratique',
 
-    // Reminder Component
-    reminderTitle: 'Définir un Rappel de Pleine Conscience',
-    reminderSubtitle: 'Programmez de doux rappels pour faire une pause tout au long de votre journée.',
-    notificationsDenied: 'Les notifications pour ce site sont actuellement désactivées. Pour utiliser les rappels, veuillez les activer dans les paramètres de votre navigateur. Vous pouvez souvent trouver cette option en cliquant sur l\'icône de cadenas dans la barre d\'adresse.',
-    enableNotifications: 'Activer les rappels',
-    addReminder: 'Ajouter un rappel',
-    saveReminder: 'Enregistrer',
-    cancel: 'Annuler',
-    noRemindersSet: 'Aucun rappel défini. Ajoutez-en un pour commencer !',
-    removeReminder: 'Supprimer le rappel pour',
-    reminderSet: 'Rappel défini pour',
-    reminderError: 'Impossible de programmer le rappel pour cette heure. Veuillez réessayer.',
-
     // Generative Meditation Component
     genTitle: 'Créez Votre Propre Moment',
     genSubtitle: 'Envie d\'autre chose ? Sélectionnez un thème et laissez notre IA créer une méditation audio guidée unique, juste pour vous. Chacune est une nouvelle expérience.',
@@ -407,10 +377,6 @@ export const translations = {
       brightFemale: 'Claire (Féminine)',
       deepMale: 'Profond (Masculin)',
       warmMale: 'Chaleureux (Masculin)',
-    },
-    notification: {
-      title: 'C\'est l\'heure d\'un moment de pleine conscience',
-      body: 'Cliquez ici pour faire une courte pause et réinitialiser votre journée.',
     },
     
     reflection: {
