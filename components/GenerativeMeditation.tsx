@@ -263,7 +263,7 @@ export const GenerativeMeditation: React.FC = () => {
             'Craft My Meditation'
           )}
         </button>
-        {isLoading && (
+        {isLoading && !generatedScript && (
           <p className="text-slate-500 text-sm mt-4 animate-fade-in">
             Preparing your personal meditation and voice guidance. Thank you for your patience.
           </p>
@@ -275,8 +275,8 @@ export const GenerativeMeditation: React.FC = () => {
       {generatedScript && (
         <div className="bg-slate-50 mt-8 p-6 rounded-xl border border-slate-200 animate-fade-in text-left">
           <div className="flex items-start gap-4 sm:gap-6">
-            {audioBuffer && (
-              <div className="flex-shrink-0">
+            <div className="flex-shrink-0">
+              {audioBuffer ? (
                 <button 
                     onClick={handlePlayPause}
                     className="w-14 h-14 bg-teal-600 text-white rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
@@ -288,10 +288,19 @@ export const GenerativeMeditation: React.FC = () => {
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 5.5a1.5 1.5 0 012.268-1.28l5.5 3.209a1.5 1.5 0 010 2.56l-5.5 3.209A1.5 1.5 0 017 12.5v-7z"></path></svg>
                   )}
                 </button>
-              </div>
-            )}
+              ) : (
+                <div className="w-14 h-14 bg-slate-200 rounded-full flex items-center justify-center" aria-label="Generating audio">
+                  <div className="animate-spin rounded-full h-7 w-7 border-t-2 border-b-2 border-teal-500"></div>
+                </div>
+              )}
+            </div>
             <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-2">Your Custom Meditation</h3>
+                {!audioBuffer && (
+                  <div className="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">
+                    Preparing audio guidance...
+                  </div>
+                )}
                 <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{generatedScript}</p>
             </div>
           </div>
