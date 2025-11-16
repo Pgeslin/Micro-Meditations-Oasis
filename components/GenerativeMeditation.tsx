@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { GoogleGenAI, Modality } from "@google/genai";
 import { useLanguage } from '../context/LanguageContext';
@@ -123,20 +124,25 @@ export const GenerativeMeditation: React.FC = () => {
 
       const base64Audio = ttsResponse.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
 
-      if (base64Audio) {
-        if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
-          audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
-        }
-        const audioBytes = decode(base64Audio);
-        const buffer = await decodeAudioData(audioBytes, audioContextRef.current, 24000, 1);
-        setAudioBuffer(buffer);
-      } else {
-        throw new Error('Could not generate audio for the meditation.');
+      if (!base64Audio) {
+        console.error("TTS response did not contain audio data", ttsResponse);
+        throw new Error("NO_AUDIO_DATA");
       }
+      
+      if (!audioContextRef.current || audioContextRef.current.state === 'closed') {
+        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
+      }
+      const audioBytes = decode(base64Audio);
+      const buffer = await decodeAudioData(audioBytes, audioContextRef.current, 24000, 1);
+      setAudioBuffer(buffer);
 
     } catch (e) {
       console.error(e);
-      setError(t('genError'));
+      if (e instanceof Error && e.message === "NO_AUDIO_DATA") {
+        setError(t('genNoAudioError'));
+      } else {
+        setError(t('genError'));
+      }
     } finally {
       setIsLoading(false);
     }
@@ -278,9 +284,13 @@ export const GenerativeMeditation: React.FC = () => {
         )}
       </div>
       
-      {error && <p className="text-red-500 text-center mt-6">{error}</p>}
+      {error && (
+        <div className="mt-6 text-center bg-red-50 text-red-700 p-4 rounded-lg animate-fade-in" role="alert">
+          <p className="font-semibold">{error}</p>
+        </div>
+      )}
 
-      {generatedScript && (
+      {generatedScript && !error && (
         <div className="bg-slate-50 mt-8 p-6 rounded-xl border border-slate-200 animate-fade-in text-left">
           <div className="flex items-start gap-4 sm:gap-6">
             <div className="flex-shrink-0 flex flex-col items-center">

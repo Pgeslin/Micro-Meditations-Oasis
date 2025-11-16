@@ -19,9 +19,10 @@ interface TimerProps {
   onBack: () => void;
   onComplete: () => void;
   t: (key: string) => string;
+  audioContext: AudioContext | null;
 }
 
-const Timer: React.FC<TimerProps> = ({ practice, duration, onBack, onComplete, t }) => {
+const Timer: React.FC<TimerProps> = ({ practice, duration, onBack, onComplete, t, audioContext }) => {
   const [secondsLeft, setSecondsLeft] = React.useState(duration);
   const [isCompleted, setIsCompleted] = React.useState(false);
   const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('exhale');
@@ -36,7 +37,6 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onBack, onComplete, t
       }
       
       const playCompletionSound = () => {
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
         if (!audioContext) return;
 
         const playNote = (frequency: number, startTime: number, volume: number, duration: number) => {
@@ -80,7 +80,7 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onBack, onComplete, t
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [secondsLeft, onComplete]);
+  }, [secondsLeft, onComplete, audioContext]);
 
   React.useEffect(() => {
     if (isCompleted) return;
@@ -158,6 +158,7 @@ const App: React.FC = () => {
   const [completedPractice, setCompletedPractice] = React.useState<Practice | null>(null);
   const [duration, setDuration] = React.useState(60);
   const [showAllPractices, setShowAllPractices] = React.useState(false);
+  const audioContextRef = React.useRef<AudioContext | null>(null);
 
   const durationOptions = React.useMemo(() => [
     { label: t('durations.d30s'), value: 30 },
@@ -194,6 +195,16 @@ const App: React.FC = () => {
   };
 
   const handleStartPractice = () => {
+    // Initialize or resume AudioContext on user gesture to comply with autoplay policies
+    if (typeof window.AudioContext !== 'undefined' || typeof (window as any).webkitAudioContext !== 'undefined') {
+        if (!audioContextRef.current) {
+            audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+        }
+        if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+            audioContextRef.current.resume();
+        }
+    }
+
     if (viewedPractice) {
       setPracticeForTimer(viewedPractice);
       setViewedPractice(null);
@@ -221,7 +232,8 @@ const App: React.FC = () => {
           duration={duration} 
           onBack={handleCloseModals} 
           onComplete={() => handlePracticeComplete(practiceForTimer)}
-          t={t} 
+          t={t}
+          audioContext={audioContextRef.current}
         />
       )}
       {completedPractice && (

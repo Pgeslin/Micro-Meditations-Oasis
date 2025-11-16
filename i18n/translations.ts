@@ -1,4 +1,5 @@
 
+
 export const translations = {
   en: {
     // App Component
@@ -76,6 +77,7 @@ export const translations = {
     genCraftingButton: 'Crafting...',
     genCraftingMessage: 'Preparing your personal meditation and voice guidance. Thank you for your patience.',
     genError: 'Sorry, something went wrong while creating your meditation. Please try again.',
+    genNoAudioError: 'The audio for this meditation is not available (Error: NO_AUDIO_DATA). Please try again with a different theme or voice.',
     genMeditationTitle: 'Your Personal Meditation',
     genAudioMessage: 'Preparing audio guidance...',
     genPlay: 'Play guided meditation',
@@ -383,6 +385,7 @@ export const translations = {
     genCraftingButton: 'Création...',
     genCraftingMessage: 'Préparation de votre méditation personnelle et du guidage vocal. Merci de votre patience.',
     genError: 'Désolé, une erreur est survenue lors de la création de votre méditation. Veuillez réessayer.',
+    genNoAudioError: 'L\'audio pour cette méditation n\'est pas disponible (Erreur : NO_AUDIO_DATA). Veuillez réessayer avec un thème ou une voix différente.',
     genMeditationTitle: 'Votre Méditation Personnelle',
     genAudioMessage: 'Préparation du guidage audio...',
     genPlay: 'Lancer la méditation guidée',

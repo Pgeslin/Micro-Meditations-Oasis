@@ -95,11 +95,32 @@ export const Reminder: React.FC = () => {
   }, [scheduleReminder]);
 
   const handleRequestPermission = () => {
-     if (!('Notification' in window) || permission === 'denied') return;
+    if (!('Notification' in window) || permission === 'denied') {
+      return;
+    }
 
-     Notification.requestPermission().then((newPermission) => {
-        setPermission(newPermission);
-     });
+    const handlePermissionResult = (newPermission: NotificationPermission) => {
+      setPermission(newPermission);
+    };
+
+    // The modern API returns a promise.
+    // The deprecated API accepts a callback.
+    // We try the promise-based approach first.
+    try {
+      const promise = Notification.requestPermission();
+      if (promise) {
+        promise.then(handlePermissionResult).catch(err => {
+          console.error("Error requesting notification permission:", err);
+        });
+      } else {
+        // Fallback for browsers that use the deprecated callback syntax.
+        Notification.requestPermission(handlePermissionResult);
+      }
+    } catch (error) {
+       // Some browsers (older Chrome) might throw an error if a callback is provided.
+       // We try again without the callback.
+       Notification.requestPermission().then(handlePermissionResult);
+    }
   };
 
   const handleAddReminder = (e: React.FormEvent) => {
