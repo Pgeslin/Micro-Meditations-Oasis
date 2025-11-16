@@ -87,7 +87,7 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
   }, [isCompleted]);
 
   const phaseText = phase === 'inhale' ? t('breatheIn') : t('breatheOut');
-  const circleAnimationClass = phase === 'inhale' ? 'scale-110' : 'scale-100';
+  const circleAnimationClass = phase === 'inhale' ? 'scale-125' : 'scale-95';
 
   return (
     <div className="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in" aria-modal="true" role="dialog">
