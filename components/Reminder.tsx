@@ -87,7 +87,7 @@ export const Reminder: React.FC = () => {
   const renderContent = () => {
     if (permission === 'denied') {
       return (
-        <p className="text-center text-slate-600 max-w-md mx-auto">
+        <p className="text-center text-teal-100 max-w-md mx-auto">
           Notifications for this site are currently turned off. To use reminders, please enable them in your browser settings. You can often find this option by clicking the lock icon in the address bar.
         </p>
       );
@@ -96,12 +96,12 @@ export const Reminder: React.FC = () => {
     if (reminderTime) {
       return (
         <div className="text-center">
-            <p className="text-slate-700 font-medium text-lg mb-4">
+            <p className="text-white font-medium text-lg mb-4">
                 A mindful reminder is set for {new Date(reminderTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.
             </p>
             <button
                 onClick={clearReminder}
-                className="bg-slate-200 text-slate-700 font-bold py-2 px-6 rounded-lg hover:bg-slate-300 transition-colors"
+                className="bg-white text-teal-700 font-bold py-2 px-6 rounded-lg hover:bg-teal-100 transition-colors shadow-sm"
             >
                 Clear Reminder
             </button>
@@ -111,13 +111,13 @@ export const Reminder: React.FC = () => {
 
     return (
         <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            <button onClick={() => handleSetReminderClick(15)} className="px-5 py-2 text-base font-medium rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+            <button onClick={() => handleSetReminderClick(15)} className="px-5 py-2 text-base font-medium rounded-full bg-white text-teal-700 hover:bg-teal-100 transition-colors shadow-sm">
                 In 15 min
             </button>
-            <button onClick={() => handleSetReminderClick(60)} className="px-5 py-2 text-base font-medium rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+            <button onClick={() => handleSetReminderClick(60)} className="px-5 py-2 text-base font-medium rounded-full bg-white text-teal-700 hover:bg-teal-100 transition-colors shadow-sm">
                 In 1 hour
             </button>
-            <button onClick={() => handleSetReminderClick(240)} className="px-5 py-2 text-base font-medium rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+            <button onClick={() => handleSetReminderClick(240)} className="px-5 py-2 text-base font-medium rounded-full bg-white text-teal-700 hover:bg-teal-100 transition-colors shadow-sm">
                 In 4 hours
             </button>
         </div>
@@ -130,10 +130,10 @@ export const Reminder: React.FC = () => {
   }
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto">
+    <div className="bg-teal-600 text-white p-8 rounded-2xl shadow-lg max-w-4xl mx-auto">
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Set a Mindful Reminder</h2>
-        <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Set a Mindful Reminder</h2>
+        <p className="text-center text-teal-100 mb-8 max-w-2xl mx-auto">
           Let us gently nudge you to take a pause later in your day.
         </p>
         {renderContent()}
