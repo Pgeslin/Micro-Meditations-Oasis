@@ -195,7 +195,7 @@ const App: React.FC = () => {
             </section>
             
             <section className="mt-16">
-             <GenerativeMeditation onSelect={handleSelectPractice} />
+             <GenerativeMeditation />
             </section>
 
             <section className="bg-teal-600 text-white p-8 rounded-2xl shadow-lg">
