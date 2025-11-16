@@ -29,6 +29,11 @@ export const translations = {
     footerLink: 'Learn more…',
     whyItMattersText: 'Short practices can interrupt stress patterns and bring the mind back to centre. Used regularly, they change the tone of a day.',
     
+    practiceOfTheDay: {
+      title: 'Practice of the Day',
+      button: 'Try This Practice',
+    },
+
     // Timer & Breathing Exercise
     backButton: 'Back',
     complete: 'Complete',
@@ -330,6 +335,11 @@ export const translations = {
     footerAuthor: 'Créé par Pierre ‘Satch’ Geslin, formateur en pleine conscience et poète de haïku dans les Adelaide Hills en Australie-Méridionale.',
     footerLink: 'En savoir plus…',
     whyItMattersText: 'Les pratiques courtes peuvent interrompre les schémas de stress et ramener l\'esprit au centre. Utilisées régulièrement, elles changent le ton d\'une journée.',
+
+    practiceOfTheDay: {
+      title: 'Pratique du Jour',
+      button: 'Essayer cette pratique',
+    },
 
     // Timer & Breathing Exercise
     backButton: 'Retour',

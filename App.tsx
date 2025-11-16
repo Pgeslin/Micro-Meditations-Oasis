@@ -8,6 +8,7 @@ import { GenerativeMeditation } from './components/GenerativeMeditation';
 import { Reminder } from './components/Reminder';
 import { useLanguage } from './context/LanguageContext';
 import { translations } from './i18n/translations';
+import * as Icons from './components/IconComponents';
 
 // --- Timer Component ---
 
@@ -165,6 +166,16 @@ const App: React.FC = () => {
 
   const allPractices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
   
+  const practiceOfTheDay = React.useMemo(() => {
+    const startOfYear = new Date(new Date().getFullYear(), 0, 0);
+    const diff = Date.now() - startOfYear.getTime();
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+    return allPractices[dayOfYear % allPractices.length];
+  }, [allPractices]);
+
+  const IconComponent = practiceOfTheDay?.icon ? Icons[practiceOfTheDay.icon as keyof typeof Icons] : null;
+
   const structuredPracticeIds = ['rain', 'stop'];
   const structuredPractices = allPractices.filter(p => p.id && structuredPracticeIds.includes(p.id));
   const corePractices = allPractices.filter(p => !p.id || !structuredPracticeIds.includes(p.id));
@@ -306,6 +317,29 @@ const App: React.FC = () => {
               </p>
             </section>
           </div>
+
+          {practiceOfTheDay && (
+            <section className="mt-20">
+              <div className="max-w-4xl mx-auto animated-gradient p-8 rounded-2xl shadow-lg border border-slate-200/50">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('practiceOfTheDay.title')}</h2>
+                <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
+                  <div className="flex-shrink-0">
+                    {IconComponent && <IconComponent className="h-20 w-20 text-teal-800" />}
+                  </div>
+                  <div className="text-center md:text-left">
+                    <h3 className="text-2xl font-semibold text-slate-800 mb-2">{practiceOfTheDay.title}</h3>
+                    <p className="text-slate-700 leading-relaxed whitespace-pre-wrap mb-6">{practiceOfTheDay.description}</p>
+                    <button
+                      onClick={() => handleSelectPractice(practiceOfTheDay)}
+                      className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
+                    >
+                      {t('practiceOfTheDay.button')}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
 
           <section className="mt-20 bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('toolkitTitle')}</h2>
