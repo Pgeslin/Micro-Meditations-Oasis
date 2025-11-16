@@ -21,47 +21,45 @@ export const Reminder: React.FC = () => {
   const [newTime, setNewTime] = useState('');
   const timeoutIdsRef = useRef<{ [key: string]: number }>({});
 
-  const showNotification = useCallback((time: string) => {
-    new Notification(t('notification.title'), {
-      body: t('notification.body'),
-      icon: '/favicon.ico',
-    });
-    // Remove the reminder that just fired
-    setReminders(prev => {
-        const updatedReminders = prev.filter(r => r !== time);
-        try {
-            localStorage.setItem(REMINDER_STORAGE_KEY, JSON.stringify(updatedReminders));
-        } catch(e) {
-            console.error("Error updating localStorage after notification", e);
-        }
-        return updatedReminders;
-    });
-  }, [t]);
+  const scheduleReminder = useCallback((time: string, isReschedule = false) => {
+    // 1. Clear any existing timeout for this reminder to avoid duplicates
+    if (timeoutIdsRef.current[time]) {
+        clearTimeout(timeoutIdsRef.current[time]);
+    }
 
-  const scheduleReminder = useCallback((time: string) => {
+    // 2. If this is a reschedule, it means the timer has fired, so show the notification
+    if (isReschedule) {
+        new Notification(t('notification.title'), {
+            body: t('notification.body'),
+            icon: '/favicon.ico',
+        });
+    }
+
+    // 3. Calculate the next occurrence of the reminder time
     const now = new Date();
     const [hour, minute] = time.split(':').map(Number);
     
-    let reminderDate = new Date();
-    reminderDate.setHours(hour, minute, 0, 0);
+    let nextOccurrence = new Date();
+    nextOccurrence.setHours(hour, minute, 0, 0);
 
-    // If the reminder time is in the past for today, schedule it for tomorrow
-    if (reminderDate.getTime() < now.getTime()) {
-      reminderDate.setDate(reminderDate.getDate() + 1);
+    // If the calculated time is in the past, or if this is an immediate reschedule,
+    // set the reminder for the next day.
+    if (nextOccurrence.getTime() <= now.getTime() || isReschedule) {
+        nextOccurrence.setDate(nextOccurrence.getDate() + 1);
     }
-
-    const delay = reminderDate.getTime() - now.getTime();
-
-    if (delay > 0) {
-      if (timeoutIdsRef.current[time]) {
-        clearTimeout(timeoutIdsRef.current[time]);
-      }
-      const timeoutId = window.setTimeout(() => showNotification(time), delay);
-      timeoutIdsRef.current[time] = timeoutId;
-      return true;
+    
+    // 4. Calculate the delay and set the timeout
+    const delay = nextOccurrence.getTime() - now.getTime();
+    
+    if (delay >= 0) {
+        const timeoutId = window.setTimeout(() => scheduleReminder(time, true), delay);
+        timeoutIdsRef.current[time] = timeoutId;
+        return true; // Indicate scheduling was successful
     }
+    
+    // This case should not be reached but acts as a safeguard.
     return false;
-  }, [showNotification]);
+  }, [t]);
 
   const clearReminder = useCallback((time: string) => {
     if (timeoutIdsRef.current[time]) {
@@ -81,59 +79,45 @@ export const Reminder: React.FC = () => {
       
       try {
         const savedReminders: string[] = JSON.parse(localStorage.getItem(REMINDER_STORAGE_KEY) || '[]');
-        // Reschedule all saved reminders for their next available time
-        savedReminders.forEach(time => scheduleReminder(time));
+        // On load, schedule all saved reminders for their next upcoming time
+        savedReminders.forEach(time => scheduleReminder(time, false));
         setReminders(savedReminders.sort());
       } catch (e) {
         console.error("Failed to parse reminders from localStorage", e);
         localStorage.removeItem(REMINDER_STORAGE_KEY);
       }
     }
+    // Clear all timeouts when the component unmounts
     return () => {
       Object.values(timeoutIdsRef.current).forEach(clearTimeout);
     };
   }, [scheduleReminder]);
 
   const handleRequestPermission = () => {
-    if (!('Notification' in window) || permission === 'denied') {
+    if (!('Notification' in window)) {
       return;
     }
-
-    const handlePermissionResult = (newPermission: NotificationPermission) => {
-      setPermission(newPermission);
-    };
-
-    // The modern API returns a promise.
-    // The deprecated API accepts a callback.
-    // We try the promise-based approach first.
-    try {
-      const promise = Notification.requestPermission();
-      if (promise) {
-        promise.then(handlePermissionResult).catch(err => {
-          console.error("Error requesting notification permission:", err);
-        });
-      } else {
-        // Fallback for browsers that use the deprecated callback syntax.
-        Notification.requestPermission(handlePermissionResult);
-      }
-    } catch (error) {
-       // Some browsers (older Chrome) might throw an error if a callback is provided.
-       // We try again without the callback.
-       Notification.requestPermission().then(handlePermissionResult);
-    }
+    // The modern promise-based API is widely supported and simpler.
+    Notification.requestPermission().then((result) => {
+        setPermission(result);
+    });
   };
 
   const handleAddReminder = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTime || reminders.includes(newTime)) return;
     
-    if (scheduleReminder(newTime)) {
+    if (scheduleReminder(newTime, false)) {
         const newReminders = [...reminders, newTime].sort();
         setReminders(newReminders);
         localStorage.setItem(REMINDER_STORAGE_KEY, JSON.stringify(newReminders));
+        setNewTime('');
+        setIsAdding(false);
+    } else {
+        // Optionally, provide feedback to the user that it failed.
+        // For now, it will just silently fail, but the new logic makes this very unlikely.
+        console.error(`Could not schedule reminder for ${newTime}`);
     }
-    setNewTime('');
-    setIsAdding(false);
   };
   
   const renderContent = () => {
