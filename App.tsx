@@ -227,10 +227,10 @@ const App: React.FC = () => {
               muted
               playsInline
               className="absolute top-0 left-0 w-full h-full object-cover z-0"
-              poster="https://images.pexels.com/videos/3214441/pexels-photo-3214441.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              poster="https://images.pexels.com/photos/1562058/pexels-photo-1562058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             >
               <source
-                src="https://videos.pexels.com/video-files/3214441/3214441-hd_1280_720_25fps.mp4"
+                src="https://assets.mixkit.co/videos/preview/mixkit-calm-river-in-the-woods-632-small.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
