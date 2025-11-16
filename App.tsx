@@ -90,7 +90,8 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
             <button onClick={onClose} className="absolute -top-12 right-0 sm:top-0 sm:-right-16 text-slate-400 hover:text-white transition-colors text-2xl font-mono" aria-label={t('closeTimer')}>
               [x]
             </button>
-            <h2 className="text-3xl font-bold mb-8">{practice.title}</h2>
+            <h2 className="text-3xl font-bold mb-4">{practice.title}</h2>
+            <p className="text-slate-300 text-lg mb-8 max-w-sm mx-auto whitespace-pre-wrap px-4">{practice.description}</p>
             <div className="relative w-52 h-52 mx-auto flex items-center justify-center bg-slate-700/50 rounded-full border-4 border-slate-600">
               <span className="absolute inset-0 flex items-center justify-center text-6xl font-bold tracking-tighter tabular-nums">
                 {secondsLeft}
