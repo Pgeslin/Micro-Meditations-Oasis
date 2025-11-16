@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const REMINDER_STORAGE_KEY = 'mindful_reminder_due_time';
 
 export const Reminder: React.FC = () => {
+  const { t } = useLanguage();
   const [permission, setPermission] = useState<NotificationPermission | null>(null);
   const [reminderTime, setReminderTime] = useState<number | null>(null);
-  // FIX: `setTimeout` in the browser returns a `number` for the timer ID, not the `NodeJS.Timeout` object.
   const timeoutIdRef = React.useRef<number | null>(null);
 
   const clearReminder = useCallback(() => {
@@ -21,7 +22,7 @@ export const Reminder: React.FC = () => {
   const showNotification = useCallback(() => {
     new Notification('Time for a Mindful Moment', {
       body: 'Click here to take a short pause and reset your day.',
-      icon: '/favicon.ico', // You might want to replace with a proper icon
+      icon: '/favicon.ico',
     });
     clearReminder();
   }, [clearReminder]);
@@ -39,11 +40,9 @@ export const Reminder: React.FC = () => {
   }, [clearReminder, showNotification]);
 
   useEffect(() => {
-    // Check initial permission status
     if ('Notification' in window) {
       setPermission(Notification.permission);
       
-      // Check for a reminder from a previous session
       const savedTime = localStorage.getItem(REMINDER_STORAGE_KEY);
       if (savedTime) {
         const dueTime = parseInt(savedTime, 10);
@@ -52,12 +51,10 @@ export const Reminder: React.FC = () => {
            timeoutIdRef.current = window.setTimeout(showNotification, delay);
            setReminderTime(dueTime);
         } else {
-            // Clean up expired reminder
             localStorage.removeItem(REMINDER_STORAGE_KEY);
         }
       }
     }
-    // Cleanup timeout on unmount
     return () => {
       if (timeoutIdRef.current) {
         clearTimeout(timeoutIdRef.current);
@@ -88,7 +85,7 @@ export const Reminder: React.FC = () => {
     if (permission === 'denied') {
       return (
         <p className="text-center text-teal-100 max-w-md mx-auto">
-          Notifications for this site are currently turned off. To use reminders, please enable them in your browser settings. You can often find this option by clicking the lock icon in the address bar.
+          {t('notificationsDenied')}
         </p>
       );
     }
@@ -97,13 +94,13 @@ export const Reminder: React.FC = () => {
       return (
         <div className="text-center">
             <p className="text-white font-medium text-lg mb-4">
-                A mindful reminder is set for {new Date(reminderTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.
+                {t('reminderSetFor')} {new Date(reminderTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.
             </p>
             <button
                 onClick={clearReminder}
                 className="bg-white text-teal-700 font-bold py-2 px-6 rounded-lg hover:bg-teal-100 transition-colors shadow-sm"
             >
-                Clear Reminder
+                {t('clearReminder')}
             </button>
         </div>
       )
@@ -112,19 +109,18 @@ export const Reminder: React.FC = () => {
     return (
         <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             <button onClick={() => handleSetReminderClick(15)} className="px-5 py-2 text-base font-medium rounded-full bg-white text-teal-700 hover:bg-teal-100 transition-colors shadow-sm">
-                In 15 min
+                {t('in15min')}
             </button>
             <button onClick={() => handleSetReminderClick(60)} className="px-5 py-2 text-base font-medium rounded-full bg-white text-teal-700 hover:bg-teal-100 transition-colors shadow-sm">
-                In 1 hour
+                {t('in1hour')}
             </button>
             <button onClick={() => handleSetReminderClick(240)} className="px-5 py-2 text-base font-medium rounded-full bg-white text-teal-700 hover:bg-teal-100 transition-colors shadow-sm">
-                In 4 hours
+                {t('in4hours')}
             </button>
         </div>
     );
   }
 
-  // Don't render anything if notifications aren't supported
   if (!('Notification' in window)) {
     return null;
   }
@@ -132,9 +128,9 @@ export const Reminder: React.FC = () => {
   return (
     <div className="bg-teal-600 text-white p-8 rounded-2xl shadow-lg max-w-4xl mx-auto">
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Set a Mindful Reminder</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">{t('reminderTitle')}</h2>
         <p className="text-center text-teal-100 mb-8 max-w-2xl mx-auto">
-          Let us gently nudge you to take a pause later in your day.
+          {t('reminderSubtitle')}
         </p>
         {renderContent()}
       </div>

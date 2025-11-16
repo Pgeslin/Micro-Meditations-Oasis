@@ -1,10 +1,11 @@
 
 import React from 'react';
 import { GoogleGenAI, Modality } from "@google/genai";
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 
 // --- Helper functions for audio processing ---
 
-// Decodes a base64 string into a Uint8Array.
 function decode(base64: string): Uint8Array {
   const binaryString = atob(base64);
   const len = binaryString.length;
@@ -15,7 +16,6 @@ function decode(base64: string): Uint8Array {
   return bytes;
 }
 
-// Decodes raw audio data (PCM) into an AudioBuffer.
 async function decodeAudioData(
   data: Uint8Array,
   ctx: AudioContext,
@@ -35,9 +35,6 @@ async function decodeAudioData(
   return buffer;
 }
 
-
-const themes = ['Acceptance', 'Beginner\'s Mind', 'Compassion', 'Energy', 'Focus', 'Generosity', 'Gratitude', 'Letting Go', 'Mindfulness', 'Non-Judging', 'Non-striving', 'Patience', 'Relaxation', 'Sleep', 'Stress Relief', 'Trust'];
-
 const durations = [
   { label: '1 min', value: 60 },
   { label: '2 min', value: 120 },
@@ -54,6 +51,9 @@ const voices = [
 
 
 export const GenerativeMeditation: React.FC = () => {
+  const { language, t } = useLanguage();
+  const themes = React.useMemo(() => (translations[language] || translations.en).genThemes, [language]);
+
   const [selectedTheme, setSelectedTheme] = React.useState<string | null>(null);
   const [selectedDuration, setSelectedDuration] = React.useState<number>(60);
   const [selectedVoice, setSelectedVoice] = React.useState<string>('Kore');
@@ -61,14 +61,12 @@ export const GenerativeMeditation: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  // New state for audio
   const [audioBuffer, setAudioBuffer] = React.useState<AudioBuffer | null>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   
   const audioContextRef = React.useRef<AudioContext | null>(null);
   const audioSourceRef = React.useRef<AudioBufferSourceNode | null>(null);
   
-  // Cleanup on unmount
   React.useEffect(() => {
     return () => {
       audioSourceRef.current?.stop();
@@ -94,10 +92,9 @@ export const GenerativeMeditation: React.FC = () => {
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
       
-      // 1. Generate the meditation script
       const durationInMinutes = selectedDuration / 60;
-      const wordCount = durationInMinutes * 150; // Approx. 150 words per minute
-      const prompt = `You are a mindfulness expert. Write a short, soothing, ${durationInMinutes}-minute guided meditation script focusing on the theme of '${selectedTheme}'. The script should be easy for a beginner to follow and be approximately ${wordCount} words. Do not use markdown or any special formatting. Just provide the script text.`;
+      const wordCount = durationInMinutes * 150;
+      const prompt = t('genPrompt', durationInMinutes, wordCount, selectedTheme);
       
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
@@ -110,7 +107,6 @@ export const GenerativeMeditation: React.FC = () => {
       }
       setGeneratedScript(script);
 
-      // 2. Generate the audio from the script
       const ttsResponse = await ai.models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
         contents: [{ parts: [{ text: `Say calmly and slowly: ${script}` }] }],
@@ -139,7 +135,7 @@ export const GenerativeMeditation: React.FC = () => {
 
     } catch (e) {
       console.error(e);
-      setError('Sorry, something went wrong while creating your meditation. Please try again.');
+      setError(t('genError'));
     } finally {
       setIsLoading(false);
     }
@@ -150,14 +146,11 @@ export const GenerativeMeditation: React.FC = () => {
 
     if (isPlaying) {
       audioSourceRef.current?.stop();
-      // onended will handle setting isPlaying to false
     } else {
-      // Ensure audio context is running
       if (audioContextRef.current.state === 'suspended') {
         audioContextRef.current.resume();
       }
       
-      // Start speech
       const source = audioContextRef.current.createBufferSource();
       source.buffer = audioBuffer;
       source.connect(audioContextRef.current.destination);
@@ -177,15 +170,15 @@ export const GenerativeMeditation: React.FC = () => {
         <div className="inline-block bg-teal-100 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
           Powered by AI
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Create Your Own Moment</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t('genTitle')}</h2>
         <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
-          Feeling something else? Select a theme and let our AI craft a unique, guided meditation just for you.
+          {t('genSubtitle')}
         </p>
       </div>
       
       <div className="space-y-8">
         <div>
-           <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">1. Select a Theme</h3>
+           <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">{t('genSelectTheme')}</h3>
             <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {themes.map(theme => (
                 <button
@@ -204,7 +197,7 @@ export const GenerativeMeditation: React.FC = () => {
         </div>
 
         <div>
-           <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">2. Select a Duration</h3>
+           <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">{t('genSelectDuration')}</h3>
             <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {durations.map(duration => (
                 <button
@@ -222,13 +215,13 @@ export const GenerativeMeditation: React.FC = () => {
             </div>
             {selectedDuration > 60 && (
               <p className="text-center text-sm text-slate-500 mt-4 animate-fade-in px-4">
-                Longer meditations take a little more time to craft. For a quicker experience, you might like to try the 1-minute option first!
+                {t('genDurationWarning')}
               </p>
             )}
         </div>
         
         <div>
-          <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">3. Choose a Voice</h3>
+          <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">{t('genSelectVoice')}</h3>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {voices.map(voice => (
               <button
@@ -247,7 +240,6 @@ export const GenerativeMeditation: React.FC = () => {
         </div>
       </div>
 
-
       <div className="text-center mt-8">
         <button
           onClick={handleGenerate}
@@ -257,15 +249,15 @@ export const GenerativeMeditation: React.FC = () => {
           {isLoading ? (
             <>
               <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-              Crafting...
+              {t('genCraftingButton')}
             </>
           ) : (
-            'Craft My Meditation'
+            t('genCraftButton')
           )}
         </button>
         {isLoading && !generatedScript && (
           <p className="text-slate-500 text-sm mt-4 animate-fade-in">
-            Preparing your personal meditation and voice guidance. Thank you for your patience.
+            {t('genCraftingMessage')}
           </p>
         )}
       </div>
@@ -280,7 +272,7 @@ export const GenerativeMeditation: React.FC = () => {
                 <button 
                     onClick={handlePlayPause}
                     className="w-14 h-14 bg-teal-600 text-white rounded-full flex items-center justify-center hover:bg-teal-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                    aria-label={isPlaying ? 'Pause guided meditation' : 'Play guided meditation'}
+                    aria-label={isPlaying ? t('genPause') : t('genPlay')}
                 >
                   {isPlaying ? (
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.5a.75.75 0 00-.75.75v9.5c0 .414.336.75.75.75h2.5a.75.75 0 00.75-.75V5.25a.75.75 0 00-.75-.75h-2.5zm6 0a.75.75 0 00-.75.75v9.5c0 .414.336.75.75.75h2.5a.75.75 0 00.75-.75V5.25a.75.75 0 00-.75-.75h-2.5z"></path></svg>
@@ -295,10 +287,10 @@ export const GenerativeMeditation: React.FC = () => {
               )}
             </div>
             <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">Your Personal Meditation</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">{t('genMeditationTitle')}</h3>
                 {!audioBuffer && (
                   <div className="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">
-                    Preparing audio guidance...
+                    {t('genAudioMessage')}
                   </div>
                 )}
                 <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{generatedScript}</p>

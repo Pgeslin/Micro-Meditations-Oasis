@@ -1,24 +1,23 @@
+
 import React from 'react';
 
 interface BreathingExerciseProps {
   duration: number;
   onClose: () => void;
+  t: (key: string) => string;
 }
 
-const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose }) => {
+const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose, t }) => {
   const [timeLeft, setTimeLeft] = React.useState(duration);
   const [isCompleted, setIsCompleted] = React.useState(false);
   const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('inhale');
   
-  // Effect to handle the completion state
   React.useEffect(() => {
     if (isCompleted) {
-      // Haptic feedback
       if (window.navigator && window.navigator.vibrate) {
         window.navigator.vibrate([100, 50, 100]);
       }
       
-      // Completion sound
       const playCompletionSound = () => {
         const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
         if (!audioContext) return;
@@ -50,11 +49,9 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose
     }
   }, [isCompleted, onClose]);
 
-  // Effect for timers
   React.useEffect(() => {
     if (isCompleted) return;
 
-    // Total duration countdown
     const countdownInterval = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
@@ -66,12 +63,10 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose
       });
     }, 1000);
 
-    // Breathing phase timer (switches every 6 seconds)
     const phaseInterval = setInterval(() => {
       setPhase(prev => (prev === 'inhale' ? 'exhale' : 'inhale'));
     }, 6000);
 
-    // Set initial phase
     setPhase('inhale');
 
     return () => {
@@ -80,7 +75,7 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose
     };
   }, [isCompleted]);
   
-  const phaseText = phase === 'inhale' ? 'Breathe In...' : 'Breathe Out...';
+  const phaseText = phase === 'inhale' ? t('breatheIn') : t('breatheOut');
   const circleAnimationClass = phase === 'inhale' ? 'scale-125' : 'scale-100';
 
   return (
@@ -91,22 +86,20 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose
             <div className="w-24 h-24 bg-teal-500 rounded-full flex items-center justify-center mb-4">
               <span className="text-5xl text-white">✓</span>
             </div>
-            <h2 className="text-4xl font-bold">Complete</h2>
-            <p className="text-xl mt-2 text-slate-300">Nicely done. Carry this calm with you.</p>
+            <h2 className="text-4xl font-bold">{t('complete')}</h2>
+            <p className="text-xl mt-2 text-slate-300">{t('breathingCompleteMessage')}</p>
           </div>
         ) : (
           <>
-            <button onClick={onClose} className="absolute -top-12 right-4 sm:top-0 sm:-right-12 text-slate-400 hover:text-white transition-colors text-2xl font-mono" aria-label="Close timer">
+            <button onClick={onClose} className="absolute -top-12 right-4 sm:top-0 sm:-right-12 text-slate-400 hover:text-white transition-colors text-2xl font-mono" aria-label={t('closeTimer')}>
               [x]
             </button>
-            <h2 className="text-3xl font-bold mb-8">Six-Second Breathing</h2>
+            <h2 className="text-3xl font-bold mb-8">{t('practices.0.title')}</h2>
 
             <div className="relative w-64 h-64 mx-auto flex items-center justify-center">
-              {/* Animated Pacer Circle */}
               <div 
                 className={`absolute w-full h-full bg-teal-500/30 rounded-full transition-transform duration-[6000ms] ease-in-out ${circleAnimationClass}`}
               />
-              {/* Static Outer Border */}
               <div className="absolute w-full h-full rounded-full border-2 border-slate-600" />
               
               <div className="z-10 flex flex-col items-center">
@@ -117,7 +110,7 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose
               </div>
             </div>
             
-            <p className="mt-8 text-slate-300">Follow the circle, inhaling as it grows and exhaling as it shrinks.</p>
+            <p className="mt-8 text-slate-300">{t('breathingInstruction')}</p>
           </>
         )}
       </div>
