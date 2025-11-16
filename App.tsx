@@ -220,22 +220,22 @@ const App: React.FC = () => {
         />
       )}
       <div className="min-h-screen text-slate-800 antialiased">
-          <header className="relative text-center overflow-hidden shadow-lg">
+          <header className="relative text-center overflow-hidden shadow-lg h-[50vh] min-h-[350px] max-h-[500px]">
             <video
               autoPlay
               loop
               muted
               playsInline
               className="absolute top-0 left-0 w-full h-full object-cover z-0"
-              poster="https://images.pexels.com/videos/4784435/pexels-photo-4784435.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              poster="https://images.pexels.com/videos/3214441/pexels-photo-3214441.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             >
               <source
-                src="https://videos.pexels.com/video-files/4784435/4784435-hd_1280_720_25fps.mp4"
+                src="https://videos.pexels.com/video-files/3214441/3214441-hd_1280_720_25fps.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
             </video>
-            <div className="relative z-10 bg-slate-900/50 pt-20 pb-24 sm:pt-28 sm:pb-32">
+            <div className="relative z-10 bg-slate-900/50 w-full h-full flex flex-col justify-center items-center p-4">
                <div className="absolute top-4 right-4 z-20">
                     <div className="flex items-center bg-slate-200/25 rounded-full p-1 backdrop-blur-sm">
                         <button
