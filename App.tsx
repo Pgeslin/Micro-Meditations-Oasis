@@ -350,6 +350,12 @@ const App: React.FC = () => {
             </div>
           </section>
 
+          <section className="mt-16 text-center">
+            <p className="max-w-3xl mx-auto text-slate-600 text-lg italic leading-relaxed px-4">
+              {t('whyItMattersText')}
+            </p>
+          </section>
+
         </main>
         
         <footer className="text-center py-8 text-slate-500">
