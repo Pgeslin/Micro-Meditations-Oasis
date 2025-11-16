@@ -283,6 +283,25 @@ const App: React.FC = () => {
             <GenerativeMeditation />
           </section>
 
+          <section className="mt-20">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                Continue Your Journey
+              </h2>
+              <p className="text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                A bilingual (English/French) mindful AI companion grounded in the MBSR tradition. KAZE embodies mindfulness through dialogue, reflection, and poetic presence. Unlike other mindfulness tools, it doesn’t instruct — it listens, holds space, and co-practices awareness with you.
+              </p>
+              <a
+                href="https://chatgpt.com/g/g-68ea7895583c8191a6e56013f66ef72a-kaze-the-way-of-the-wind-mindfulness-dojo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors duration-300"
+              >
+                Visit Kaze Mindfulness Dojo
+              </a>
+            </div>
+          </section>
+
         </main>
         
         <footer className="text-center py-8 text-slate-500">
