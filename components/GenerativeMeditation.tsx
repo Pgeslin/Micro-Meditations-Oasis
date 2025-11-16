@@ -295,7 +295,7 @@ export const GenerativeMeditation: React.FC = () => {
               )}
             </div>
             <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">Your Custom Meditation</h3>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">Your Personal Meditation</h3>
                 {!audioBuffer && (
                   <div className="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">
                     Preparing audio guidance...
