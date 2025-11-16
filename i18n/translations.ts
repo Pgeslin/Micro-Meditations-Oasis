@@ -1,3 +1,4 @@
+
 export const translations = {
   en: {
     // App Component
@@ -56,6 +57,24 @@ export const translations = {
     genAudioMessage: 'Preparing audio guidance...',
     genPlay: 'Play guided meditation',
     genPause: 'Pause guided meditation',
+
+    durations: {
+      d30s: '30s',
+      d1m: '1 min',
+      d2m: '2 min',
+      d3m: '3 min',
+    },
+    voices: {
+      calmFemale: 'Calm (Female)',
+      gentleMale: 'Gentle (Male)',
+      brightFemale: 'Bright (Female)',
+      deepMale: 'Deep (Male)',
+      warmMale: 'Warm (Male)',
+    },
+    notification: {
+      title: 'Time for a Mindful Moment',
+      body: 'Click here to take a short pause and reset your day.',
+    },
     
     practices: [
         { id: 'six-second-breathing', title: 'Six-Second Breathing', description: 'A slow inhale, a slow exhale.\nLet the rhythm settle you and steady the nervous system.' },
@@ -137,6 +156,24 @@ export const translations = {
     genAudioMessage: 'Préparation du guidage audio...',
     genPlay: 'Lancer la méditation guidée',
     genPause: 'Mettre en pause la méditation guidée',
+    
+    durations: {
+      d30s: '30s',
+      d1m: '1 min',
+      d2m: '2 min',
+      d3m: '3 min',
+    },
+    voices: {
+      calmFemale: 'Calme (Féminine)',
+      gentleMale: 'Doux (Masculin)',
+      brightFemale: 'Claire (Féminine)',
+      deepMale: 'Profond (Masculin)',
+      warmMale: 'Chaleureux (Masculin)',
+    },
+    notification: {
+      title: 'C\'est l\'heure d\'un moment de pleine conscience',
+      body: 'Cliquez ici pour faire une courte pause et réinitialiser votre journée.',
+    },
 
     practices: [
         { id: 'six-second-breathing', title: 'Respiration de Six Secondes', description: 'Une inspiration lente, une expiration lente.\nLaissez le rythme vous apaiser et stabiliser le système nerveux.' },

@@ -35,24 +35,24 @@ async function decodeAudioData(
   return buffer;
 }
 
-const durations = [
-  { label: '1 min', value: 60 },
-  { label: '2 min', value: 120 },
-  { label: '3 min', value: 180 },
-];
-
-const voices = [
-  { name: 'Kore', displayName: 'Calm (Female)' },
-  { name: 'Puck', displayName: 'Gentle (Male)' },
-  { name: 'Zephyr', displayName: 'Bright (Female)' },
-  { name: 'Charon', displayName: 'Deep (Male)' },
-  { name: 'Fenrir', displayName: 'Warm (Male)' },
-];
-
-
 export const GenerativeMeditation: React.FC = () => {
   const { language, t } = useLanguage();
   const themes = React.useMemo(() => (translations[language] || translations.en).genThemes, [language]);
+
+  const durations = React.useMemo(() => [
+    { label: t('durations.d1m'), value: 60 },
+    { label: t('durations.d2m'), value: 120 },
+    { label: t('durations.d3m'), value: 180 },
+  ], [t]);
+
+  const voices = React.useMemo(() => [
+    { name: 'Kore', displayName: t('voices.calmFemale') },
+    { name: 'Puck', displayName: t('voices.gentleMale') },
+    { name: 'Zephyr', displayName: t('voices.brightFemale') },
+    { name: 'Charon', displayName: t('voices.deepMale') },
+    { name: 'Fenrir', displayName: t('voices.warmMale') },
+  ], [t]);
+
 
   const [selectedTheme, setSelectedTheme] = React.useState<string | null>(null);
   const [selectedDuration, setSelectedDuration] = React.useState<number>(60);

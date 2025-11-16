@@ -20,12 +20,12 @@ export const Reminder: React.FC = () => {
   }, []);
 
   const showNotification = useCallback(() => {
-    new Notification('Time for a Mindful Moment', {
-      body: 'Click here to take a short pause and reset your day.',
+    new Notification(t('notification.title'), {
+      body: t('notification.body'),
       icon: '/favicon.ico',
     });
     clearReminder();
-  }, [clearReminder]);
+  }, [clearReminder, t]);
   
   const setReminder = useCallback((minutes: number) => {
     clearReminder();

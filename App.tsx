@@ -132,18 +132,18 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
 
 // --- Main App Component ---
 
-const durationOptions = [
-  { labelKey: '30s', value: 30 },
-  { labelKey: '1 min', value: 60 },
-  { labelKey: '2 min', value: 120 },
-];
-
 const App: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [activePractice, setActivePractice] = React.useState<Practice | null>(null);
   const [showBreathingExercise, setShowBreathingExercise] = React.useState(false);
   const [duration, setDuration] = React.useState(60);
   const [isLangSelected, setIsLangSelected] = React.useState(!!localStorage.getItem('app-language'));
+
+  const durationOptions = React.useMemo(() => [
+    { label: t('durations.d30s'), value: 30 },
+    { label: t('durations.d1m'), value: 60 },
+    { label: t('durations.d2m'), value: 120 },
+  ], [t]);
 
   const practices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
   
@@ -235,7 +235,7 @@ const App: React.FC = () => {
                         : 'text-slate-600 hover:text-slate-800'
                     }`}
                   >
-                    {option.labelKey}
+                    {option.label}
                   </button>
                 ))}
               </div>
