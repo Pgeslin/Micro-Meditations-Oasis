@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
@@ -168,11 +167,11 @@ const App: React.FC = () => {
   const allPractices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
   
   const practiceOfTheDay = React.useMemo(() => {
-    const startOfYear = new Date(new Date().getFullYear(), 0, 0);
-    const diff = Date.now() - startOfYear.getTime();
-    const oneDay = 1000 * 60 * 60 * 24;
-    const dayOfYear = Math.floor(diff / oneDay);
-    return allPractices[dayOfYear % allPractices.length];
+    if (!allPractices || allPractices.length === 0) {
+      return null;
+    }
+    const randomIndex = Math.floor(Math.random() * allPractices.length);
+    return allPractices[randomIndex];
   }, [allPractices]);
 
   const IconComponent = practiceOfTheDay?.icon ? Icons[practiceOfTheDay.icon as keyof typeof Icons] : null;
