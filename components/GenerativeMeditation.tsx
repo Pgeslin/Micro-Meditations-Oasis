@@ -36,7 +36,7 @@ async function decodeAudioData(
 }
 
 
-const themes = ['Focus', 'Relaxation', 'Energy', 'Gratitude', 'Mindfulness', 'Stress Relief', 'Sleep'];
+const themes = ['Acceptance', 'Beginner\'s Mind', 'Compassion', 'Energy', 'Focus', 'Generosity', 'Gratitude', 'Letting Go', 'Mindfulness', 'Non-Judging', 'Non-striving', 'Patience', 'Relaxation', 'Sleep', 'Stress Relief', 'Trust'];
 
 const durations = [
   { label: '1 min', value: 60 },
