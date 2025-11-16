@@ -122,11 +122,8 @@ const App: React.FC = () => {
   const practices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
   
   const handleSelectPractice = (practice: Practice) => {
-    if (practice.id === 'six-second-breathing') {
-      setShowBreathingExercise(true);
-    } else {
-      setActivePractice(practice);
-    }
+    setActivePractice(practice);
+    setShowBreathingExercise(practice.id === 'six-second-breathing');
   };
 
   const handleCloseModals = () => {
@@ -136,8 +133,10 @@ const App: React.FC = () => {
 
   return (
     <>
-      {activePractice && <Timer practice={activePractice} duration={duration} onClose={handleCloseModals} t={t} />}
-      {showBreathingExercise && <BreathingExercise duration={duration} onClose={handleCloseModals} t={t} />}
+      {activePractice && (showBreathingExercise ? 
+        <BreathingExercise practice={activePractice} duration={duration} onClose={handleCloseModals} t={t} /> :
+        <Timer practice={activePractice} duration={duration} onClose={handleCloseModals} t={t} />
+      )}
       <div className="bg-slate-50 min-h-screen text-slate-800 antialiased">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
 

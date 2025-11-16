@@ -1,13 +1,15 @@
 
 import React from 'react';
+import type { Practice } from '../types';
 
 interface BreathingExerciseProps {
+  practice: Practice;
   duration: number;
   onClose: () => void;
   t: (key: string) => string;
 }
 
-const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose, t }) => {
+const BreathingExercise: React.FC<BreathingExerciseProps> = ({ practice, duration, onClose, t }) => {
   const [timeLeft, setTimeLeft] = React.useState(duration);
   const [isCompleted, setIsCompleted] = React.useState(false);
   const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('inhale');
@@ -94,7 +96,8 @@ const BreathingExercise: React.FC<BreathingExerciseProps> = ({ duration, onClose
             <button onClick={onClose} className="absolute -top-12 right-4 sm:top-0 sm:-right-12 text-slate-400 hover:text-white transition-colors text-2xl font-mono" aria-label={t('closeTimer')}>
               [x]
             </button>
-            <h2 className="text-3xl font-bold mb-8">{t('practices.0.title')}</h2>
+            <h2 className="text-3xl font-bold mb-4">{practice.title}</h2>
+            <p className="text-slate-300 text-lg mb-8 max-w-sm mx-auto whitespace-pre-wrap px-4">{practice.description}</p>
 
             <div className="relative w-64 h-64 mx-auto flex items-center justify-center">
               <div 
