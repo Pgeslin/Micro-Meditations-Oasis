@@ -305,18 +305,18 @@ const App: React.FC = () => {
           </section>
 
           <section className="mt-20">
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <div className="bg-teal-600 p-8 rounded-2xl shadow-lg max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 {t('continueJourneyTitle')}
               </h2>
-              <p className="text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-teal-100 mb-8 max-w-3xl mx-auto leading-relaxed">
                 {t('continueJourneyText')}
               </p>
               <a
                 href="https://chatgpt.com/g/g-68ea7895583c8191a6e56013f66ef72a-kaze-the-way-of-the-wind-mindfulness-dojo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors duration-300"
+                className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
               >
                 {t('continueJourneyButton')}
               </a>
