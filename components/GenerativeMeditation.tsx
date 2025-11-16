@@ -38,6 +38,7 @@ async function decodeAudioData(
 export const GenerativeMeditation: React.FC = () => {
   const { language, t } = useLanguage();
   const themes = React.useMemo(() => (translations[language] || translations.en).genThemes, [language]);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const durations = React.useMemo(() => [
     { label: t('durations.d1m'), value: 60 },
@@ -163,9 +164,23 @@ export const GenerativeMeditation: React.FC = () => {
       setIsPlaying(true);
     }
   };
+  
+  const handleStartOver = () => {
+    setGeneratedScript(null);
+    setAudioBuffer(null);
+    setError(null);
+    if (isPlaying) {
+      audioSourceRef.current?.stop();
+    }
+    setIsPlaying(false);
+    
+    if (containerRef.current) {
+        containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto">
+    <div ref={containerRef} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto scroll-mt-8">
       <div className="text-center">
         <div className="inline-block bg-teal-100 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
           Powered by AI
@@ -267,7 +282,7 @@ export const GenerativeMeditation: React.FC = () => {
       {generatedScript && (
         <div className="bg-slate-50 mt-8 p-6 rounded-xl border border-slate-200 animate-fade-in text-left">
           <div className="flex items-start gap-4 sm:gap-6">
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 flex flex-col items-center">
               {audioBuffer ? (
                 <button 
                     onClick={handlePlayPause}
@@ -285,6 +300,9 @@ export const GenerativeMeditation: React.FC = () => {
                   <div className="animate-spin rounded-full h-7 w-7 border-t-2 border-b-2 border-teal-500"></div>
                 </div>
               )}
+              {audioBuffer && (
+                <p className="text-xs text-slate-600 mt-2 font-semibold">{isPlaying ? t('genPauseLabel') : t('genPlayLabel')}</p>
+              )}
             </div>
             <div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-2">{t('genMeditationTitle')}</h3>
@@ -295,6 +313,14 @@ export const GenerativeMeditation: React.FC = () => {
                 )}
                 <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{generatedScript}</p>
             </div>
+          </div>
+          <div className="mt-6 text-center border-t border-slate-200 pt-4">
+              <button
+                  onClick={handleStartOver}
+                  className="bg-slate-200 text-slate-700 font-bold py-2 px-6 rounded-lg hover:bg-slate-300 transition-colors duration-300 text-sm"
+              >
+                {t('genCreateAnother')}
+              </button>
           </div>
         </div>
       )}

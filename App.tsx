@@ -253,26 +253,28 @@ const App: React.FC = () => {
 
           <div className="max-w-4xl mx-auto space-y-12">
             
-            <section>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whyTitle')}</h2>
-              <div className="grid md:grid-cols-2 gap-8 text-slate-700 leading-relaxed">
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                  <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('needResetTitle')}</h3>
-                  <p>{t('needResetText')}</p>
+            <div className="bg-slate-100/70 rounded-2xl py-12 px-8 space-y-12">
+              <section>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whyTitle')}</h2>
+                <div className="grid md:grid-cols-2 gap-8 text-slate-700 leading-relaxed">
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('needResetTitle')}</h3>
+                    <p>{t('needResetText')}</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('busyLivesTitle')}</h3>
+                    <p>{t('busyLivesText')}</p>
+                  </div>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                  <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('busyLivesTitle')}</h3>
-                  <p>{t('busyLivesText')}</p>
-                </div>
-              </div>
-            </section>
+              </section>
 
-            <section>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whatIsTitle')}</h2>
-              <p className="text-center max-w-2xl mx-auto text-slate-600 mb-6">
-                {t('whatIsText')}
-              </p>
-            </section>
+              <section>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whatIsTitle')}</h2>
+                <p className="text-center max-w-2xl mx-auto text-slate-600 mb-6">
+                  {t('whatIsText')}
+                </p>
+              </section>
+            </div>
             
             <section className="bg-teal-600 text-white p-8 rounded-2xl shadow-lg">
               <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">{t('howItWorksTitle')}</h2>
@@ -286,6 +288,9 @@ const App: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2 text-center">{t('toolkitTitle')}</h2>
             <p className="text-center text-slate-600 mb-10 max-w-2xl mx-auto">
               {t('toolkitSubtitle')}
+            </p>
+            <p className="text-center text-teal-800 italic mb-10 max-w-2xl mx-auto">
+              {t('guidedEntry')}
             </p>
             
             <div className="flex justify-center items-center gap-2 mb-12">

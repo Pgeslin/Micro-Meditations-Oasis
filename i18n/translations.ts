@@ -3,18 +3,19 @@ export const translations = {
   en: {
     // App Component
     heroTitle: 'The Power of the Pause',
-    heroSubtitle: 'Discover micro-meditations—the art of finding peace and focus in under 60 seconds. Perfect for your busy, digitally-driven life.',
+    heroSubtitle: 'Your tiny oasis for one-minute pauses. Discover the art of finding peace and focus in under 60 seconds, in English or French.',
     whyTitle: 'Why Is Everyone Talking About This?',
     needResetTitle: 'The Need for a Reset',
     needResetText: 'Digital overload is real. Constant notifications and endless scrolling leave our minds cluttered. Micro-meditations offer a quick, accessible way to hit the reset button, cutting through the noise without a huge time commitment.',
     busyLivesTitle: 'Designed for Busy Lives',
-    busyLivesText: 'In a world that glorifies being busy, finding an hour for wellness can feel impossible. These tiny practices fit into the cracks of your day—while waiting for coffee, between meetings, or before sending an email.',
+    busyLivesText: 'In a world that glorifies being busy, finding an hour for wellness can feel impossible. These tiny practices fit into the cracks of your day—while waiting for coffee, between meetings, or before sending an an email.',
     whatIsTitle: 'What Counts as a Micro-Meditation?',
     whatIsText: 'Simply put, it\'s any mindfulness practice that takes a minute or less. The goal isn\'t to empty your mind, but to gently guide your focus for a brief moment. It\'s about quality, not duration.',
     howItWorksTitle: 'How Can 60 Seconds Actually Work?',
     howItWorksText: 'Even a few deep breaths can signal to your brain that it\'s safe to relax. This activates the parasympathetic nervous system—your body\'s natural "rest and digest" mode. This simple switch helps lower stress hormones, reduce your heart rate, and improve your ability to focus. It’s a small action with a significant biological impact.',
     toolkitTitle: 'Your Reset Toolkit',
     toolkitSubtitle: 'Choose a practice that resonates with you and set your preferred duration.',
+    guidedEntry: 'Take a breath. Slow down for a moment. Then choose the practice that calls you.',
     setDuration: 'Set Duration:',
     continueJourneyTitle: 'Continue Your Journey',
     continueJourneyText: 'A bilingual (English/French) mindful AI companion grounded in the MBSR tradition. KAZE embodies mindfulness through dialogue, reflection, and poetic presence. Unlike other mindfulness tools, it doesn’t instruct — it listens, holds space, and co-practices awareness with you.',
@@ -54,7 +55,7 @@ export const translations = {
     
     // Generative Meditation Component
     genTitle: 'Create Your Own Moment',
-    genSubtitle: 'Feeling something else? Select a theme and let our AI craft a unique, guided meditation just for you.',
+    genSubtitle: 'Feeling something else? Select a theme and let our AI craft a unique, guided audio meditation just for you. Each one is a new experience.',
     genSelectTheme: '1. Select a Theme',
     genSelectDuration: '2. Select a Duration',
     genDurationWarning: 'Longer meditations take a little more time to craft. For a quicker experience, you might like to try the 1-minute option first!',
@@ -67,6 +68,9 @@ export const translations = {
     genAudioMessage: 'Preparing audio guidance...',
     genPlay: 'Play guided meditation',
     genPause: 'Pause guided meditation',
+    genPlayLabel: 'Listen',
+    genPauseLabel: 'Pause',
+    genCreateAnother: 'Create Another',
 
     durations: {
       d30s: '30s',
@@ -277,7 +281,7 @@ export const translations = {
   fr: {
     // App Component
     heroTitle: 'Le Pouvoir de la Pause',
-    heroSubtitle: 'Découvrez les micro-méditations — l\'art de trouver la paix et la concentration en moins de 60 secondes. Parfait pour votre vie active et numérique.',
+    heroSubtitle: 'Votre petite oasis pour des pauses d\'une minute. Découvrez l\'art de trouver la paix et la concentration en moins de 60 secondes, en français ou en anglais.',
     whyTitle: 'Pourquoi Tout le Monde en Parle ?',
     needResetTitle: 'Le Besoin d\'une Remise à Zéro',
     needResetText: 'La surcharge numérique est réelle. Les notifications constantes et le défilement infini encombrent nos esprits. Les micro-méditations offrent un moyen rapide et accessible d\'appuyer sur le bouton de réinitialisation, pour percer le bruit sans un engagement de temps énorme.',
@@ -289,6 +293,7 @@ export const translations = {
     howItWorksText: 'Même quelques respirations profondes peuvent signaler à votre cerveau qu\'il peut se détendre en toute sécurité. Cela active le système nerveux parasympathique — le mode naturel de "repos et digestion" de votre corps. Ce simple changement aide à réduire les hormones du stress, à diminuer votre fréquence cardiaque et à améliorer votre capacité de concentration. C\'est une petite action avec un impact biologique significatif.',
     toolkitTitle: 'Votre Boîte à Outils de Réinitialisation',
     toolkitSubtitle: 'Choisissez une pratique qui résonne avec vous et définissez votre durée préférée.',
+    guidedEntry: 'Prenez une respiration. Ralentissez un instant. Puis choisissez la pratique qui vous appelle.',
     setDuration: 'Durée :',
     continueJourneyTitle: 'Poursuivez Votre Voyage',
     continueJourneyText: 'Un compagnon IA bilingue (anglais/français) et conscient, ancré dans la tradition MBSR. KAZE incarne la pleine conscience à travers le dialogue, la réflexion et une présence poétique. Contrairement à d\'autres outils de pleine conscience, il n\'instruit pas — il écoute, offre un espace et co-pratique la conscience avec vous.',
@@ -328,7 +333,7 @@ export const translations = {
 
     // Generative Meditation Component
     genTitle: 'Créez Votre Propre Moment',
-    genSubtitle: 'Envie d\'autre chose ? Sélectionnez un thème et laissez notre IA créer une méditation guidée unique, juste pour vous.',
+    genSubtitle: 'Envie d\'autre chose ? Sélectionnez un thème et laissez notre IA créer une méditation audio guidée unique, juste pour vous. Chacune est une nouvelle expérience.',
     genSelectTheme: '1. Sélectionnez un Thème',
     genSelectDuration: '2. Sélectionnez une Durée',
     genDurationWarning: 'Les méditations plus longues prennent un peu plus de temps à créer. Pour une expérience plus rapide, vous pourriez essayer l\'option d\'1 minute d\'abord !',
@@ -341,6 +346,9 @@ export const translations = {
     genAudioMessage: 'Préparation du guidage audio...',
     genPlay: 'Lancer la méditation guidée',
     genPause: 'Mettre en pause la méditation guidée',
+    genPlayLabel: 'Écouter',
+    genPauseLabel: 'Pause',
+    genCreateAnother: 'Créer une autre',
     
     durations: {
       d30s: '30s',
@@ -472,7 +480,7 @@ export const translations = {
           why: 'Une longue expiration est l\'un des moyens les plus rapides d\'activer le système nerveux parasympathique (repos et digestion). Elle signale directement à votre cerveau et à votre corps qu\'il est sûr de se détendre, aidant à réguler rapidement les sentiments de stress et d\'anxiété.',
           how: '1. Prenez une inspiration normale et confortable par le nez.\n2. Expirez lentement et doucement par la bouche, comme si vous respiriez à travers une paille, en faisant durer l\'expiration plus longtemps que l\'inspiration.\n3. Pas besoin de forcer. Juste une légère extension suffit.\n4. Répétez 2-3 fois.',
           when: 'Lorsque vous ressentez une montée soudaine d\'anxiété, avant de parler en public, lorsque vous essayez de vous endormir, ou chaque fois que vous avez besoin de calmer vos nerfs rapidement.',
-          where: 'Une technique subtile et efficace qui peut être utilisée n\'importe où, n\'importe quand, sans que personne ne s\'en aperçoive.'
+          where: 'Une technique subtile et efficace qui can être utilisée n\'importe où, n\'importe quand, sans que personne ne s\'en aperçoive.'
         }
       },
       { 
