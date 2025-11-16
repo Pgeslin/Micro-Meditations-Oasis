@@ -4,6 +4,7 @@ import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
 import { GenerativeMeditation } from './components/GenerativeMeditation';
 import BreathingExercise from './components/BreathingExercise';
+import { Reminder } from './components/Reminder';
 
 // --- Timer Component ---
 
@@ -277,6 +278,10 @@ const App: React.FC = () => {
                 />
               ))}
             </div>
+          </section>
+
+          <section className="mt-20">
+            <Reminder />
           </section>
 
           <section className="mt-20">
