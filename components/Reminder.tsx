@@ -97,10 +97,18 @@ export const Reminder: React.FC = () => {
     if (!('Notification' in window)) {
       return;
     }
-    // The modern promise-based API is widely supported and simpler.
-    Notification.requestPermission().then((result) => {
+
+    const permissionCallback = (result: NotificationPermission) => {
         setPermission(result);
-    });
+    };
+
+    // To ensure cross-browser compatibility, we handle both the modern
+    // promise-based API and the older, callback-based one.
+    const promise = Notification.requestPermission(permissionCallback);
+
+    if (promise) {
+      promise.then(permissionCallback);
+    }
   };
 
   const handleAddReminder = (e: React.FormEvent) => {
