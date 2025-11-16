@@ -3,6 +3,7 @@ import React from 'react';
 import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
 import { PracticeDetail } from './components/PracticeDetail';
+import { PostPracticeReflection } from './components/PostPracticeReflection';
 import { GenerativeMeditation } from './components/GenerativeMeditation';
 import { Reminder } from './components/Reminder';
 import { useLanguage } from './context/LanguageContext';
@@ -13,11 +14,12 @@ import { translations } from './i18n/translations';
 interface TimerProps {
   practice: Practice;
   duration: number;
-  onClose: () => void;
+  onBack: () => void;
+  onComplete: () => void;
   t: (key: string) => string;
 }
 
-const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
+const Timer: React.FC<TimerProps> = ({ practice, duration, onBack, onComplete, t }) => {
   const [secondsLeft, setSecondsLeft] = React.useState(duration);
   const [isCompleted, setIsCompleted] = React.useState(false);
   const [phase, setPhase] = React.useState<'inhale' | 'exhale'>('exhale');
@@ -65,7 +67,7 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
       setIsCompleted(true);
       
       const timeoutId = setTimeout(() => {
-        onClose();
+        onComplete();
       }, 3000);
 
       return () => clearTimeout(timeoutId);
@@ -76,7 +78,7 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [secondsLeft, onClose]);
+  }, [secondsLeft, onComplete]);
 
   React.useEffect(() => {
     if (isCompleted) return;
@@ -108,7 +110,7 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onClose, t }) => {
         ) : (
           <>
             <button 
-              onClick={onClose} 
+              onClick={onBack} 
               className="absolute top-6 left-6 z-10 flex items-center gap-2 text-slate-300 hover:text-white transition-colors" 
               aria-label={t('backButton')}
             >
@@ -150,6 +152,7 @@ const App: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [viewedPractice, setViewedPractice] = React.useState<Practice | null>(null);
   const [practiceForTimer, setPracticeForTimer] = React.useState<Practice | null>(null);
+  const [completedPractice, setCompletedPractice] = React.useState<Practice | null>(null);
   const [duration, setDuration] = React.useState(60);
 
   const durationOptions = React.useMemo(() => [
@@ -167,6 +170,7 @@ const App: React.FC = () => {
   const handleCloseModals = () => {
     setViewedPractice(null);
     setPracticeForTimer(null);
+    setCompletedPractice(null);
   };
 
   const handleStartPractice = () => {
@@ -174,6 +178,11 @@ const App: React.FC = () => {
       setPracticeForTimer(viewedPractice);
       setViewedPractice(null);
     }
+  };
+
+  const handlePracticeComplete = (practice: Practice) => {
+    setPracticeForTimer(null);
+    setCompletedPractice(practice);
   };
 
   return (
@@ -187,7 +196,20 @@ const App: React.FC = () => {
         />
       )}
       {practiceForTimer && (
-        <Timer practice={practiceForTimer} duration={duration} onClose={handleCloseModals} t={t} />
+        <Timer 
+          practice={practiceForTimer} 
+          duration={duration} 
+          onBack={handleCloseModals} 
+          onComplete={() => handlePracticeComplete(practiceForTimer)}
+          t={t} 
+        />
+      )}
+      {completedPractice && (
+        <PostPracticeReflection
+          practice={completedPractice}
+          onClose={handleCloseModals}
+          t={t}
+        />
       )}
       <div className="bg-slate-50 min-h-screen text-slate-800 antialiased">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">

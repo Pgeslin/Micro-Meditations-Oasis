@@ -86,6 +86,19 @@ export const translations = {
       body: 'Click here to take a short pause and reset your day.',
     },
     
+    reflection: {
+      title: 'Reflect on Your Practice',
+      prompt: (practiceTitle: string) => `What did you notice during your "${practiceTitle}" practice?`,
+      placeholder: 'Take a moment to describe your experience...',
+      submitButton: 'Submit Reflection',
+      skipButton: 'Skip for now',
+      loading: 'Generating a thoughtful response...',
+      error: 'Sorry, an AI companion is not available at the moment. Please try again later.',
+      doneButton: 'Done',
+      aiResponsePrefix: 'AI Companion:',
+      aiSystemInstruction: 'You are a gentle, non-judgmental mindfulness companion. Your role is to receive the user\'s reflection after a short mindfulness practice. Validate their experience with a short, compassionate, and encouraging response. Do not give advice, ask questions, or use emojis. Keep your response to one or two sentences. Your tone should be warm, calm, and supportive.',
+    },
+    
     practices: [
         { 
           id: 'six-second-breathing', 
@@ -345,6 +358,19 @@ export const translations = {
       title: 'C\'est l\'heure d\'un moment de pleine conscience',
       body: 'Cliquez ici pour faire une courte pause et réinitialiser votre journée.',
     },
+    
+    reflection: {
+      title: 'Réfléchissez à votre pratique',
+      prompt: (practiceTitle: string) => `Qu'avez-vous remarqué pendant votre pratique de "${practiceTitle}" ?`,
+      placeholder: 'Prenez un moment pour décrire votre expérience...',
+      submitButton: 'Soumettre la réflexion',
+      skipButton: 'Passer pour l\'instant',
+      loading: 'Génération d\'une réponse réfléchie...',
+      error: 'Désolé, l\'assistant IA n\'est pas disponible pour le moment. Veuillez réessayer plus tard.',
+      doneButton: 'Terminé',
+      aiResponsePrefix: 'Compagnon IA :',
+      aiSystemInstruction: 'Vous êtes un compagnon de pleine conscience doux et sans jugement. Votre rôle est de recevoir la réflexion de l\'utilisateur après une courte pratique de pleine conscience. Validez son expérience avec une réponse courte, compatissante et encourageante. Ne donnez pas de conseils, ne posez pas de questions et n\'utilisez pas d\'émojis. Limitez votre réponse à une ou deux phrases. Votre ton doit être chaleureux, calme et encourageant.',
+    },
 
     practices: [
       { 
@@ -356,7 +382,7 @@ export const translations = {
           why: 'Ce rythme respiratoire lent et délibéré active le système nerveux parasympathique, notre mode naturel de "repos et digestion". Il aide à réduire la fréquence cardiaque, la pression artérielle et à calmer les sentiments d\'anxiété, apportant un sentiment d\'équilibre et de concentration.',
           how: '1. Trouvez une position confortable, assis ou debout.\n2. Inspirez doucement par le nez en comptant jusqu\'à six.\n3. Sans marquer de pause, expirez doucement par le nez ou la bouche en comptant jusqu\'à six.\n4. Continuez ce rythme doux et régulier. Ne forcez pas ; trouvez une cadence qui vous semble naturelle et apaisante.',
           when: 'Chaque fois que vous sentez le stress monter, avant une conversation difficile, pendant une pause au travail, ou lorsque vous avez besoin de vous recentrer rapidement avant une tâche importante.',
-          where: 'N\'importe où : à votre bureau, en réunion (personne ne le remarquera), dans une file d\'attente, dans les transports en commun, ou même en marchant. C\'est totalement silencieux et portable.'
+          where: 'N\'importe où : à votre bureau, en réunion (personne ne le remarquera), dans une file d\'attente, dans les transports en commun, ou même en marchant. C\'est totally silencieux et portable.'
         }
       },
       { 
