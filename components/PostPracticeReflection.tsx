@@ -42,7 +42,7 @@ export const PostPracticeReflection: React.FC<PostPracticeReflectionProps> = ({ 
       aria-modal="true"
       role="dialog"
     >
-      <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl flex flex-col overflow-hidden">
+      <div className="bg-stone-50 w-full max-w-lg rounded-2xl shadow-xl flex flex-col overflow-hidden">
         <header className="p-6">
           <h2 className="text-2xl font-bold text-slate-900 text-center">{t('reflection.title')}</h2>
         </header>

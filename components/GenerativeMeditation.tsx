@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { GoogleGenAI, Modality } from "@google/genai";
 import { useLanguage } from '../context/LanguageContext';
@@ -189,7 +190,7 @@ export const GenerativeMeditation: React.FC = () => {
   return (
     <div ref={containerRef} className="animated-gradient p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto scroll-mt-8">
       <div className="text-center">
-        <div className="inline-block bg-white/80 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-4 backdrop-blur-sm">
+        <div className="inline-block bg-stone-50/80 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-4 backdrop-blur-sm">
           Powered by AI
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t('genTitle')}</h2>
@@ -209,7 +210,7 @@ export const GenerativeMeditation: React.FC = () => {
                   className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                     selectedTheme === theme
                       ? 'bg-teal-600 text-white shadow'
-                      : 'bg-white/70 text-slate-700 hover:bg-white'
+                      : 'bg-stone-50/70 text-slate-700 hover:bg-stone-50'
                   }`}
                 >
                   {theme}
@@ -228,7 +229,7 @@ export const GenerativeMeditation: React.FC = () => {
                   className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                     selectedDuration === duration.value
                       ? 'bg-teal-600 text-white shadow'
-                      : 'bg-white/70 text-slate-700 hover:bg-white'
+                      : 'bg-stone-50/70 text-slate-700 hover:bg-stone-50'
                   }`}
                 >
                   {duration.label}
@@ -252,7 +253,7 @@ export const GenerativeMeditation: React.FC = () => {
                 className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                   selectedVoice === voice.name
                     ? 'bg-teal-600 text-white shadow'
-                    : 'bg-white/70 text-slate-700 hover:bg-white'
+                    : 'bg-stone-50/70 text-slate-700 hover:bg-stone-50'
                   }`}
               >
                 {voice.displayName}

@@ -13,7 +13,7 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({ practice, onSelect }
 
   return (
     <div
-      className="bg-white p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col items-start h-full cursor-pointer group"
+      className="bg-stone-50 p-6 rounded-xl shadow-md border border-slate-200 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 flex flex-col items-start h-full cursor-pointer group"
       onClick={() => onSelect(practice)}
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onSelect(practice)}
       role="button"

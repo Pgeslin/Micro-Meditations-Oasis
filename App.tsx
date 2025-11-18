@@ -240,72 +240,54 @@ const App: React.FC = () => {
           t={t}
         />
       )}
-      <div className="min-h-screen text-slate-800 antialiased">
-          <header className="relative text-center overflow-hidden shadow-lg h-[50vh] min-h-[350px] max-h-[500px]">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute top-0 left-0 w-full h-full object-cover z-0 filter brightness-90"
-              poster="https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            >
-              <source
-                src="https://videos.pexels.com/video-files/853874/853874-hd_1920_1080_25fps.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-            <div className="relative z-10 bg-slate-900/50 w-full h-full flex flex-col justify-center items-center p-4">
-               <div className="absolute top-4 right-4 z-20">
-                    <div className="flex items-center bg-slate-200/25 rounded-full p-1 backdrop-blur-sm">
-                        <button
-                            onClick={() => setLanguage('en')}
-                            aria-pressed={language === 'en'}
-                            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
-                            language === 'en'
-                                ? 'bg-white/90 text-teal-800 shadow-sm'
-                                : 'text-white hover:bg-white/20'
-                            }`}
-                        >
-                            English
-                        </button>
-                        <button
-                            onClick={() => setLanguage('fr')}
-                            aria-pressed={language === 'fr'}
-                            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
-                            language === 'fr'
-                                ? 'bg-white/90 text-teal-800 shadow-sm'
-                                : 'text-white hover:bg-white/20'
-                            }`}
-                        >
-                            Français
-                        </button>
-                    </div>
+      <div className="text-slate-800 antialiased">
+        <header className="relative text-center" style={{backgroundColor: '#F5EFE3'}}>
+            <div className="absolute top-4 right-4 z-20">
+                <div className="flex items-center bg-stone-200/40 rounded-full p-1 backdrop-blur-sm">
+                    <button
+                        onClick={() => setLanguage('en')}
+                        aria-pressed={language === 'en'}
+                        className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                        language === 'en'
+                            ? 'bg-white/90 text-teal-800 shadow-sm'
+                            : 'text-amber-900 hover:bg-white/50'
+                        }`}
+                    >
+                        English
+                    </button>
+                    <button
+                        onClick={() => setLanguage('fr')}
+                        aria-pressed={language === 'fr'}
+                        className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                        language === 'fr'
+                            ? 'bg-white/90 text-teal-800 shadow-sm'
+                            : 'text-amber-900 hover:bg-white/50'
+                        }`}
+                    >
+                        Français
+                    </button>
                 </div>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4">
-                {t('heroTitle')}
-              </h1>
-              <p className="mt-4 max-w-3xl mx-auto text-lg md:text-2xl font-medium text-slate-200">
-                {t('heroSubtitle')}
-              </p>
             </div>
-            <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-slate-50 to-transparent"></div>
-          </header>
+            <img
+                src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6710a301-443b-432d-9372-2fc456105820_1200x1200.jpeg"
+                alt="Oasis - Free One-Minute Micro-Meditations, offered by Kaze Dojo"
+                className="mx-auto w-full max-w-2xl px-4 pt-4"
+            />
+        </header>
 
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 -mt-16">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
 
           <div className="max-w-4xl mx-auto space-y-12">
             
-            <div className="bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-sm">
+            <div className="bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-sm">
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whyTitle')}</h2>
                 <div className="grid md:grid-cols-2 gap-8 text-slate-700 leading-relaxed">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                  <div className="bg-stone-50 p-6 rounded-xl shadow-sm border border-slate-200">
                     <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('needResetTitle')}</h3>
                     <p>{t('needResetText')}</p>
                   </div>
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                  <div className="bg-stone-50 p-6 rounded-xl shadow-sm border border-slate-200">
                     <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('busyLivesTitle')}</h3>
                     <p>{t('busyLivesText')}</p>
                   </div>
@@ -341,7 +323,7 @@ const App: React.FC = () => {
                     <p className="text-slate-700 leading-relaxed whitespace-pre-wrap mb-6">{practiceOfTheDay.description}</p>
                     <button
                       onClick={() => handleSelectPractice(practiceOfTheDay)}
-                      className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
+                      className="inline-block bg-stone-50 text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
                     >
                       {t('practiceOfTheDay.button')}
                     </button>
@@ -351,7 +333,7 @@ const App: React.FC = () => {
             </section>
           )}
 
-          <section className="mt-20 bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
+          <section className="mt-20 bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('toolkitTitle')}</h2>
             <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
               {t('toolkitSubtitle')}
@@ -366,7 +348,7 @@ const App: React.FC = () => {
                     onClick={() => setDuration(option.value)}
                     className={`px-4 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       duration === option.value
-                        ? 'bg-white text-teal-700 shadow-sm'
+                        ? 'bg-stone-50 text-teal-700 shadow-sm'
                         : 'text-slate-600 hover:text-slate-800'
                     }`}
                   >
@@ -384,7 +366,7 @@ const App: React.FC = () => {
                     className={`px-4 sm:px-6 py-2 text-base font-semibold rounded-full transition-all duration-200 border-2 ${
                     activeCategoryTitle === category.categoryTitle
                         ? 'bg-teal-600 text-white border-teal-600 shadow'
-                        : 'bg-white text-slate-600 hover:bg-slate-100 border-transparent hover:border-slate-300'
+                        : 'bg-stone-50 text-slate-600 hover:bg-stone-100 border-transparent hover:border-slate-300'
                     }`}
                 >
                     {category.categoryTitle}
@@ -417,7 +399,7 @@ const App: React.FC = () => {
           </section>
           
           <section className="mt-20">
-            <div className="bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
+            <div className="bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
               <p className="max-w-3xl mx-auto text-slate-700 text-lg italic leading-relaxed">
                 {t('whyItMattersText')}
               </p>
@@ -445,9 +427,9 @@ const App: React.FC = () => {
 
         </main>
         
-        <footer className="text-center py-8 text-slate-500">
+        <footer className="text-center py-8 text-slate-600">
           <p>{t('footerText')}</p>
-          <p className="mt-4 text-sm text-slate-400">
+          <p className="mt-4 text-sm text-slate-500">
             {t('footerAuthor')} <a href="https://pgeslin.substack.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-teal-600 transition-colors">{t('footerLink')}</a>
           </p>
         </footer>
