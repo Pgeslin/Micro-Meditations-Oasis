@@ -155,32 +155,32 @@ const App: React.FC = () => {
   const [practiceForTimer, setPracticeForTimer] = React.useState<Practice | null>(null);
   const [completedPractice, setCompletedPractice] = React.useState<Practice | null>(null);
   const [duration, setDuration] = React.useState(60);
-  const [showAllPractices, setShowAllPractices] = React.useState(false);
+  const [practiceOfTheDay, setPracticeOfTheDay] = React.useState<Practice | null>(null);
   const audioContextRef = React.useRef<AudioContext | null>(null);
+
+  const practiceCategories = React.useMemo(() => (translations[language] || translations.en).practiceCategories || [], [language]);
+  const [activeCategoryTitle, setActiveCategoryTitle] = React.useState<string | null>(null);
 
   const durationOptions = React.useMemo(() => [
     { label: t('durations.d30s'), value: 30 },
     { label: t('durations.d1m'), value: 60 },
     { label: t('durations.d2m'), value: 120 },
   ], [t]);
-
-  const allPractices: Practice[] = React.useMemo(() => (translations[language] || translations.en).practices, [language]);
   
-  const practiceOfTheDay = React.useMemo(() => {
-    if (!allPractices || allPractices.length === 0) {
-      return null;
+  React.useEffect(() => {
+    if (practiceCategories.length > 0) {
+      const allPractices = practiceCategories.flatMap(c => c.practices);
+      if (allPractices.length > 0) {
+        const randomIndex = Math.floor(Math.random() * allPractices.length);
+        setPracticeOfTheDay(allPractices[randomIndex]);
+      }
+      if (!activeCategoryTitle) {
+        setActiveCategoryTitle(practiceCategories[0].categoryTitle);
+      }
     }
-    const randomIndex = Math.floor(Math.random() * allPractices.length);
-    return allPractices[randomIndex];
-  }, [allPractices]);
+  }, [practiceCategories, activeCategoryTitle]);
 
   const IconComponent = practiceOfTheDay?.icon ? Icons[practiceOfTheDay.icon as keyof typeof Icons] : null;
-
-  const structuredPracticeIds = ['rain', 'stop'];
-  const structuredPractices = allPractices.filter(p => p.id && structuredPracticeIds.includes(p.id));
-  const corePractices = allPractices.filter(p => !p.id || !structuredPracticeIds.includes(p.id));
-
-  const visiblePractices = showAllPractices ? corePractices : corePractices.slice(0, 8);
   
   const handleSelectPractice = (practice: Practice) => {
     setViewedPractice(practice);
@@ -193,7 +193,6 @@ const App: React.FC = () => {
   };
 
   const handleStartPractice = () => {
-    // Initialize or resume AudioContext on user gesture to comply with autoplay policies
     if (typeof window.AudioContext !== 'undefined' || typeof (window as any).webkitAudioContext !== 'undefined') {
         if (!audioContextRef.current) {
             audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -357,9 +356,6 @@ const App: React.FC = () => {
             <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
               {t('toolkitSubtitle')}
             </p>
-            <p className="text-center text-xl text-teal-800 mb-10 max-w-2xl mx-auto">
-              {t('guidedEntry')}
-            </p>
             
             <div className="flex justify-center items-center gap-2 mb-12">
               <span className="text-slate-600 font-medium mr-2">{t('setDuration')}</span>
@@ -379,43 +375,41 @@ const App: React.FC = () => {
                 ))}
               </div>
             </div>
-
-            <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">{t('corePracticesTitle')}</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {visiblePractices.map((practice) => (
-                <PracticeCard
-                  key={practice.title}
-                  practice={practice}
-                  onSelect={handleSelectPractice}
-                />
-              ))}
-            </div>
             
-            {corePractices.length > 8 && (
-              <div className="text-center mt-10">
+            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 mb-10 border-b border-slate-200 pb-4">
+                {practiceCategories.map((category) => (
                 <button
-                  onClick={() => setShowAllPractices(!showAllPractices)}
-                  className="bg-slate-200 text-slate-700 font-semibold py-2 px-6 rounded-lg hover:bg-slate-300 transition-colors"
+                    key={category.categoryTitle}
+                    onClick={() => setActiveCategoryTitle(category.categoryTitle)}
+                    className={`px-4 sm:px-6 py-2 text-base font-semibold rounded-full transition-all duration-200 border-2 ${
+                    activeCategoryTitle === category.categoryTitle
+                        ? 'bg-teal-600 text-white border-teal-600 shadow'
+                        : 'bg-white text-slate-600 hover:bg-slate-100 border-transparent hover:border-slate-300'
+                    }`}
                 >
-                  {showAllPractices ? t('showLessButton') : t('showMoreButton')}
+                    {category.categoryTitle}
                 </button>
-              </div>
-            )}
-            
-            {structuredPractices.length > 0 && (
-              <div className="mt-16">
-                 <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">{t('structuredPausesTitle')}</h3>
-                 <div className="grid grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto gap-8">
-                    {structuredPractices.map((practice) => (
-                      <PracticeCard
+                ))}
+            </div>
+
+            {practiceCategories.map((category) => (
+                activeCategoryTitle === category.categoryTitle && (
+                <div key={category.categoryTitle} className="animate-fade-in">
+                    <p className="text-center text-xl text-teal-800 mb-10 max-w-2xl mx-auto">
+                      {category.categorySubtitle}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {category.practices.map((practice) => (
+                        <PracticeCard
                         key={practice.title}
                         practice={practice}
                         onSelect={handleSelectPractice}
-                      />
+                        />
                     ))}
-                 </div>
-              </div>
-            )}
+                    </div>
+                </div>
+                )
+            ))}
           </section>
 
           <section className="mt-20">

@@ -8,13 +8,6 @@ interface PracticeDetailProps {
   t: (key: string, ...args: any[]) => string;
 }
 
-const DetailSection: React.FC<{ title: string; content: string; }> = ({ title, content }) => (
-  <div>
-    <h3 className="text-lg font-semibold text-teal-700 mb-2">{title}</h3>
-    <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{content}</p>
-  </div>
-);
-
 export const PracticeDetail: React.FC<PracticeDetailProps> = ({ practice, onClose, onStart, t }) => {
   return (
     <div 
@@ -38,14 +31,14 @@ export const PracticeDetail: React.FC<PracticeDetailProps> = ({ practice, onClos
         </header>
 
         <main className="p-6 sm:p-8 overflow-y-auto flex-grow">
-          <p className="text-center text-slate-600 text-lg mb-8 -mt-2">{practice.description}</p>
+          <p className="text-center text-slate-600 text-lg mb-6">{practice.description}</p>
           
-          <div className="space-y-6">
-            {practice.details?.what && <DetailSection title={t('practiceDetailWhat')} content={practice.details.what} />}
-            {practice.details?.why && <DetailSection title={t('practiceDetailWhy')} content={practice.details.why} />}
-            {practice.details?.how && <DetailSection title={t('practiceDetailHow')} content={practice.details.how} />}
-            {practice.details?.when && <DetailSection title={t('practiceDetailWhen')} content={practice.details.when} />}
-            {practice.details?.where && <DetailSection title={t('practiceDetailWhere')} content={practice.details.where} />}
+          <div className="mt-4">
+            {practice.details?.explanation && (
+                <div className="bg-teal-50/50 border border-teal-200/50 p-6 rounded-xl">
+                  <p className="text-slate-700 leading-relaxed whitespace-pre-wrap text-lg text-center">{practice.details.explanation}</p>
+                </div>
+            )}
           </div>
         </main>
 
