@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
@@ -270,13 +271,13 @@ const App: React.FC = () => {
           </div>
           <div className="relative h-72 w-full overflow-hidden">
             <video
-              src="https://videos.pexels.com/video-files/4434246/4434246-hd_1920_1080_25fps.mp4"
+              src="https://videos.pexels.com/video-files/853874/853874-hd_1920_1080_25fps.mp4"
               autoPlay
               loop
               muted
               playsInline
               className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2"
-              poster="https://images.pexels.com/videos/4434246/pexels-photo-4434246.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              poster="https://images.pexels.com/videos/853874/free-video-853874.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />
             <div className="absolute inset-0 bg-black/30"></div>
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white p-4">
