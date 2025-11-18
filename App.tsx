@@ -453,7 +453,7 @@ const App: React.FC = () => {
         </main>
         
         <footer className="text-center py-8 text-slate-600 dark:text-slate-400">
-          <p>{t('footerText')}</p>
+          <p className="whitespace-pre-wrap">{t('footerText')}</p>
           <p className="mt-4 text-sm text-slate-500 dark:text-slate-500">
             {t('footerAuthor')} <a href="https://pgeslin.substack.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-teal-600 dark:hover:text-teal-400 transition-colors">{t('footerLink')}</a>
           </p>
