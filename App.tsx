@@ -428,7 +428,7 @@ const App: React.FC = () => {
                 {t('continueJourneyText')}
               </p>
               <a
-                href="https://chatgpt.com/g/g-WjE3s9gVo-kaze-mindfulness-dojo"
+                href="https://chatgpt.com/g/g-68ea7895583c8191a6e56013f66ef72a-kaze-the-way-of-the-wind-mindfulness-dojo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
