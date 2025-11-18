@@ -300,6 +300,13 @@ const App: React.FC = () => {
                   {t('whatIsText')}
                 </p>
               </section>
+
+              <section>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('aboutTitle')}</h2>
+                <p className="text-center max-w-2xl mx-auto text-slate-600 leading-relaxed">
+                  {t('aboutText')}
+                </p>
+              </section>
             </div>
             
             <section className="bg-teal-600 text-white p-8 rounded-2xl shadow-lg">
