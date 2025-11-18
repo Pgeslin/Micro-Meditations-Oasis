@@ -241,45 +241,60 @@ const App: React.FC = () => {
         />
       )}
       <div className="text-slate-800 antialiased">
-        <header className="relative text-center" style={{backgroundColor: '#F5EFE3'}}>
-            <div className="absolute top-4 right-4 z-20">
-                <div className="flex items-center bg-stone-200/40 rounded-full p-1 backdrop-blur-sm">
-                    <button
-                        onClick={() => setLanguage('en')}
-                        aria-pressed={language === 'en'}
-                        className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
-                        language === 'en'
-                            ? 'bg-white/90 text-teal-800 shadow-sm'
-                            : 'text-amber-900 hover:bg-white/50'
-                        }`}
-                    >
-                        English
-                    </button>
-                    <button
-                        onClick={() => setLanguage('fr')}
-                        aria-pressed={language === 'fr'}
-                        className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
-                        language === 'fr'
-                            ? 'bg-white/90 text-teal-800 shadow-sm'
-                            : 'text-amber-900 hover:bg-white/50'
-                        }`}
-                    >
-                        Français
-                    </button>
-                </div>
-            </div>
-            <img
-                src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6710a301-443b-432d-9372-2fc456105820_1200x1200.jpeg"
-                alt="Oasis - Free One-Minute Micro-Meditations, offered by Kaze Dojo"
-                className="mx-auto w-full max-w-2xl px-4 pt-4"
+        <header className="relative">
+          <div className="absolute top-4 right-4 z-30">
+              <div className="flex items-center bg-stone-200/40 rounded-full p-1 backdrop-blur-sm">
+                  <button
+                      onClick={() => setLanguage('en')}
+                      aria-pressed={language === 'en'}
+                      className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                      language === 'en'
+                          ? 'bg-white/90 text-teal-800 shadow-sm'
+                          : 'text-amber-900 hover:bg-white/50'
+                      }`}
+                  >
+                      English
+                  </button>
+                  <button
+                      onClick={() => setLanguage('fr')}
+                      aria-pressed={language === 'fr'}
+                      className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                      language === 'fr'
+                          ? 'bg-white/90 text-teal-800 shadow-sm'
+                          : 'text-amber-900 hover:bg-white/50'
+                      }`}
+                  >
+                      Français
+                  </button>
+              </div>
+          </div>
+          <div className="relative h-72 w-full overflow-hidden">
+            <video
+              src="https://cdn.coverr.co/videos/coverr-calm-seaside-7753/1080p.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2"
+              poster="https://images.pexels.com/photos/1450372/pexels-photo-1450372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             />
+            <div className="absolute inset-0 bg-black/30"></div>
+            <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white p-4">
+                <h1 className="text-6xl md:text-8xl font-bold tracking-tight" style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
+                    OASIS
+                </h1>
+                <p className="mt-2 text-lg md:text-xl max-w-2xl" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
+                    {t('heroSubtitle')}
+                </p>
+            </div>
+          </div>
         </header>
 
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 -mt-12">
 
           <div className="max-w-4xl mx-auto space-y-12">
             
-            <div className="bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-sm">
+            <div className="bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-lg z-10 relative">
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whyTitle')}</h2>
                 <div className="grid md:grid-cols-2 gap-8 text-slate-700 leading-relaxed">
@@ -422,7 +437,7 @@ const App: React.FC = () => {
                 {t('continueJourneyText')}
               </p>
               <a
-                href="https://chatgpt.com/g/g-68ea7895583c8191a6e56013f66ef72a-kaze-the-way-of-the-wind-mindfulness-dojo"
+                href="https://chatgpt.com/g/g-WjE3s9gVo-kaze-mindfulness-dojo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"

@@ -18,8 +18,8 @@ export const translations = {
     toolkitSubtitle: 'Choose a practice that resonates with you and set your preferred duration.',
     setDuration: 'Set Duration:',
     continueJourneyTitle: 'Continue Your Journey',
-    continueJourneyText: 'A bilingual (English/French) mindful AI companion grounded in the MBSR tradition. KAZE embodies mindfulness through dialogue, reflection, and poetic presence. Unlike other mindfulness tools, it doesn’t instruct — it listens, holds space, and co-practices awareness with you.',
-    continueJourneyButton: 'Visit Kaze Mindfulness Dojo',
+    continueJourneyText: 'Explore your practice further with the Kaze Mindfulness Dōjō, a custom AI guide designed to support your journey with the gentle, reflective spirit of Oasis.',
+    continueJourneyButton: 'Visit Kaze Dōjō on ChatGPT',
     footerText: 'Breathe in, breathe out. Your moment of calm is always available.',
     footerAuthor: 'Created by Pierre ‘Satch’ Geslin, mindfulness trainer and haiku poet in the Adelaide Hills of South Australia.',
     footerLink: 'Learn more…',
@@ -329,8 +329,8 @@ export const translations = {
     toolkitSubtitle: 'Choisissez une pratique qui résonne avec vous et définissez votre durée préférée.',
     setDuration: 'Durée :',
     continueJourneyTitle: 'Poursuivez Votre Voyage',
-    continueJourneyText: 'Un compagnon IA bilingue (anglais/français) et conscient, ancré dans la tradition MBSR. KAZE incarne la pleine conscience à travers le dialogue, la réflexion et une présence poétique. Contrairement à d\'autres outils de pleine conscience, il n\'instruit pas — il écoute, offre un espace et co-pratique la conscience avec vous.',
-    continueJourneyButton: 'Visiter le Dojo de Pleine Conscience Kaze',
+    continueJourneyText: 'Explorez davantage votre pratique avec le Kaze Mindfulness Dōjō, un guide IA personnalisé conçu pour soutenir votre parcours dans l\'esprit doux et réflexif d\'Oasis.',
+    continueJourneyButton: 'Visiter le Kaze Dōjō sur ChatGPT',
     footerText: 'Inspirez, expirez. Votre moment de calme est toujours disponible.',
     footerAuthor: 'Créé par Pierre ‘Satch’ Geslin, formateur en pleine conscience et poète de haïku dans les Adelaide Hills en Australie-Méridionale.',
     footerLink: 'En savoir plus…',
@@ -403,7 +403,7 @@ export const translations = {
       aiResponsePrefix: 'Compagnon IA :',
       aiSystemInstruction: 'Vous êtes un compagnon de pleine conscience doux et sans jugement. Votre rôle est de recevoir la réflexion de l\'utilisateur après une courte pratique de pleine conscience. Validez son expérience avec une réponse courte, compatissante et encourageante. Ne donnez pas de conseils, ne posez pas de questions et n\'utilisez pas d\'émojis. Limitez votre réponse à une ou deux phrases. Votre ton doit être chaleureux, calme et encourageant.',
     },
-
+    
     practiceCategories: [
       {
         categoryTitle: 'Respiration',
