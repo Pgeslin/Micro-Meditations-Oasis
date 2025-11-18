@@ -267,9 +267,8 @@ const App: React.FC = () => {
                   </button>
               </div>
           </div>
-          <div className="relative h-72 w-full overflow-hidden">
-            <div className="image-banner"></div>
-            <div className="absolute inset-0 bg-black/30"></div>
+          <div className="relative h-72 w-full overflow-hidden animated-gradient">
+            <div className="absolute inset-0 bg-black/20"></div>
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white p-4">
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tight" style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
                     OASIS
