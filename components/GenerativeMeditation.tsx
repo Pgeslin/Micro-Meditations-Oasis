@@ -1,7 +1,4 @@
 
-
-
-
 import React from 'react';
 import { GoogleGenAI, Modality } from "@google/genai";
 import { useLanguage } from '../context/LanguageContext';
@@ -189,20 +186,20 @@ export const GenerativeMeditation: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="highlight-gradient p-8 rounded-2xl shadow-sm border border-slate-200 max-w-4xl mx-auto scroll-mt-8">
+    <div ref={containerRef} className="highlight-gradient p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 max-w-4xl mx-auto scroll-mt-8">
       <div className="text-center">
-        <div className="inline-block bg-white/80 text-teal-800 text-sm font-semibold px-4 py-1 rounded-full mb-4 backdrop-blur-sm">
+        <div className="inline-block bg-white/80 dark:bg-slate-800/80 text-teal-800 dark:text-teal-200 text-sm font-semibold px-4 py-1 rounded-full mb-4 backdrop-blur-sm">
           Powered by AI
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t('genTitle')}</h2>
-        <p className="text-center text-slate-700 mb-8 max-w-2xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-2">{t('genTitle')}</h2>
+        <p className="text-center text-slate-700 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
           {t('genSubtitle')}
         </p>
       </div>
       
       <div className="space-y-8">
         <div>
-           <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">{t('genSelectTheme')}</h3>
+           <h3 className="text-lg font-medium text-slate-700 dark:text-slate-200 mb-4 text-center">{t('genSelectTheme')}</h3>
             <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {themes.map(theme => (
                 <button
@@ -211,7 +208,7 @@ export const GenerativeMeditation: React.FC = () => {
                   className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                     selectedTheme === theme
                       ? 'bg-teal-600 text-white shadow'
-                      : 'bg-white/60 text-slate-700 hover:bg-white'
+                      : 'bg-white/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-100 hover:bg-white dark:hover:bg-slate-600'
                   }`}
                 >
                   {theme}
@@ -221,7 +218,7 @@ export const GenerativeMeditation: React.FC = () => {
         </div>
 
         <div>
-           <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">{t('genSelectDuration')}</h3>
+           <h3 className="text-lg font-medium text-slate-700 dark:text-slate-200 mb-4 text-center">{t('genSelectDuration')}</h3>
             <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {durations.map(duration => (
                 <button
@@ -230,7 +227,7 @@ export const GenerativeMeditation: React.FC = () => {
                   className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                     selectedDuration === duration.value
                       ? 'bg-teal-600 text-white shadow'
-                      : 'bg-white/60 text-slate-700 hover:bg-white'
+                      : 'bg-white/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-100 hover:bg-white dark:hover:bg-slate-600'
                   }`}
                 >
                   {duration.label}
@@ -238,14 +235,14 @@ export const GenerativeMeditation: React.FC = () => {
               ))}
             </div>
             {selectedDuration > 60 && (
-              <p className="text-center text-sm text-slate-600 mt-4 animate-fade-in px-4 bg-white/50 rounded-full py-1 max-w-sm mx-auto">
+              <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-4 animate-fade-in px-4 bg-white/50 dark:bg-slate-700/50 rounded-full py-1 max-w-sm mx-auto">
                 {t('genDurationWarning')}
               </p>
             )}
         </div>
         
         <div>
-          <h3 className="text-lg font-medium text-slate-700 mb-4 text-center">{t('genSelectVoice')}</h3>
+          <h3 className="text-lg font-medium text-slate-700 dark:text-slate-200 mb-4 text-center">{t('genSelectVoice')}</h3>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {voices.map(voice => (
               <button
@@ -254,7 +251,7 @@ export const GenerativeMeditation: React.FC = () => {
                 className={`px-5 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 backdrop-blur-sm ${
                   selectedVoice === voice.name
                     ? 'bg-teal-600 text-white shadow'
-                    : 'bg-white/60 text-slate-700 hover:bg-white'
+                    : 'bg-white/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-100 hover:bg-white dark:hover:bg-slate-600'
                   }`}
               >
                 {voice.displayName}
@@ -268,7 +265,7 @@ export const GenerativeMeditation: React.FC = () => {
         <button
           onClick={handleGenerate}
           disabled={!selectedTheme || isLoading}
-          className="bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors duration-300 disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center mx-auto"
+          className="bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors duration-300 disabled:bg-slate-400 dark:disabled:bg-slate-600 disabled:cursor-not-allowed flex items-center justify-center mx-auto"
         >
           {isLoading ? (
             <>
@@ -280,20 +277,20 @@ export const GenerativeMeditation: React.FC = () => {
           )}
         </button>
         {isLoading && !generatedScript && (
-          <p className="text-slate-600 text-sm mt-4 animate-fade-in">
+          <p className="text-slate-600 dark:text-slate-300 text-sm mt-4 animate-fade-in">
             {t('genCraftingMessage')}
           </p>
         )}
       </div>
       
       {error && (
-        <div className="mt-6 text-center bg-red-50 text-red-700 p-4 rounded-lg animate-fade-in" role="alert">
+        <div className="mt-6 text-center bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 p-4 rounded-lg animate-fade-in" role="alert">
           <p className="font-semibold">{error}</p>
         </div>
       )}
 
       {generatedScript && !error && (
-        <div className="bg-slate-50 mt-8 p-6 rounded-xl border border-slate-200 animate-fade-in text-left">
+        <div className="bg-slate-50 dark:bg-slate-800 mt-8 p-6 rounded-xl border border-slate-200 dark:border-slate-700 animate-fade-in text-left">
           <div className="flex items-start gap-4 sm:gap-6">
             <div className="flex-shrink-0 flex flex-col items-center">
               {audioBuffer ? (
@@ -309,28 +306,28 @@ export const GenerativeMeditation: React.FC = () => {
                   )}
                 </button>
               ) : (
-                <div className="w-14 h-14 bg-slate-200 rounded-full flex items-center justify-center" aria-label="Generating audio">
+                <div className="w-14 h-14 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center" aria-label="Generating audio">
                   <div className="animate-spin rounded-full h-7 w-7 border-t-2 border-b-2 border-teal-500"></div>
                 </div>
               )}
               {audioBuffer && (
-                <p className="text-xs text-slate-600 mt-2 font-semibold">{isPlaying ? t('genPauseLabel') : t('genPlayLabel')}</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 font-semibold">{isPlaying ? t('genPauseLabel') : t('genPlayLabel')}</p>
               )}
             </div>
             <div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">{t('genMeditationTitle')}</h3>
+                <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-2">{t('genMeditationTitle')}</h3>
                 {!audioBuffer && (
-                  <div className="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">
+                  <div className="bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-200 text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">
                     {t('genAudioMessage')}
                   </div>
                 )}
-                <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{generatedScript}</p>
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">{generatedScript}</p>
             </div>
           </div>
-          <div className="mt-6 text-center border-t border-slate-200 pt-4">
+          <div className="mt-6 text-center border-t border-slate-200 dark:border-slate-700 pt-4">
               <button
                   onClick={handleStartOver}
-                  className="bg-slate-200 text-slate-700 font-bold py-2 px-6 rounded-lg hover:bg-slate-300 transition-colors duration-300 text-sm"
+                  className="bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-2 px-6 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-500 transition-colors duration-300 text-sm"
               >
                 {t('genCreateAnother')}
               </button>

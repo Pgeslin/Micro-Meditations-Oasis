@@ -5,6 +5,7 @@ import { PracticeDetail } from './components/PracticeDetail';
 import { PostPracticeReflection } from './components/PostPracticeReflection';
 import { GenerativeMeditation } from './components/GenerativeMeditation';
 import { useLanguage } from './context/LanguageContext';
+import { useTheme } from './context/ThemeContext';
 import { translations } from './i18n/translations';
 import * as Icons from './components/IconComponents';
 
@@ -150,6 +151,7 @@ const Timer: React.FC<TimerProps> = ({ practice, duration, onBack, onComplete, t
 
 const App: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const [viewedPractice, setViewedPractice] = React.useState<Practice | null>(null);
   const [practiceForTimer, setPracticeForTimer] = React.useState<Practice | null>(null);
   const [completedPractice, setCompletedPractice] = React.useState<Practice | null>(null);
@@ -239,17 +241,28 @@ const App: React.FC = () => {
           t={t}
         />
       )}
-      <div className="text-slate-800 antialiased">
+      <div className="text-slate-800 dark:text-slate-200 antialiased">
         <header className="relative">
-          <div className="absolute top-4 right-4 z-30">
-              <div className="flex items-center bg-white/40 rounded-full p-1 backdrop-blur-sm">
+          <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+              <button
+                onClick={toggleTheme}
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 dark:bg-slate-800/40 text-slate-800 dark:text-yellow-300 backdrop-blur-sm hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                {theme === 'light' ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                )}
+              </button>
+              <div className="flex items-center bg-white/40 dark:bg-slate-800/40 rounded-full p-1 backdrop-blur-sm">
                   <button
                       onClick={() => setLanguage('en')}
                       aria-pressed={language === 'en'}
                       className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       language === 'en'
-                          ? 'bg-white/90 text-teal-800 shadow-sm'
-                          : 'text-slate-800 hover:bg-white/50'
+                          ? 'bg-white/90 dark:bg-slate-600/90 text-teal-800 dark:text-white shadow-sm'
+                          : 'text-slate-800 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-700/50'
                       }`}
                   >
                       English
@@ -259,8 +272,8 @@ const App: React.FC = () => {
                       aria-pressed={language === 'fr'}
                       className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       language === 'fr'
-                          ? 'bg-white/90 text-teal-800 shadow-sm'
-                          : 'text-slate-800 hover:bg-white/50'
+                          ? 'bg-white/90 dark:bg-slate-600/90 text-teal-800 dark:text-white shadow-sm'
+                          : 'text-slate-800 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-700/50'
                       }`}
                   >
                       Français
@@ -284,31 +297,31 @@ const App: React.FC = () => {
 
           <div className="max-w-4xl mx-auto space-y-12">
             
-            <div className="bg-white/60 backdrop-blur-md border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-lg z-10 relative">
+            <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 rounded-2xl py-12 px-8 space-y-12 shadow-lg z-10 relative">
               <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whyTitle')}</h2>
-                <div className="grid md:grid-cols-2 gap-8 text-slate-700 leading-relaxed">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('needResetTitle')}</h3>
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('whyTitle')}</h2>
+                <div className="grid md:grid-cols-2 gap-8 text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h3 className="font-semibold text-lg text-teal-700 dark:text-teal-400 mb-2">{t('needResetTitle')}</h3>
                     <p>{t('needResetText')}</p>
                   </div>
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('busyLivesTitle')}</h3>
+                  <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h3 className="font-semibold text-lg text-teal-700 dark:text-teal-400 mb-2">{t('busyLivesTitle')}</h3>
                     <p>{t('busyLivesText')}</p>
                   </div>
                 </div>
               </section>
 
               <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whatIsTitle')}</h2>
-                <p className="text-center max-w-2xl mx-auto text-slate-600 mb-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('whatIsTitle')}</h2>
+                <p className="text-center max-w-2xl mx-auto text-slate-600 dark:text-slate-400 mb-6">
                   {t('whatIsText')}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('aboutTitle')}</h2>
-                <p className="text-center max-w-2xl mx-auto text-slate-600 leading-relaxed whitespace-pre-wrap">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('aboutTitle')}</h2>
+                <p className="text-center max-w-2xl mx-auto text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-wrap">
                   {t('aboutText')}
                 </p>
               </section>
@@ -324,18 +337,18 @@ const App: React.FC = () => {
 
           {practiceOfTheDay && (
             <section className="mt-20">
-              <div className="max-w-4xl mx-auto highlight-gradient p-8 rounded-2xl shadow-lg border border-slate-200/50">
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('practiceOfTheDay.title')}</h2>
+              <div className="max-w-4xl mx-auto highlight-gradient p-8 rounded-2xl shadow-lg border border-slate-200/50 dark:border-slate-700/50">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('practiceOfTheDay.title')}</h2>
                 <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
                   <div className="flex-shrink-0">
-                    {IconComponent && <IconComponent className="h-20 w-20 text-teal-800" />}
+                    {IconComponent && <IconComponent className="h-20 w-20 text-teal-800 dark:text-teal-200" />}
                   </div>
                   <div className="text-center md:text-left">
-                    <h3 className="text-2xl font-semibold text-slate-800 mb-2">{practiceOfTheDay.title}</h3>
-                    <p className="text-slate-700 leading-relaxed whitespace-pre-wrap mb-6">{practiceOfTheDay.description}</p>
+                    <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mb-2">{practiceOfTheDay.title}</h3>
+                    <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap mb-6">{practiceOfTheDay.description}</p>
                     <button
                       onClick={() => handleSelectPractice(practiceOfTheDay)}
-                      className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
+                      className="inline-block bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-300 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 dark:hover:bg-slate-700 transition-colors duration-300 shadow-sm"
                     >
                       {t('practiceOfTheDay.button')}
                     </button>
@@ -345,23 +358,23 @@ const App: React.FC = () => {
             </section>
           )}
 
-          <section className="mt-20 bg-white/60 backdrop-blur-md border border-slate-200/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('toolkitTitle')}</h2>
-            <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
+          <section className="mt-20 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('toolkitTitle')}</h2>
+            <p className="text-center text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
               {t('toolkitSubtitle')}
             </p>
             
             <div className="flex justify-center items-center gap-2 mb-12">
-              <span className="text-slate-600 font-medium mr-2">{t('setDuration')}</span>
-              <div className="flex items-center bg-slate-200/75 rounded-full p-1">
+              <span className="text-slate-600 dark:text-slate-300 font-medium mr-2">{t('setDuration')}</span>
+              <div className="flex items-center bg-slate-200/75 dark:bg-slate-700/75 rounded-full p-1">
                 {durationOptions.map((option) => (
                   <button
                     key={option.value}
                     onClick={() => setDuration(option.value)}
                     className={`px-4 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       duration === option.value
-                        ? 'bg-white text-teal-700 shadow-sm'
-                        : 'text-slate-600 hover:text-slate-800'
+                        ? 'bg-white dark:bg-slate-500 text-teal-700 dark:text-white shadow-sm'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white'
                     }`}
                   >
                     {option.label}
@@ -370,7 +383,7 @@ const App: React.FC = () => {
               </div>
             </div>
             
-            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 mb-10 border-b border-slate-200 pb-4">
+            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 mb-10 border-b border-slate-200 dark:border-slate-700 pb-4">
                 {practiceCategories.map((category) => (
                 <button
                     key={category.categoryTitle}
@@ -378,7 +391,7 @@ const App: React.FC = () => {
                     className={`px-4 sm:px-6 py-2 text-base font-semibold rounded-full transition-all duration-200 border-2 ${
                     activeCategoryTitle === category.categoryTitle
                         ? 'bg-teal-600 text-white border-teal-600 shadow'
-                        : 'bg-white text-slate-600 hover:bg-slate-100 border-transparent hover:border-slate-300'
+                        : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 border-transparent hover:border-slate-300 dark:hover:border-slate-500'
                     }`}
                 >
                     {category.categoryTitle}
@@ -389,7 +402,7 @@ const App: React.FC = () => {
             {practiceCategories.map((category) => (
                 activeCategoryTitle === category.categoryTitle && (
                 <div key={category.categoryTitle} className="animate-fade-in">
-                    <p className="text-center text-xl text-teal-800 mb-10 max-w-2xl mx-auto">
+                    <p className="text-center text-xl text-teal-800 dark:text-teal-300 mb-10 max-w-2xl mx-auto">
                       {category.categorySubtitle}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -411,8 +424,8 @@ const App: React.FC = () => {
           </section>
           
           <section className="mt-20">
-            <div className="bg-white/60 backdrop-blur-md border border-slate-200/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
-              <p className="max-w-3xl mx-auto text-slate-700 text-lg italic leading-relaxed">
+            <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
+              <p className="max-w-3xl mx-auto text-slate-700 dark:text-slate-300 text-lg italic leading-relaxed">
                 {t('whyItMattersText')}
               </p>
             </div>
@@ -439,10 +452,10 @@ const App: React.FC = () => {
 
         </main>
         
-        <footer className="text-center py-8 text-slate-600">
+        <footer className="text-center py-8 text-slate-600 dark:text-slate-400">
           <p>{t('footerText')}</p>
-          <p className="mt-4 text-sm text-slate-500">
-            {t('footerAuthor')} <a href="https://pgeslin.substack.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-teal-600 transition-colors">{t('footerLink')}</a>
+          <p className="mt-4 text-sm text-slate-500 dark:text-slate-500">
+            {t('footerAuthor')} <a href="https://pgeslin.substack.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-teal-600 dark:hover:text-teal-400 transition-colors">{t('footerLink')}</a>
           </p>
         </footer>
       </div>
