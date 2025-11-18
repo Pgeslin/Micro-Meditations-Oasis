@@ -249,7 +249,7 @@ const App: React.FC = () => {
                       className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       language === 'en'
                           ? 'bg-white/90 text-teal-800 shadow-sm'
-                          : 'text-amber-900 hover:bg-white/50'
+                          : 'text-slate-800 hover:bg-white/50'
                       }`}
                   >
                       English
@@ -260,20 +260,20 @@ const App: React.FC = () => {
                       className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       language === 'fr'
                           ? 'bg-white/90 text-teal-800 shadow-sm'
-                          : 'text-amber-900 hover:bg-white/50'
+                          : 'text-slate-800 hover:bg-white/50'
                       }`}
                   >
                       Français
                   </button>
               </div>
           </div>
-          <div className="relative h-72 w-full overflow-hidden image-banner">
-            <div className="absolute inset-0 bg-black/30"></div>
+          <div className="relative h-72 w-full overflow-hidden animated-gradient-banner">
+            <div className="absolute inset-0 bg-black/20"></div>
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white p-4">
-                <h1 className="text-6xl md:text-8xl font-bold tracking-tight" style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
+                <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-shadow" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
                     OASIS
                 </h1>
-                <p className="mt-2 text-lg md:text-xl max-w-2xl" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
+                <p className="mt-2 text-lg md:text-xl max-w-2xl text-shadow">
                     {t('heroSubtitle')}
                 </p>
             </div>
