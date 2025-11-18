@@ -42,7 +42,7 @@ export const PostPracticeReflection: React.FC<PostPracticeReflectionProps> = ({ 
       aria-modal="true"
       role="dialog"
     >
-      <div className="bg-stone-50 w-full max-w-lg rounded-2xl shadow-xl flex flex-col overflow-hidden">
+      <div className="bg-slate-50 w-full max-w-lg rounded-2xl shadow-xl flex flex-col overflow-hidden">
         <header className="p-6">
           <h2 className="text-2xl font-bold text-slate-900 text-center">{t('reflection.title')}</h2>
         </header>
@@ -56,7 +56,7 @@ export const PostPracticeReflection: React.FC<PostPracticeReflectionProps> = ({ 
                 value={reflection}
                 onChange={(e) => setReflection(e.target.value)}
                 placeholder={t('reflection.placeholder')}
-                className="w-full h-32 p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-shadow duration-200 text-left"
+                className="w-full h-32 p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-shadow duration-200 text-left bg-white"
                 disabled={isLoading}
                 aria-label="Your reflection"
               />
@@ -86,7 +86,7 @@ export const PostPracticeReflection: React.FC<PostPracticeReflectionProps> = ({ 
 
         </main>
 
-        <footer className="p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row gap-3">
+        <footer className="p-6 bg-slate-100 border-t border-slate-200 flex flex-col sm:flex-row gap-3">
           {aiResponse || error ? (
             <button
               onClick={onClose}

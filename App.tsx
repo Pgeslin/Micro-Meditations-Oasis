@@ -242,7 +242,7 @@ const App: React.FC = () => {
       <div className="text-slate-800 antialiased">
         <header className="relative">
           <div className="absolute top-4 right-4 z-30">
-              <div className="flex items-center bg-stone-200/40 rounded-full p-1 backdrop-blur-sm">
+              <div className="flex items-center bg-white/40 rounded-full p-1 backdrop-blur-sm">
                   <button
                       onClick={() => setLanguage('en')}
                       aria-pressed={language === 'en'}
@@ -284,15 +284,15 @@ const App: React.FC = () => {
 
           <div className="max-w-4xl mx-auto space-y-12">
             
-            <div className="bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-lg z-10 relative">
+            <div className="bg-white/60 backdrop-blur-md border border-slate-200/50 rounded-2xl py-12 px-8 space-y-12 shadow-lg z-10 relative">
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('whyTitle')}</h2>
                 <div className="grid md:grid-cols-2 gap-8 text-slate-700 leading-relaxed">
-                  <div className="bg-stone-50 p-6 rounded-xl shadow-sm border border-slate-200">
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                     <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('needResetTitle')}</h3>
                     <p>{t('needResetText')}</p>
                   </div>
-                  <div className="bg-stone-50 p-6 rounded-xl shadow-sm border border-slate-200">
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                     <h3 className="font-semibold text-lg text-teal-700 mb-2">{t('busyLivesTitle')}</h3>
                     <p>{t('busyLivesText')}</p>
                   </div>
@@ -324,7 +324,7 @@ const App: React.FC = () => {
 
           {practiceOfTheDay && (
             <section className="mt-20">
-              <div className="max-w-4xl mx-auto animated-gradient p-8 rounded-2xl shadow-lg border border-slate-200/50">
+              <div className="max-w-4xl mx-auto highlight-gradient p-8 rounded-2xl shadow-lg border border-slate-200/50">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('practiceOfTheDay.title')}</h2>
                 <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
                   <div className="flex-shrink-0">
@@ -335,7 +335,7 @@ const App: React.FC = () => {
                     <p className="text-slate-700 leading-relaxed whitespace-pre-wrap mb-6">{practiceOfTheDay.description}</p>
                     <button
                       onClick={() => handleSelectPractice(practiceOfTheDay)}
-                      className="inline-block bg-stone-50 text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
+                      className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
                     >
                       {t('practiceOfTheDay.button')}
                     </button>
@@ -345,7 +345,7 @@ const App: React.FC = () => {
             </section>
           )}
 
-          <section className="mt-20 bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
+          <section className="mt-20 bg-white/60 backdrop-blur-md border border-slate-200/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{t('toolkitTitle')}</h2>
             <p className="text-center text-slate-600 mb-8 max-w-2xl mx-auto">
               {t('toolkitSubtitle')}
@@ -360,7 +360,7 @@ const App: React.FC = () => {
                     onClick={() => setDuration(option.value)}
                     className={`px-4 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       duration === option.value
-                        ? 'bg-stone-50 text-teal-700 shadow-sm'
+                        ? 'bg-white text-teal-700 shadow-sm'
                         : 'text-slate-600 hover:text-slate-800'
                     }`}
                   >
@@ -378,7 +378,7 @@ const App: React.FC = () => {
                     className={`px-4 sm:px-6 py-2 text-base font-semibold rounded-full transition-all duration-200 border-2 ${
                     activeCategoryTitle === category.categoryTitle
                         ? 'bg-teal-600 text-white border-teal-600 shadow'
-                        : 'bg-stone-50 text-slate-600 hover:bg-stone-100 border-transparent hover:border-slate-300'
+                        : 'bg-white text-slate-600 hover:bg-slate-100 border-transparent hover:border-slate-300'
                     }`}
                 >
                     {category.categoryTitle}
@@ -411,7 +411,7 @@ const App: React.FC = () => {
           </section>
           
           <section className="mt-20">
-            <div className="bg-stone-50/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
+            <div className="bg-white/60 backdrop-blur-md border border-slate-200/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
               <p className="max-w-3xl mx-auto text-slate-700 text-lg italic leading-relaxed">
                 {t('whyItMattersText')}
               </p>

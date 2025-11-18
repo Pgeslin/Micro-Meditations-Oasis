@@ -15,7 +15,7 @@ export const PracticeDetail: React.FC<PracticeDetailProps> = ({ practice, onClos
       aria-modal="true"
       role="dialog"
     >
-      <div className="bg-stone-50 w-full max-w-2xl max-h-[90vh] rounded-2xl shadow-xl flex flex-col">
+      <div className="bg-slate-50 w-full max-w-2xl max-h-[90vh] rounded-2xl shadow-xl flex flex-col">
         <header className="relative p-6 border-b border-slate-200">
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center">{practice.title}</h2>
           <button 
@@ -42,7 +42,7 @@ export const PracticeDetail: React.FC<PracticeDetailProps> = ({ practice, onClos
           </div>
         </main>
 
-        <footer className="p-6 bg-slate-50 border-t border-slate-200 rounded-b-2xl">
+        <footer className="p-6 bg-slate-100 border-t border-slate-200 rounded-b-2xl">
           <button
             onClick={onStart}
             className="w-full bg-teal-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-teal-700 transition-colors duration-300 text-lg"
