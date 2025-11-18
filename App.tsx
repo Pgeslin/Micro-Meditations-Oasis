@@ -1,6 +1,7 @@
 
 
 
+
 import React from 'react';
 import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
@@ -320,7 +321,7 @@ const App: React.FC = () => {
 
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center">{t('aboutTitle')}</h2>
-                <p className="text-center max-w-2xl mx-auto text-slate-600 leading-relaxed">
+                <p className="text-center max-w-2xl mx-auto text-slate-600 leading-relaxed whitespace-pre-wrap">
                   {t('aboutText')}
                 </p>
               </section>
