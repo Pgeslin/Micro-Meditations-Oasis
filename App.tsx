@@ -261,11 +261,20 @@ const App: React.FC = () => {
       <div className="text-slate-800 dark:text-slate-200 antialiased min-h-screen flex flex-col">
         
         {/* --- HEADER --- */}
-        <header className="relative py-12 md:py-20 px-4">
+        <header className="relative py-20 md:py-32 px-4 overflow-hidden min-h-[400px] flex flex-col items-center justify-center">
+           <div className="absolute inset-0 z-0">
+             <img 
+               src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop" 
+               alt="Serene tropical beach" 
+               className="w-full h-full object-cover brightness-90 animate-ken-burns"
+             />
+             <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]"></div>
+           </div>
+
            <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
               <button
                 onClick={toggleTheme}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 dark:bg-slate-800/40 text-slate-800 dark:text-yellow-300 backdrop-blur-sm hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm hover:bg-white/40 transition-colors"
                 aria-label="Toggle dark mode"
               >
                 {theme === 'light' ? (
@@ -274,14 +283,14 @@ const App: React.FC = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                 )}
               </button>
-              <div className="flex items-center bg-white/40 dark:bg-slate-800/40 rounded-full p-1 backdrop-blur-sm">
+              <div className="flex items-center bg-white/20 rounded-full p-1 backdrop-blur-sm">
                   <button
                       onClick={() => setLanguage('en')}
                       aria-pressed={language === 'en'}
                       className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       language === 'en'
-                          ? 'bg-white/90 dark:bg-slate-600/90 text-teal-800 dark:text-white shadow-sm'
-                          : 'text-slate-800 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-700/50'
+                          ? 'bg-white text-teal-800 shadow-sm'
+                          : 'text-white hover:bg-white/30'
                       }`}
                   >
                       EN
@@ -291,8 +300,8 @@ const App: React.FC = () => {
                       aria-pressed={language === 'fr'}
                       className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
                       language === 'fr'
-                          ? 'bg-white/90 dark:bg-slate-600/90 text-teal-800 dark:text-white shadow-sm'
-                          : 'text-slate-800 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-700/50'
+                          ? 'bg-white text-teal-800 shadow-sm'
+                          : 'text-white hover:bg-white/30'
                       }`}
                   >
                       FR
@@ -301,17 +310,17 @@ const App: React.FC = () => {
           </div>
 
           <div className="max-w-4xl mx-auto text-center z-10 relative">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-teal-800 dark:text-teal-100 mb-8" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-8 text-shadow drop-shadow-lg" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
               Oasis
             </h1>
-            <p className="text-lg md:text-2xl text-slate-600 dark:text-slate-300 whitespace-pre-wrap leading-relaxed">
+            <p className="text-lg md:text-2xl text-white whitespace-pre-wrap leading-relaxed text-shadow font-medium">
               {t('heroSubtitle')}
             </p>
             
             <div className="mt-12">
                <button 
                 onClick={scrollToPractice}
-                className="bg-teal-600 text-white font-semibold py-2 px-8 rounded-full hover:bg-teal-700 transition-all shadow-sm"
+                className="bg-white/90 text-teal-700 font-semibold py-3 px-10 rounded-full hover:bg-white transition-all shadow-lg backdrop-blur-sm"
                >
                  {t('beginButton')}
                </button>
@@ -319,7 +328,7 @@ const App: React.FC = () => {
           </div>
         </header>
 
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow max-w-5xl">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow max-w-5xl pt-12">
 
           {/* --- PRACTICE OF THE DAY --- */}
           {practiceOfTheDay && (

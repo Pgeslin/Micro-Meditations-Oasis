@@ -230,6 +230,14 @@ export const translations = {
         categorySubtitle: 'A way to meet the world as it arrives.',
         practices: [
           { 
+            title: 'The S.T.O.P. Practice', 
+            icon: 'StopIcon',
+            description: 'Stop. Take a Breath. Observe. Proceed.\nA mini-break for clarity.',
+            details: {
+              explanation: 'S - Stop what you are doing.\nT - Take a few deep breaths.\nO - Observe your thoughts, feelings, and body.\nP - Proceed with kindness.'
+            }
+          },
+          { 
             title: 'Listen to the nearest sound', 
             icon: 'SoundIcon',
             description: 'Let the world come to you.\nNotice the closest sound, then the next.',
@@ -275,6 +283,14 @@ export const translations = {
         categoryTitle: 'Heart',
         categorySubtitle: 'A quiet touch toward what matters.',
         practices: [
+          { 
+            title: 'The R.A.I.N. Practice', 
+            icon: 'RainIcon',
+            description: 'Recognize. Allow. Investigate. Nurture.\nA path through difficult emotion.',
+            details: {
+              explanation: 'R - Recognize what is happening.\nA - Allow the experience to be there, just as it is.\nI - Investigate with kindness.\nN - Nurture with self-compassion.'
+            }
+          },
           {
             title: 'Hand on heart',
             icon: 'HeartIcon',
@@ -546,6 +562,14 @@ export const translations = {
         categorySubtitle: 'Une façon de rencontrer le monde tel qu\'il se présente.',
         practices: [
           { 
+            title: 'Pratique S.T.O.P.', 
+            icon: 'StopIcon',
+            description: 'Stop. Take a Breath. Observe. Proceed.\nUne mini-pause pour la clarté.',
+            details: {
+              explanation: 'S - Stoppez ce que vous faites.\nT - Prenez une respiration (Take a breath).\nO - Observez vos pensées et sentiments.\nP - Procédez avec bienveillance.'
+            }
+          },
+          { 
             title: 'Listen to the nearest sound (FR)', 
             icon: 'SoundIcon',
             description: 'Let the world come to you.\nNotice the closest sound, then the next.',
@@ -591,6 +615,14 @@ export const translations = {
         categoryTitle: 'Cœur',
         categorySubtitle: 'Un contact discret avec ce qui compte.',
         practices: [
+          { 
+            title: 'Pratique R.A.I.N.', 
+            icon: 'RainIcon',
+            description: 'Reconnaître. Accepter. Investiguer. Nourrir.\nUn chemin à travers l\'émotion.',
+            details: {
+              explanation: 'R - Reconnaître ce qui se passe.\nA - Accepter l\'expérience telle qu\'elle est.\nI - Investiguer avec gentillesse.\nN - Nourrir avec auto-compassion.'
+            }
+          },
           {
             title: 'Main au cœur',
             icon: 'HeartIcon',
