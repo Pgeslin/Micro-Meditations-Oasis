@@ -1,3 +1,4 @@
+
 export const translations = {
   en: {
     // App Component
@@ -5,10 +6,14 @@ export const translations = {
     heroSubtitle: 'Oasis\nA tiny space to pause for one minute.\nA quiet breath in the middle of your day.',
     
     beginButton: 'Begin',
-    tryAnotherButton: 'Try another',
+    tryAnotherButton: 'Discover Another Moment',
     learnMoreLink: 'Learn more about the Kaze Mindfulness Dōjō',
     blessingText: 'May this pause stay with you a little longer.',
     
+    continueJourneyTitle: 'Continue Your Journey',
+    continueJourneyText: 'Deepen your practice and find further guidance at the Kaze Mindfulness Dōjō.',
+    continueJourneyButton: 'Visit the Dōjō',
+
     footerText: '🌴 O A S I S\n\nYour tiny oasis for one-minute pauses. Find your calm amidst the waves of a busy life.\n\nOffered by KAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
     
     setDuration: 'Duration:',
@@ -317,9 +322,13 @@ export const translations = {
     heroSubtitle: 'Oasis\nUn tout petit espace pour faire une pause d\'une minute.\nUn souffle calme au milieu de votre journée.',
     
     beginButton: 'Commencer',
-    tryAnotherButton: 'Essayer une autre',
+    tryAnotherButton: 'Découvrir un autre moment',
     learnMoreLink: 'En savoir plus sur le Kaze Mindfulness Dōjō',
     blessingText: 'Que cette pause reste avec vous un peu plus longtemps.',
+    
+    continueJourneyTitle: 'Poursuivez votre voyage',
+    continueJourneyText: 'Approfondissez votre pratique et trouvez d\'autres conseils au Kaze Mindfulness Dōjō.',
+    continueJourneyButton: 'Visiter le Dōjō',
 
     footerText: '🌴 O A S I S\n\nVotre petite oasis pour des pauses d\'une minute. Trouvez votre calme au milieu des vagues d\'une vie bien remplie.\n\nOffert par KAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
 
