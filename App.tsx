@@ -1,7 +1,3 @@
-
-
-
-
 import React from 'react';
 import { Practice } from './types';
 import { PracticeCard } from './components/PracticeCard';
@@ -272,15 +268,7 @@ const App: React.FC = () => {
               </div>
           </div>
           <div className="relative h-72 w-full overflow-hidden">
-            <video
-              src="https://videos.pexels.com/video-files/3222423/3222423-hd_1920_1080_25fps.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2"
-              poster="https://images.pexels.com/videos/3222423/pexels-photo-3222423.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            />
+            <div className="image-banner"></div>
             <div className="absolute inset-0 bg-black/30"></div>
             <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white p-4">
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tight" style={{ fontFamily: '"Times New Roman", Times, serif', textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
