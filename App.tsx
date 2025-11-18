@@ -158,6 +158,7 @@ const App: React.FC = () => {
   const [duration, setDuration] = React.useState(60);
   const [practiceOfTheDay, setPracticeOfTheDay] = React.useState<Practice | null>(null);
   const audioContextRef = React.useRef<AudioContext | null>(null);
+  const practiceRef = React.useRef<HTMLDivElement>(null);
 
   const practiceCategories = React.useMemo(() => (translations[language] || translations.en).practiceCategories || [], [language]);
   const [activeCategoryTitle, setActiveCategoryTitle] = React.useState<string | null>(null);
@@ -168,6 +169,7 @@ const App: React.FC = () => {
     { label: t('durations.d2m'), value: 120 },
   ], [t]);
   
+  // Initial load of Practice of the Day
   React.useEffect(() => {
     if (practiceCategories.length > 0) {
       const allPractices = practiceCategories.flatMap(c => c.practices);
@@ -179,7 +181,7 @@ const App: React.FC = () => {
         setActiveCategoryTitle(practiceCategories[0].categoryTitle);
       }
     }
-  }, [practiceCategories, activeCategoryTitle]);
+  }, [practiceCategories, activeCategoryTitle]); // Keep activeCategoryTitle to prevent reset on lang change if already set
 
   const IconComponent = practiceOfTheDay?.icon ? Icons[practiceOfTheDay.icon as keyof typeof Icons] : null;
   
@@ -214,6 +216,23 @@ const App: React.FC = () => {
     setCompletedPractice(practice);
   };
 
+  const scrollToPractice = () => {
+    practiceRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleTryAnother = () => {
+     if (practiceCategories.length > 0) {
+      const allPractices = practiceCategories.flatMap(c => c.practices);
+      // Filter out current if possible to ensure a change, though random is random
+      const otherPractices = allPractices.filter(p => p.title !== practiceOfTheDay?.title);
+      
+      if (otherPractices.length > 0) {
+        const randomIndex = Math.floor(Math.random() * otherPractices.length);
+        setPracticeOfTheDay(otherPractices[randomIndex]);
+      }
+    }
+  };
+
   return (
     <>
       {viewedPractice && !practiceForTimer && (
@@ -241,9 +260,12 @@ const App: React.FC = () => {
           t={t}
         />
       )}
-      <div className="text-slate-800 dark:text-slate-200 antialiased">
-        <header className="relative">
-          <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+      
+      <div className="text-slate-800 dark:text-slate-200 antialiased min-h-screen flex flex-col">
+        
+        {/* --- HEADER --- */}
+        <header className="relative py-12 md:py-20 px-4">
+           <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
               <button
                 onClick={toggleTheme}
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-white/40 dark:bg-slate-800/40 text-slate-800 dark:text-yellow-300 backdrop-blur-sm hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors"
@@ -265,7 +287,7 @@ const App: React.FC = () => {
                           : 'text-slate-800 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-700/50'
                       }`}
                   >
-                      English
+                      EN
                   </button>
                   <button
                       onClick={() => setLanguage('fr')}
@@ -276,105 +298,90 @@ const App: React.FC = () => {
                           : 'text-slate-800 dark:text-slate-200 hover:bg-white/50 dark:hover:bg-slate-700/50'
                       }`}
                   >
-                      Français
+                      FR
                   </button>
               </div>
           </div>
-          <div className="relative h-72 w-full overflow-hidden animated-gradient-banner">
-            <div className="absolute inset-0 bg-black/20"></div>
-            <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white p-4">
-                <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-shadow" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
-                    OASIS
-                </h1>
-                <p className="mt-2 text-lg md:text-xl max-w-2xl text-shadow">
-                    {t('heroSubtitle')}
-                </p>
+
+          <div className="max-w-4xl mx-auto text-center z-10 relative">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-teal-800 dark:text-teal-100 mb-8" style={{ fontFamily: '"Times New Roman", Times, serif' }}>
+              Oasis
+            </h1>
+            <p className="text-lg md:text-2xl text-slate-600 dark:text-slate-300 whitespace-pre-wrap leading-relaxed">
+              {t('heroSubtitle')}
+            </p>
+            
+            <div className="mt-12">
+               <button 
+                onClick={scrollToPractice}
+                className="bg-teal-600 text-white font-semibold py-2 px-8 rounded-full hover:bg-teal-700 transition-all shadow-sm"
+               >
+                 {t('beginButton')}
+               </button>
             </div>
           </div>
         </header>
 
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 -mt-12">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow max-w-5xl">
 
-          <div className="max-w-4xl mx-auto space-y-12">
-            
-            <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 rounded-2xl py-12 px-8 space-y-12 shadow-lg z-10 relative">
-              <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('whyTitle')}</h2>
-                <div className="grid md:grid-cols-2 gap-8 text-slate-700 dark:text-slate-300 leading-relaxed">
-                  <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
-                    <h3 className="font-semibold text-lg text-teal-700 dark:text-teal-400 mb-2">{t('needResetTitle')}</h3>
-                    <p>{t('needResetText')}</p>
-                  </div>
-                  <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
-                    <h3 className="font-semibold text-lg text-teal-700 dark:text-teal-400 mb-2">{t('busyLivesTitle')}</h3>
-                    <p>{t('busyLivesText')}</p>
-                  </div>
-                </div>
-              </section>
-
-              <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('whatIsTitle')}</h2>
-                <p className="text-center max-w-2xl mx-auto text-slate-600 dark:text-slate-400 mb-6">
-                  {t('whatIsText')}
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('aboutTitle')}</h2>
-                <p className="text-center max-w-2xl mx-auto text-slate-600 dark:text-slate-400 leading-relaxed whitespace-pre-wrap">
-                  {t('aboutText')}
-                </p>
-              </section>
-            </div>
-            
-            <section className="bg-teal-600 text-white p-8 rounded-2xl shadow-lg">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">{t('howItWorksTitle')}</h2>
-              <p className="text-center max-w-3xl mx-auto text-teal-100 leading-relaxed">
-                {t('howItWorksText')}
-              </p>
-            </section>
-          </div>
-
+          {/* --- PRACTICE OF THE DAY --- */}
           {practiceOfTheDay && (
-            <section className="mt-20">
-              <div className="max-w-4xl mx-auto highlight-gradient p-8 rounded-2xl shadow-lg border border-slate-200/50 dark:border-slate-700/50">
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('practiceOfTheDay.title')}</h2>
-                <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
-                  <div className="flex-shrink-0">
-                    {IconComponent && <IconComponent className="h-20 w-20 text-teal-800 dark:text-teal-200" />}
+            <section ref={practiceRef} className="scroll-mt-8 mb-16">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 md:p-10 rounded-2xl shadow-sm max-w-2xl mx-auto text-center">
+                <h2 className="text-sm uppercase tracking-widest text-teal-600 dark:text-teal-400 font-semibold mb-6">
+                  {t('practiceOfTheDay.title')}
+                </h2>
+                
+                {IconComponent && (
+                  <div className="flex justify-center mb-6">
+                    <IconComponent className="h-12 w-12 text-teal-500 dark:text-teal-300" />
                   </div>
-                  <div className="text-center md:text-left">
-                    <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mb-2">{practiceOfTheDay.title}</h3>
-                    <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap mb-6">{practiceOfTheDay.description}</p>
-                    <button
-                      onClick={() => handleSelectPractice(practiceOfTheDay)}
-                      className="inline-block bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-300 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 dark:hover:bg-slate-700 transition-colors duration-300 shadow-sm"
-                    >
-                      {t('practiceOfTheDay.button')}
-                    </button>
-                  </div>
-                </div>
+                )}
+                
+                <h3 className="text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4">
+                  {practiceOfTheDay.title}
+                </h3>
+                <p className="text-xl text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap mb-8">
+                  {practiceOfTheDay.description}
+                </p>
+                
+                <button
+                  onClick={() => handleSelectPractice(practiceOfTheDay)}
+                  className="inline-block bg-teal-600 text-white font-bold py-3 px-10 rounded-lg hover:bg-teal-700 transition-colors duration-300 shadow-md"
+                >
+                  {t('practiceOfTheDay.button')}
+                </button>
               </div>
             </section>
           )}
 
-          <section className="mt-20 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 rounded-2xl py-12 px-4 sm:px-8 shadow-sm">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-4 text-center">{t('toolkitTitle')}</h2>
-            <p className="text-center text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-              {t('toolkitSubtitle')}
-            </p>
-            
-            <div className="flex justify-center items-center gap-2 mb-12">
-              <span className="text-slate-600 dark:text-slate-300 font-medium mr-2">{t('setDuration')}</span>
-              <div className="flex items-center bg-slate-200/75 dark:bg-slate-700/75 rounded-full p-1">
+          {/* --- DIVIDER & TRY ANOTHER --- */}
+          <div className="flex flex-col items-center justify-center mb-16 gap-8">
+            <div className="w-24 h-px bg-slate-300 dark:bg-slate-700"></div>
+            <button 
+              onClick={handleTryAnother}
+              className="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300 font-medium transition-colors text-sm flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              {t('tryAnotherButton')}
+            </button>
+          </div>
+
+          {/* --- LIST OF MICRO-PRACTICES --- */}
+          <section className="mb-24">
+            <div className="flex justify-center items-center gap-2 mb-10">
+              <span className="text-slate-500 dark:text-slate-400 text-sm mr-2">{t('setDuration')}</span>
+              <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-full p-1">
                 {durationOptions.map((option) => (
                   <button
                     key={option.value}
                     onClick={() => setDuration(option.value)}
-                    className={`px-4 py-1 text-sm font-semibold rounded-full transition-colors duration-200 ${
+                    className={`px-4 py-1 text-xs font-semibold rounded-full transition-colors duration-200 ${
                       duration === option.value
-                        ? 'bg-white dark:bg-slate-500 text-teal-700 dark:text-white shadow-sm'
-                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white'
+                        ? 'bg-white dark:bg-slate-600 text-teal-700 dark:text-white shadow-sm border border-slate-200 dark:border-slate-500'
+                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white'
                     }`}
                   >
                     {option.label}
@@ -382,16 +389,16 @@ const App: React.FC = () => {
                 ))}
               </div>
             </div>
-            
-            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 mb-10 border-b border-slate-200 dark:border-slate-700 pb-4">
+
+            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 mb-12">
                 {practiceCategories.map((category) => (
                 <button
                     key={category.categoryTitle}
                     onClick={() => setActiveCategoryTitle(category.categoryTitle)}
-                    className={`px-4 sm:px-6 py-2 text-base font-semibold rounded-full transition-all duration-200 border-2 ${
+                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
                     activeCategoryTitle === category.categoryTitle
-                        ? 'bg-teal-600 text-white border-teal-600 shadow'
-                        : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 border-transparent hover:border-slate-300 dark:hover:border-slate-500'
+                        ? 'text-teal-800 dark:text-teal-200 border-b-2 border-teal-500'
+                        : 'text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300'
                     }`}
                 >
                     {category.categoryTitle}
@@ -402,10 +409,7 @@ const App: React.FC = () => {
             {practiceCategories.map((category) => (
                 activeCategoryTitle === category.categoryTitle && (
                 <div key={category.categoryTitle} className="animate-fade-in">
-                    <p className="text-center text-xl text-teal-800 dark:text-teal-300 mb-10 max-w-2xl mx-auto">
-                      {category.categorySubtitle}
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {category.practices.map((practice) => (
                         <PracticeCard
                         key={practice.title}
@@ -419,44 +423,31 @@ const App: React.FC = () => {
             ))}
           </section>
 
-          <section className="mt-20">
-            <GenerativeMeditation />
+          {/* --- GENERATIVE SECTION --- */}
+          <section className="mb-20">
+             <GenerativeMeditation />
           </section>
           
-          <section className="mt-20">
-            <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 rounded-2xl py-8 px-8 max-w-4xl mx-auto text-center shadow-sm">
-              <p className="max-w-3xl mx-auto text-slate-700 dark:text-slate-300 text-lg italic leading-relaxed">
-                {t('whyItMattersText')}
-              </p>
-            </div>
-          </section>
-
-          <section className="mt-20">
-            <div className="bg-teal-600 p-8 rounded-2xl shadow-lg max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {t('continueJourneyTitle')}
-              </h2>
-              <p className="text-teal-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-                {t('continueJourneyText')}
-              </p>
-              <a
+          <section className="text-center max-w-2xl mx-auto px-4">
+             <a
                 href="https://chatgpt.com/g/g-68ea7895583c8191a6e56013f66ef72a-kaze-the-way-of-the-wind-mindfulness-dojo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-white text-teal-700 font-bold py-3 px-8 rounded-lg hover:bg-teal-100 transition-colors duration-300 shadow-sm"
+                className="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-300 text-sm underline underline-offset-4 transition-colors"
               >
-                {t('continueJourneyButton')}
+                {t('learnMoreLink')}
               </a>
-            </div>
           </section>
 
         </main>
         
-        <footer className="text-center py-8 text-slate-600 dark:text-slate-400">
-          <p className="whitespace-pre-wrap">{t('footerText')}</p>
-          <p className="mt-4 text-sm text-slate-500 dark:text-slate-500">
-            {t('footerAuthor')} <a href="https://pgeslin.substack.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-teal-600 dark:hover:text-teal-400 transition-colors">{t('footerLink')}</a>
-          </p>
+        <footer className="text-center py-12 text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800/50">
+          <div className="container mx-auto px-4">
+             <p className="font-serif italic text-xl text-teal-800 dark:text-teal-200 mb-8 opacity-80">
+               {t('blessingText')}
+             </p>
+             <p className="whitespace-pre-wrap text-sm opacity-70">{t('footerText')}</p>
+          </div>
         </footer>
       </div>
     </>

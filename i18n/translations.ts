@@ -1,66 +1,51 @@
 export const translations = {
   en: {
     // App Component
-    heroTitle: 'The Power of the Pause',
-    heroSubtitle: 'Your tiny oasis for one-minute pauses. Find your calm amidst the waves of a busy life.',
-    whyTitle: 'Why Is Everyone Talking About This?',
-    needResetTitle: 'The Need for a Reset',
-    needResetText: 'Digital overload is real. Constant notifications and endless scrolling leave our minds cluttered. Micro-meditations offer a quick, accessible way to hit the reset button, cutting through the noise without a huge time commitment.',
-    busyLivesTitle: 'Designed for Busy Lives',
-    busyLivesText: 'In a world that glorifies being busy, finding an hour for wellness can feel impossible. These tiny practices fit into the cracks of your day—while waiting for coffee, between meetings, or before sending an an email.',
-    whatIsTitle: 'What Counts as a Micro-Meditation?',
-    whatIsText: 'Simply put, it\'s any mindfulness practice that takes a minute or less. The goal isn\'t to empty your mind, but to gently guide your focus for a brief moment. It\'s about quality, not duration.',
-    aboutTitle: 'About Oasis',
-    aboutText: 'Oasis is a quiet place for short moments of practice.\nNo ads, no noise.\nJust small pauses to steady the day.\n\nIt grows out of Kaze Dōjō, here in the Adelaide Hills,\nand carries the hand of Pierre Geslin,\na simple offering from the Way of Wind.\n\nEach practice is a small doorway back to yourself.\nA breath. A shift. A moment of ease.\nNothing more than that.\nAnd often that’s enough.',
-    howItWorksTitle: 'How Can 60 Seconds Actually Work?',
-    howItWorksText: 'Even a few deep breaths can signal to your brain that it\'s safe to relax. This activates the parasympathetic nervous system—your body\'s natural "rest and digest" mode. This simple switch helps lower stress hormones, reduce your heart rate, and improve your ability to focus. It’s a small action with a significant biological impact.',
-    toolkitTitle: 'Your Reset Toolkit',
-    toolkitSubtitle: 'Choose a practice that resonates with you and set your preferred duration.',
-    setDuration: 'Set Duration:',
-    continueJourneyTitle: 'Continue Your Journey',
-    continueJourneyText: 'Explore your practice further with the Kaze Mindfulness Dōjō, a custom AI guide designed to support your journey with the gentle, reflective spirit of Oasis.',
-    continueJourneyButton: 'Visit Kaze Dōjō on ChatGPT',
-    footerText: 'OASIS\nKAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
-    footerAuthor: 'Created by Pierre ‘Satch’ Geslin, mindfulness trainer and haiku poet in the Adelaide Hills of South Australia.',
-    footerLink: 'Learn more…',
-    whyItMattersText: 'Short practices can interrupt stress patterns and bring the mind back to centre. Used regularly, they change the tone of a day.',
+    heroTitle: 'Oasis',
+    heroSubtitle: 'Oasis\nA tiny space to pause for one minute.\nA quiet breath in the middle of your day.',
+    
+    beginButton: 'Begin',
+    tryAnotherButton: 'Try another',
+    learnMoreLink: 'Learn more about the Kaze Mindfulness Dōjō',
+    blessingText: 'May this pause stay with you a little longer.',
+    
+    footerText: '🌴 O A S I S\n\nYour tiny oasis for one-minute pauses. Find your calm amidst the waves of a busy life.\n\nOffered by KAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
+    
+    setDuration: 'Duration:',
     
     practiceOfTheDay: {
       title: 'Practice of the Day',
-      button: 'Try This Practice',
+      button: 'Start Practice',
     },
 
     // Timer & Breathing Exercise
     backButton: 'Back',
     complete: 'Complete',
     timerCompleteMessage: 'You\'ve found your moment of calm.',
-    breathingCompleteMessage: 'Nicely done. Carry this calm with you.',
     breatheIn: 'Breathe In...',
     breatheOut: 'Breathe Out...',
-    breathingInstruction: 'Follow the circle, inhaling as it grows and exhaling as it shrinks.',
     coherenceBenefit: 'This 4-4 breathing rhythm, known as cardiac coherence, is proven to reduce stress.',
     sixSecondBenefit: 'This slow, rhythmic 6-6 breathing activates the body\'s "rest and digest" response, helping to lower heart rate and reduce stress.',
 
     // Practice Detail
-    practiceDetailHow: 'The Practice',
     startPracticeButton: 'Start Practice',
     
     // Generative Meditation Component
     genTitle: 'Create Your Own Moment',
-    genSubtitle: 'Feeling something else? Select a theme and let our AI craft a unique, guided audio meditation just for you. Each one is a new experience.',
-    genSelectTheme: '1. Select a Theme',
-    genSelectDuration: '2. Select a Duration',
-    genDurationWarning: 'Longer meditations take a little more time to craft. For a quicker experience, you might like to try the 1-minute option first!',
-    genSelectVoice: '3. Choose a Voice',
+    genSubtitle: 'Select a theme and let AI craft a unique, guided audio meditation just for you.',
+    genSelectTheme: '1. Theme',
+    genSelectDuration: '2. Duration',
+    genDurationWarning: 'Longer meditations take a little more time to craft.',
+    genSelectVoice: '3. Voice',
     genCraftButton: 'Craft My Meditation',
     genCraftingButton: 'Crafting...',
-    genCraftingMessage: 'Preparing your personal meditation and voice guidance. Thank you for your patience.',
+    genCraftingMessage: 'Preparing your personal meditation and voice guidance...',
     genError: 'Sorry, something went wrong while creating your meditation. Please try again.',
-    genNoAudioError: 'The audio for this meditation is not available (Error: NO_AUDIO_DATA). Please try again with a different theme or voice.',
+    genNoAudioError: 'The audio for this meditation is not available. Please try again with a different theme or voice.',
     genMeditationTitle: 'Your Personal Meditation',
     genAudioMessage: 'Preparing audio guidance...',
-    genPlay: 'Play guided meditation',
-    genPause: 'Pause guided meditation',
+    genPlay: 'Play',
+    genPause: 'Pause',
     genPlayLabel: 'Listen',
     genPauseLabel: 'Pause',
     genCreateAnother: 'Create Another',
@@ -80,16 +65,16 @@ export const translations = {
     },
     
     reflection: {
-      title: 'Reflect on Your Practice',
-      intro: 'Putting your experience into words helps solidify its benefits. This is a private space for you to acknowledge what you noticed. Share a few thoughts, and our AI companion will offer a gentle, supportive response to close your practice.',
-      prompt: (practiceTitle: string) => `What did you notice during your "${practiceTitle}" practice?`,
-      placeholder: 'Take a moment to describe your experience...',
-      submitButton: 'Submit Reflection',
-      skipButton: 'Skip for now',
-      loading: 'Generating a thoughtful response...',
-      error: 'Sorry, an AI companion is not available at the moment. Please try again later.',
+      title: 'Reflect',
+      intro: 'Share a few thoughts, and our AI companion will offer a gentle response.',
+      prompt: (practiceTitle: string) => `What did you notice during "${practiceTitle}"?`,
+      placeholder: 'Describe your experience...',
+      submitButton: 'Submit',
+      skipButton: 'Skip',
+      loading: 'Thinking...',
+      error: 'Sorry, AI is unavailable.',
       doneButton: 'Done',
-      aiResponsePrefix: 'AI Companion:',
+      aiResponsePrefix: 'Guide:',
       aiSystemInstruction: 'You are a gentle, non-judgmental mindfulness companion. Your role is to receive the user\'s reflection after a short mindfulness practice. Validate their experience with a short, compassionate, and encouraging response. Do not give advice, ask questions, or use emojis. Keep your response to one or two sentences. Your tone should be warm, calm, and supportive.',
     },
     
@@ -98,6 +83,14 @@ export const translations = {
         categoryTitle: 'Breath',
         categorySubtitle: 'A simple rhythm to steady the moment.',
         practices: [
+          {
+            title: 'Shoreline breath',
+            icon: 'BreathIcon',
+            description: 'Sit or stand as you are.\nLet your breath come and go like a small tide.\nCount three waves.\nNotice what settles.',
+            details: {
+              explanation: 'Imagine the breath as the ocean meeting the shore.\nAllow the rhythm to be natural and unforced.\nLet each wave wash away a little tension.'
+            }
+          },
           { 
             id: 'six-second-breathing', 
             title: 'Six-second breathing', 
@@ -153,6 +146,14 @@ export const translations = {
         categoryTitle: 'Body',
         categorySubtitle: 'A gentle return to the place you stand.',
         practices: [
+           {
+            title: 'Clearing the path',
+            icon: 'BodyScanIcon',
+            description: 'Close your eyes for one slow breath.\nImagine a small path opening in front of you.\nOn the exhale, step onto it in your mind.\nFeel the ground steady beneath you.',
+            details: {
+              explanation: 'Visualization can shift your internal state.\nSee the path clearly in your mind\'s eye.\nLet the stability of the ground support you.'
+            }
+          },
           { 
             title: 'Release the shoulders', 
             icon: 'ShoulderReleaseIcon',
@@ -269,20 +270,20 @@ export const translations = {
         categoryTitle: 'Heart',
         categorySubtitle: 'A quiet touch toward what matters.',
         practices: [
+          {
+            title: 'Hand on heart',
+            icon: 'HeartIcon',
+            description: 'Place a hand on your chest.\nFeel warmth rising beneath your palm.\nStay for one full inhale and exhale.\nLet kindness meet you there.',
+            details: {
+              explanation: 'Physical touch can be incredibly soothing.\nThe warmth of the hand signals safety to the body.\nMeet yourself with a moment of care.'
+            }
+          },
           { 
             title: 'One thing you’re grateful for', 
             icon: 'GratitudeIcon',
             description: 'Rest with one quiet moment of gratitude.\nLet it touch you.',
             details: {
               explanation: 'Gratitude softens the heart.\nChoose something small, simple.\nFeel the warmth it brings.'
-            }
-          },
-          { 
-            title: 'A hand on the heart', 
-            icon: 'HeartIcon',
-            description: 'A gentle touch to meet yourself with care.',
-            details: {
-              explanation: 'Warmth under the palm invites ease.\nFeel the breath meet your hand.\nStay with the kindness.'
             }
           },
           { 
@@ -312,30 +313,18 @@ export const translations = {
   },
   fr: {
     // App Component
-    heroTitle: 'Le Pouvoir de la Pause',
-    heroSubtitle: 'Votre petite oasis pour des pauses d\'une minute. Trouvez votre calme au milieu des vagues d\'une vie bien remplie.',
-    whyTitle: 'Pourquoi Tout le Monde en Parle ?',
-    needResetTitle: 'Le Besoin d\'une Remise à Zéro',
-    needResetText: 'La surcharge numérique est réelle. Les notifications constantes et le défilement infini encombrent nos esprits. Les micro-méditations offrent un moyen rapide et accessible d\'appuyer sur le bouton de réinitialisation, pour percer le bruit sans un engagement de temps énorme.',
-    busyLivesTitle: 'Conçu pour les Vies Actives',
-    busyLivesText: 'Dans un monde qui glorifie l\'hyperactivité, trouver une heure pour le bien-être peut sembler impossible. Ces petites pratiques s\'intègrent dans les interstices de votre journée — en attendant votre café, entre les réunions, ou avant d\'envoyer un e-mail.',
-    whatIsTitle: 'Qu\'est-ce qu\'une Micro-Méditation ?',
-    whatIsText: 'En bref, c\'est toute pratique de pleine conscience qui prend une minute ou moins. Le but n\'est pas de vider votre esprit, mais de guider doucement votre attention pendant un bref instant. Il s\'agit de qualité, pas de durée.',
-    aboutTitle: 'À propos d\'Oasis',
-    aboutText: 'Oasis est un lieu tranquille pour de courts moments de pratique.\nPas de publicités, pas de bruit.\nJuste de petites pauses pour stabiliser la journée.\n\nIl est né du Kaze Dōjō, ici dans les collines d\'Adélaïde,\net porte la main de Pierre Geslin,\nune simple offrande du Chemin du Vent.\n\nChaque pratique est une petite porte vers vous-même.\nUn souffle. Un changement. Un moment d\'aisance.\nRien de plus que cela.\nEt souvent, c\'est suffisant.',
-    howItWorksTitle: 'Comment 60 Secondes Peuvent-elles Vraiment Fonctionner ?',
-    howItWorksText: 'Même quelques respirations profondes peuvent signaler à votre cerveau qu\'il peut se détendre en toute sécurité. Cela active le système nerveux parasympathique — le mode naturel de "repos et digestion" de votre corps. Ce simple changement aide à réduire les hormones du stress, à diminuer votre fréquence cardiaque et à améliorer votre capacité de concentration. C\'est une petite action avec un impact biologique significatif.',
-    toolkitTitle: 'Votre Boîte à Outils de Réinitialisation',
-    toolkitSubtitle: 'Choisissez une pratique qui résonne avec vous et définissez votre durée préférée.',
-    setDuration: 'Durée :',
-    continueJourneyTitle: 'Poursuivez Votre Voyage',
-    continueJourneyText: 'Explorez davantage votre pratique avec le Kaze Mindfulness Dōjō, un guide IA personnalisé conçu pour soutenir votre parcours dans l\'esprit doux et réflexif d\'Oasis.',
-    continueJourneyButton: 'Visiter le Kaze Dōjō sur ChatGPT',
-    footerText: 'OASIS\nKAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
-    footerAuthor: 'Créé par Pierre ‘Satch’ Geslin, formateur en pleine conscience et poète de haïku dans les Adelaide Hills en Australie-Méridionale.',
-    footerLink: 'En savoir plus…',
-    whyItMattersText: 'Les pratiques courtes peuvent interrompre les schémas de stress et ramener l\'esprit au centre. Utilisées régulièrement, elles changent le ton d\'une journée.',
+    heroTitle: 'Oasis',
+    heroSubtitle: 'Oasis\nUn tout petit espace pour faire une pause d\'une minute.\nUn souffle calme au milieu de votre journée.',
+    
+    beginButton: 'Commencer',
+    tryAnotherButton: 'Essayer une autre',
+    learnMoreLink: 'En savoir plus sur le Kaze Mindfulness Dōjō',
+    blessingText: 'Que cette pause reste avec vous un peu plus longtemps.',
 
+    footerText: '🌴 O A S I S\n\nVotre petite oasis pour des pauses d\'une minute. Trouvez votre calme au milieu des vagues d\'une vie bien remplie.\n\nOffert par KAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
+
+    setDuration: 'Durée :',
+    
     practiceOfTheDay: {
       title: 'Pratique du Jour',
       button: 'Essayer cette pratique',
@@ -345,33 +334,30 @@ export const translations = {
     backButton: 'Retour',
     complete: 'Terminé',
     timerCompleteMessage: 'Vous avez trouvé votre moment de calme.',
-    breathingCompleteMessage: 'Bien joué. Gardez ce calme avec vous.',
     breatheIn: 'Inspirez...',
     breatheOut: 'Expirez...',
-    breathingInstruction: 'Suivez le cercle, en inspirant lorsqu\'il grandit et en expirant lorsqu\'il rétrécit.',
     coherenceBenefit: 'Ce rythme respiratoire 4-4, connu sous le nom de cohérence cardiaque, est reconnu pour réduire le stress.',
     sixSecondBenefit: 'Cette respiration lente et rythmée en 6-6 active la réponse de "repos et digestion" du corps, aidant à réduire la fréquence cardiaque et le stress.',
     
     // Practice Detail
-    practiceDetailHow: 'La Pratique',
     startPracticeButton: 'Commencer la Pratique',
 
     // Generative Meditation Component
     genTitle: 'Créez Votre Propre Moment',
-    genSubtitle: 'Envie d\'autre chose ? Sélectionnez un thème et laissez notre IA créer une méditation audio guidée unique, juste pour vous. Chacune est une nouvelle expérience.',
-    genSelectTheme: '1. Sélectionnez un Thème',
-    genSelectDuration: '2. Sélectionnez une Durée',
-    genDurationWarning: 'Les méditations plus longues prennent un peu plus de temps à créer. Pour une expérience plus rapide, vous pourriez essayer l\'option d\'1 minute d\'abord !',
-    genSelectVoice: '3. Choisissez une Voix',
+    genSubtitle: 'Sélectionnez un thème et laissez l\'IA créer une méditation guidée unique.',
+    genSelectTheme: '1. Thème',
+    genSelectDuration: '2. Durée',
+    genDurationWarning: 'Les méditations plus longues prennent un peu plus de temps.',
+    genSelectVoice: '3. Voix',
     genCraftButton: 'Créer Ma Méditation',
     genCraftingButton: 'Création...',
-    genCraftingMessage: 'Préparation de votre méditation personnelle et du guidage vocal. Merci de votre patience.',
-    genError: 'Désolé, une erreur est survenue lors de la création de votre méditation. Veuillez réessayer.',
-    genNoAudioError: 'L\'audio pour cette méditation n\'est pas disponible (Erreur : NO_AUDIO_DATA). Veuillez réessayer avec un thème ou une voix différente.',
+    genCraftingMessage: 'Préparation de votre méditation...',
+    genError: 'Désolé, une erreur est survenue. Veuillez réessayer.',
+    genNoAudioError: 'L\'audio n\'est pas disponible. Veuillez réessayer.',
     genMeditationTitle: 'Votre Méditation Personnelle',
-    genAudioMessage: 'Préparation du guidage audio...',
-    genPlay: 'Lancer la méditation guidée',
-    genPause: 'Mettre en pause la méditation guidée',
+    genAudioMessage: 'Préparation audio...',
+    genPlay: 'Lancer',
+    genPause: 'Pause',
     genPlayLabel: 'Écouter',
     genPauseLabel: 'Pause',
     genCreateAnother: 'Créer une autre',
@@ -391,16 +377,16 @@ export const translations = {
     },
     
     reflection: {
-      title: 'Réfléchissez à votre pratique',
-      intro: 'Mettre des mots sur votre expérience aide à en consolider les bienfaits. C\'est un espace privé pour vous, pour reconnaître ce que vous avez remarqué. Partagez quelques pensées, et notre compagnon IA offrira une réponse douce et encourageante pour conclure votre pratique.',
-      prompt: (practiceTitle: string) => `Qu'avez-vous remarqué pendant votre pratique de "${practiceTitle}" ?`,
-      placeholder: 'Prenez un moment pour décrire votre expérience...',
-      submitButton: 'Soumettre la réflexion',
-      skipButton: 'Passer pour l\'instant',
-      loading: 'Génération d\'une réponse réfléchie...',
-      error: 'Désolé, l\'assistant IA n\'est pas disponible pour le moment. Veuillez réessayer plus tard.',
+      title: 'Réflexion',
+      intro: 'Partagez quelques pensées, et notre compagnon IA offrira une réponse douce.',
+      prompt: (practiceTitle: string) => `Qu'avez-vous remarqué pendant "${practiceTitle}" ?`,
+      placeholder: 'Décrivez votre expérience...',
+      submitButton: 'Soumettre',
+      skipButton: 'Passer',
+      loading: 'Réflexion...',
+      error: 'Désolé, l\'IA n\'est pas disponible.',
       doneButton: 'Terminé',
-      aiResponsePrefix: 'Compagnon IA :',
+      aiResponsePrefix: 'Guide :',
       aiSystemInstruction: 'Vous êtes un compagnon de pleine conscience doux et sans jugement. Votre rôle est de recevoir la réflexion de l\'utilisateur après une courte pratique de pleine conscience. Validez son expérience avec une réponse courte, compatissante et encourageante. Ne donnez pas de conseils, ne posez pas de questions et n\'utilisez pas d\'émojis. Limitez votre réponse à une ou deux phrases. Votre ton doit être chaleureux, calme et encourageant.',
     },
     
@@ -409,6 +395,14 @@ export const translations = {
         categoryTitle: 'Respiration',
         categorySubtitle: 'Un rythme simple pour stabiliser le moment.',
         practices: [
+           {
+            title: 'Souffle rivage',
+            icon: 'BreathIcon',
+            description: 'Assieds-toi ou reste debout.\nLaisse ton souffle aller et venir comme une petite vague.\nCompte trois vagues.\nObserve ce qui revient au calme.',
+            details: {
+              explanation: 'Imaginez le souffle comme l\'océan rencontrant le rivage.\nLaissez le rythme être naturel et non forcé.\nLaissez chaque vague emporter un peu de tension.'
+            }
+          },
           { 
             id: 'six-second-breathing', 
             title: 'Six-second breathing (FR)', 
@@ -464,6 +458,14 @@ export const translations = {
         categoryTitle: 'Corps',
         categorySubtitle: 'Un retour en douceur à l\'endroit où vous êtes.',
         practices: [
+           {
+            title: 'Chemin clair',
+            icon: 'BodyScanIcon',
+            description: 'Ferme les yeux une respiration.\nImagine un petit chemin qui s’ouvre devant toi.\nÀ l’expiration, fais un pas en pensée.\nSente la terre sous tes pieds.',
+            details: {
+              explanation: 'La visualisation peut modifier votre état interne.\nVoyez le chemin clairement dans votre esprit.\nLaissez la stabilité du sol vous soutenir.'
+            }
+          },
           { 
             title: 'Release the shoulders (FR)', 
             icon: 'ShoulderReleaseIcon',
@@ -580,20 +582,20 @@ export const translations = {
         categoryTitle: 'Cœur',
         categorySubtitle: 'Un contact discret avec ce qui compte.',
         practices: [
+          {
+            title: 'Main au cœur',
+            icon: 'HeartIcon',
+            description: 'Pose une main sur la poitrine.\nSens la chaleur qui monte sous ta paume.\nReste pour un souffle complet.\nLaisse la douceur venir.',
+            details: {
+              explanation: 'Le toucher physique peut être incroyablement apaisant.\nLa chaleur de la main signale la sécurité au corps.\nRencontrez-vous avec un moment de soin.'
+            }
+          },
           { 
             title: 'One thing you’re grateful for (FR)', 
             icon: 'GratitudeIcon',
             description: 'Rest with one quiet moment of gratitude.\nLet it touch you.',
             details: {
               explanation: 'Gratitude softens the heart.\nChoose something small, simple.\nFeel the warmth it brings.'
-            }
-          },
-          { 
-            title: 'A hand on the heart (FR)', 
-            icon: 'HeartIcon',
-            description: 'A gentle touch to meet yourself with care.',
-            details: {
-              explanation: 'Warmth under the palm invites ease.\nFeel the breath meet your hand.\nStay with the kindness.'
             }
           },
           { 
