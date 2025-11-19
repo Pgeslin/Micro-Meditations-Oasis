@@ -450,17 +450,26 @@ const App: React.FC = () => {
           </section>
           
           {/* --- CONTINUE JOURNEY --- */}
-          <section className="text-center max-w-3xl mx-auto px-4 py-12 bg-slate-100 dark:bg-slate-800/50 rounded-3xl mb-12">
-             <h3 className="text-2xl font-bold text-teal-800 dark:text-teal-200 mb-4">{t('continueJourneyTitle')}</h3>
-             <p className="text-slate-600 dark:text-slate-300 text-lg mb-8">{t('continueJourneyText')}</p>
-             <a
-                href="https://chatgpt.com/g/g-68ea7895583c8191a6e56013f66ef72a-kaze-the-way-of-the-wind-mindfulness-dojo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-white dark:bg-slate-700 text-teal-700 dark:text-teal-200 font-semibold py-3 px-8 rounded-full border border-teal-200 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-slate-600 transition-colors shadow-sm"
-              >
-                {t('continueJourneyButton')}
-              </a>
+          <section className="relative overflow-hidden text-center max-w-4xl mx-auto px-6 py-16 bg-gradient-to-br from-teal-600 to-cyan-700 dark:from-teal-900 dark:to-slate-800 rounded-3xl mb-16 shadow-xl">
+             {/* Decorative circles */}
+             <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
+             <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
+             
+             <div className="relative z-10">
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">{t('continueJourneyTitle')}</h3>
+                <p className="text-teal-50 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium leading-relaxed">{t('continueJourneyText')}</p>
+                <a
+                    href="https://chatgpt.com/g/g-68ea7895583c8191a6e56013f66ef72a-kaze-the-way-of-the-wind-mindfulness-dojo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white text-teal-800 font-bold py-4 px-10 rounded-full hover:bg-teal-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                >
+                    <span>{t('continueJourneyButton')}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                </a>
+             </div>
           </section>
           
           {/* --- BLESSING --- */}
