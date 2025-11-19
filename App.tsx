@@ -158,6 +158,7 @@ const App: React.FC = () => {
   const [completedPractice, setCompletedPractice] = React.useState<Practice | null>(null);
   const [duration, setDuration] = React.useState(60);
   const [practiceOfTheDay, setPracticeOfTheDay] = React.useState<Practice | null>(null);
+  const [activeCategoryIndex, setActiveCategoryIndex] = React.useState(0);
   const audioContextRef = React.useRef<AudioContext | null>(null);
   const practiceRef = React.useRef<HTMLDivElement>(null);
 
@@ -229,6 +230,8 @@ const App: React.FC = () => {
       }
     }
   };
+
+  const activeCategory = practiceCategories[activeCategoryIndex];
 
   return (
     <>
@@ -386,7 +389,7 @@ const App: React.FC = () => {
 
           {/* --- LIST OF MICRO-PRACTICES --- */}
           <section className="mb-24">
-            <div className="flex justify-between items-end mb-12 border-b border-slate-200 dark:border-slate-700 pb-4">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-slate-200 dark:border-slate-700 pb-4 gap-4">
                <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100">Core Practices</h2>
                
                 <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-full p-1">
@@ -406,25 +409,44 @@ const App: React.FC = () => {
                 </div>
             </div>
 
-            <div className="space-y-20">
-              {practiceCategories.map((category) => (
-                <div key={category.categoryTitle} className="animate-fade-in">
-                  <div className="mb-8">
-                     <h3 className="text-2xl font-bold text-teal-800 dark:text-teal-200 mb-2">{category.categoryTitle}</h3>
-                     <p className="text-slate-600 dark:text-slate-400 text-lg italic">{category.categorySubtitle}</p>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {category.practices.map((practice) => (
-                      <PracticeCard
-                        key={practice.title}
-                        practice={practice}
-                        onSelect={handleSelectPractice}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
+            {/* CATEGORY TABS */}
+            <div className="flex flex-wrap gap-3 mb-8">
+                {practiceCategories.map((category, index) => (
+                  <button
+                    key={category.categoryTitle}
+                    onClick={() => setActiveCategoryIndex(index)}
+                    className={`px-6 py-2 rounded-full text-base font-medium transition-all duration-200 border ${
+                      activeCategoryIndex === index
+                        ? 'bg-teal-600 text-white border-teal-600 shadow-md'
+                        : 'bg-transparent text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    }`}
+                  >
+                    {category.categoryTitle}
+                  </button>
+                ))}
             </div>
+
+            {activeCategory && (
+              <div className="animate-fade-in">
+                 <div className="mb-8">
+                    <p className="text-slate-600 dark:text-slate-400 text-lg italic">{activeCategory.categorySubtitle}</p>
+                 </div>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                   {activeCategory.practices.map((practice) => (
+                     <PracticeCard
+                       key={practice.title}
+                       practice={practice}
+                       onSelect={handleSelectPractice}
+                     />
+                   ))}
+                 </div>
+              </div>
+            )}
+          </section>
+
+          {/* --- GENERATIVE MEDITATION --- */}
+          <section className="mb-24">
+              <GenerativeMeditation />
           </section>
           
           {/* --- CONTINUE JOURNEY --- */}
