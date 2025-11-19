@@ -364,8 +364,13 @@ const App: React.FC = () => {
             </section>
           )}
 
+          {/* --- DIVIDER --- */}
+          <div className="flex justify-center mb-12">
+            <div className="w-32 h-1 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+          </div>
+
           {/* --- TRY ANOTHER BLOCK --- */}
-          <section className="mb-24 max-w-2xl mx-auto">
+          <section className="mb-24 max-w-xl mx-auto">
              <button
               onClick={handleTryAnother}
               className="w-full group relative bg-white/60 dark:bg-slate-800/60 hover:bg-teal-50 dark:hover:bg-slate-700 border-2 border-teal-200 dark:border-teal-800/50 hover:border-teal-400 dark:hover:border-teal-600 rounded-xl p-6 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-4"
@@ -421,11 +426,6 @@ const App: React.FC = () => {
               ))}
             </div>
           </section>
-
-          {/* --- GENERATIVE SECTION --- */}
-          <section className="mb-20">
-             <GenerativeMeditation />
-          </section>
           
           {/* --- CONTINUE JOURNEY --- */}
           <section className="text-center max-w-3xl mx-auto px-4 py-12 bg-slate-100 dark:bg-slate-800/50 rounded-3xl mb-12">
@@ -440,14 +440,18 @@ const App: React.FC = () => {
                 {t('continueJourneyButton')}
               </a>
           </section>
+          
+          {/* --- BLESSING --- */}
+          <div className="text-center mb-8 px-4">
+              <p className="font-serif italic text-2xl text-teal-800 dark:text-teal-200 opacity-90">
+               {t('blessingText')}
+             </p>
+          </div>
 
         </main>
         
         <footer className="text-center py-12 text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800/50">
           <div className="container mx-auto px-4">
-             <p className="font-serif italic text-xl text-teal-800 dark:text-teal-200 mb-8 opacity-80">
-               {t('blessingText')}
-             </p>
              <p className="whitespace-pre-wrap text-sm opacity-70">{t('footerText')}</p>
           </div>
         </footer>

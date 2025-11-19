@@ -3,7 +3,7 @@ export const translations = {
   en: {
     // App Component
     heroTitle: 'Oasis',
-    heroSubtitle: 'Oasis\nA tiny space to pause for one minute.\nA quiet breath in the middle of your day.',
+    heroSubtitle: 'A tiny space to pause for one minute.\nA quiet breath in the middle of your day.',
     
     beginButton: 'Begin',
     tryAnotherButton: 'Discover Another Moment',
@@ -335,7 +335,7 @@ export const translations = {
   fr: {
     // App Component
     heroTitle: 'Oasis',
-    heroSubtitle: 'Oasis\nUn tout petit espace pour faire une pause d\'une minute.\nUn souffle calme au milieu de votre journée.',
+    heroSubtitle: 'Un tout petit espace pour faire une pause d\'une minute.\nUn souffle calme au milieu de votre journée.',
     
     beginButton: 'Commencer',
     tryAnotherButton: 'Découvrir un autre moment',
