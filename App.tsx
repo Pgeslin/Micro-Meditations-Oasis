@@ -483,7 +483,17 @@ const App: React.FC = () => {
         
         <footer className="text-center py-12 text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800/50">
           <div className="container mx-auto px-4">
-             <p className="whitespace-pre-wrap text-sm opacity-70">{t('footerText')}</p>
+             <p className="whitespace-pre-wrap text-sm opacity-70 mb-4 font-medium">{t('footer.mission')}</p>
+             <p className="text-sm font-semibold opacity-80 mb-2 text-teal-700 dark:text-teal-300">{t('footer.offering')}</p>
+             <p className="text-xs opacity-60 mb-4 italic">{t('footer.credit')}</p>
+             <a 
+                href="https://pgeslin.substack.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block text-sm font-medium text-teal-600 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-200 underline decoration-teal-300 underline-offset-4 transition-colors"
+             >
+                 {t('footer.readMore')}
+             </a>
           </div>
         </footer>
       </div>

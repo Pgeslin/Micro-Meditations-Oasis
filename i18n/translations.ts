@@ -14,7 +14,12 @@ export const translations = {
     continueJourneyText: 'Deepen your practice and find further guidance at the Kaze Mindfulness Dōjō.',
     continueJourneyButton: 'Visit the Dōjō',
 
-    footerText: '🌴  O A S I S\n\nYour tiny oasis for one-minute pauses. Find your calm amidst the waves of a busy life.\n\nOffered by KAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
+    footer: {
+        mission: '🌴  O A S I S\n\nYour tiny oasis for one-minute pauses. Find your calm amidst the waves of a busy life.',
+        offering: 'Offered by KAZE ⛩️ The Way of the Wind ~ Mindfulness Dojo',
+        credit: 'Designed by Pierre Geslin, mindfulness teacher and haiku poet in the Adelaide Hills of South Australia.',
+        readMore: 'Read more on Substack'
+    },
     
     setDuration: 'Duration:',
     
@@ -334,4 +339,338 @@ export const translations = {
   },
   fr: {
     // App Component
-    heroTitle:
+    heroTitle: 'Oasis',
+    heroSubtitle: 'Un petit espace pour faire une pause d\'une minute.\nUn souffle calme au milieu de votre journée.',
+    
+    beginButton: 'Commencer',
+    tryAnotherButton: 'Découvrir un autre moment',
+    learnMoreLink: 'En savoir plus sur le Kaze Mindfulness Dōjō',
+    blessingText: 'Que cette pause reste avec vous un peu plus longtemps.',
+
+    continueJourneyTitle: 'Continuez votre voyage',
+    continueJourneyText: 'Approfondissez votre pratique et trouvez plus de conseils au Kaze Mindfulness Dōjō.',
+    continueJourneyButton: 'Visiter le Dōjō',
+
+    footer: {
+        mission: '🌴  O A S I S\n\nVotre petite oasis pour des pauses d\'une minute. Trouvez votre calme au milieu des vagues d\'une vie bien remplie.',
+        offering: 'Offert par KAZE ⛩️ La Voie du Vent ~ Mindfulness Dojo',
+        credit: 'Conçu par Pierre Geslin, enseignant de pleine conscience et poète de haïku dans les collines d\'Adélaïde, Australie du Sud.',
+        readMore: 'En savoir plus sur Substack'
+    },
+
+    setDuration: 'Durée:',
+    
+    practiceOfTheDay: {
+      title: 'Pratique du jour',
+      button: 'Commencer la pratique',
+    },
+
+    // Timer & Breathing Exercise
+    backButton: 'Retour',
+    complete: 'Terminé',
+    timerCompleteMessage: 'Vous avez trouvé votre moment de calme.',
+    breatheIn: 'Inspirez...',
+    breatheOut: 'Expirez...',
+    coherenceBenefit: 'Ce rythme de respiration 4-4, connu sous le nom de cohérence cardiaque, est prouvé pour réduire le stress.',
+    sixSecondBenefit: 'Cette respiration lente et rythmique en 6-6 active la réponse "repos et digestion" du corps, aidant à ralentir le rythme cardiaque et réduire le stress.',
+
+    // Practice Detail
+    startPracticeButton: 'Commencer la pratique',
+
+    // Generative Meditation Component
+    genTitle: 'Créez votre propre moment',
+    genSubtitle: 'Choisissez un thème et laissez l\'IA créer une méditation audio guidée unique juste pour vous.',
+    genSelectTheme: '1. Thème',
+    genSelectDuration: '2. Durée',
+    genDurationWarning: 'Les méditations plus longues prennent un peu plus de temps à créer.',
+    genSelectVoice: '3. Voix',
+    genCraftButton: 'Créer ma méditation',
+    genCraftingButton: 'Création en cours...',
+    genCraftingMessage: 'Préparation de votre méditation personnelle et de la voix...',
+    genError: 'Désolé, une erreur s\'est produite lors de la création de votre méditation. Veuillez réessayer.',
+    genNoAudioError: 'L\'audio pour cette méditation n\'est pas disponible. Veuillez réessayer avec un thème ou une voix différents.',
+    genMeditationTitle: 'Votre méditation personnelle',
+    genAudioMessage: 'Préparation du guidage audio...',
+    genPlay: 'Lecture',
+    genPause: 'Pause',
+    genPlayLabel: 'Écouter',
+    genPauseLabel: 'Pause',
+    genCreateAnother: 'Créer une autre',
+
+    durations: {
+      d30s: '30s',
+      d1m: '1 min',
+      d2m: '2 min',
+      d3m: '3 min',
+    },
+    voices: {
+      calmFemale: 'Calme (Femme)',
+      gentleMale: 'Doux (Homme)',
+      brightFemale: 'Lumineuse (Femme)',
+      deepMale: 'Profond (Homme)',
+      warmMale: 'Chaleureux (Homme)',
+    },
+
+    reflection: {
+      title: 'Réflexion',
+      intro: 'Partagez quelques pensées, et notre compagnon IA offrira une réponse douce.',
+      prompt: (practiceTitle: string) => `Qu'avez-vous remarqué pendant "${practiceTitle}" ?`,
+      placeholder: 'Décrivez votre expérience...',
+      submitButton: 'Envoyer',
+      skipButton: 'Passer',
+      loading: 'Réflexion...',
+      error: 'Désolé, l\'IA est indisponible.',
+      doneButton: 'Terminé',
+      aiResponsePrefix: 'Guide :',
+      aiSystemInstruction: 'Vous êtes un compagnon de pleine conscience doux et sans jugement. Votre rôle est de recevoir la réflexion de l\'utilisateur après une courte pratique de pleine conscience. Validez leur expérience avec une réponse courte, compatissante et encourageante. Ne donnez pas de conseils, ne posez pas de questions et n\'utilisez pas d\'emojis. Gardez votre réponse à une ou deux phrases. Votre ton doit être chaleureux, calme et solidaire.',
+    },
+
+    practiceCategories: [
+      {
+        categoryTitle: 'Respiration',
+        categorySubtitle: 'Un rythme simple pour stabiliser le moment.',
+        practices: [
+          {
+            title: 'Souffle rivage',
+            icon: 'BreathIcon',
+            description: 'Assieds-toi ou reste debout.\nLaisse ton souffle aller et venir comme une petite vague.\nCompte trois vagues.\nObserve ce qui revient au calme.',
+            details: {
+              explanation: 'Imagine le souffle comme l\'océan rencontrant le rivage.\nLaisse le rythme être naturel et non forcé.\nLaisse chaque vague emporter un peu de tension.'
+            }
+          },
+          { 
+            id: 'six-second-breathing', 
+            title: 'Respiration de six secondes', 
+            icon: 'BreathIcon',
+            description: 'Une inspiration lente, une expiration lente.\nLaisse le rythme t\'apaiser et stabiliser le système nerveux.',
+            details: {
+              explanation: 'Utilise ce rythme lent pour aider le système à se calmer et se réguler.\nAccorde ton souffle au compte régulier.\nSens comment le corps s\'adoucit à l\'expiration.'
+            }
+          },
+          { 
+            title: 'Trois souffles lents', 
+            icon: 'ThreeBreathsIcon',
+            description: 'Trois souffles calmes pour faire une pause, réinitialiser et revenir.',
+            details: {
+              explanation: 'Trois souffles peuvent changer la tonalité d\'un moment.\nLaisse chaque souffle élargir l\'espace intérieur.\nReviens doucement là où tu es.'
+            }
+          },
+          { 
+            title: 'Expiration lente pour s\'apaiser', 
+            icon: 'SlowExhaleIcon',
+            description: 'Une longue expiration douce.\nLaisse le système ralentir.',
+            details: {
+              explanation: 'Allonger l\'expiration apaise le système nerveux.\nDétends la mâchoire et laisse le souffle retomber.\nRemarque le passage vers l\'aisance.'
+            }
+          },
+          { 
+            title: 'Un souffle avant de répondre', 
+            icon: 'BreathIcon',
+            description: 'Un seul souffle crée de l\'espace.\nUn moment pour choisir tes mots avec clarté.',
+            details: {
+              explanation: 'Ce souffle interrompt les réactions automatiques.\nUtilise-le pour sentir ton ton, ton intention.\nLaisse la clarté façonner ton prochain mouvement.'
+            }
+          },
+          { 
+            title: 'Souffle frais sur les lèvres', 
+            icon: 'JawSoftIcon',
+            description: 'Entrouvre doucement les lèvres.\nSens la prochaine expiration les rafraîchir.\nLaisse le corps se poser.',
+            details: {
+              explanation: 'Une bouche douce rafraîchit le souffle et adoucit le corps.\nLaisse l\'expiration s\'échapper comme une brume.\nSens la tension s\'apaiser.'
+            }
+          },
+          { 
+            title: 'Trouver l\'espace entre les souffles', 
+            icon: 'StopIcon',
+            description: 'À la fin de l\'expiration, fais une pause.\nJuste un battement de cœur.\nLaisse le calme s\'élargir à l\'intérieur.',
+            details: {
+              explanation: 'La pause contient une petite porte vers l\'immobilité.\nAucun effort nécessaire.\nRepose-toi là un instant.'
+            }
+          },
+        ]
+      },
+      {
+        categoryTitle: 'Corps',
+        categorySubtitle: 'Un retour doux à l\'endroit où tu te trouves.',
+        practices: [
+           {
+            title: 'Chemin clair',
+            icon: 'BodyScanIcon',
+            description: 'Ferme les yeux une respiration.\nImagine un petit chemin qui s’ouvre devant toi.\nÀ l’expiration, fais un pas en pensée.\nSente la terre sous tes pieds.',
+            details: {
+              explanation: 'La visualisation peut changer ton état interne.\nVisualise le chemin clairement dans ton esprit.\nLaisse la stabilité du sol te soutenir.'
+            }
+          },
+          { 
+            title: 'Relâcher les épaules', 
+            icon: 'ShoulderReleaseIcon',
+            description: 'Sens le poids glisser le long des bras.\nUn souffle doux fait fondre la tension.',
+            details: {
+              explanation: 'Des épaules tendues façonnent tout le corps.\nLaisse la gravité t\'aider à t\'adoucir.\nReste avec la chaleur qui se propage.'
+            }
+          },
+          { 
+            title: 'Revenir dans le corps', 
+            icon: 'BodyScanIcon',
+            description: 'Pieds sur terre, jambes, ventre.\nUn chemin simple vers la maison.',
+            details: {
+              explanation: 'Sens les endroits où le corps rencontre la terre.\nLaisse l\'attention descendre de la tête vers le corps.\nReviens à ce moment.'
+            }
+          },
+          { 
+            title: 'Réinitialiser la posture', 
+            icon: 'PostureIcon',
+            description: 'Allonge la colonne vertébrale, adoucis les épaules.\nUn réalignement simple.',
+            details: {
+              explanation: 'De petits changements modifient toute la structure.\nLaisse la colonne s\'élever et les épaules tomber.\nSens comment le souffle circule plus librement.'
+            }
+          },
+          { 
+            title: 'Adoucir la mâchoire et le visage', 
+            icon: 'JawSoftIcon',
+            description: 'Desserre la mâchoire, détends les joues.\nLaisse le visage se souvenir de l\'aisance.',
+            details: {
+              explanation: 'Le visage retient souvent des tensions cachées.\nLaisse-les fondre avec une douce expiration.\nSens l\'esprit s\'apaiser avec lui.'
+            }
+          },
+          { 
+            title: 'Adoucir le regard', 
+            icon: 'SoftenEyesIcon',
+            description: 'Détends le regard.\nPasse d\'une vision en tunnel à une vision plus large.',
+            details: {
+              explanation: 'Un regard plus doux amène un esprit plus doux.\nLaisse les yeux se reposer dans un champ plus large.\nRemarque toute la pièce à la fois.'
+            }
+          },
+          { 
+            title: 'Mains chaudes, esprit calme', 
+            icon: 'SoothingTouchIcon',
+            description: 'Frotte doucement les mains et pose-les sur le cœur ou le ventre.\nLa chaleur trouve son chemin à l\'intérieur.',
+            details: {
+              explanation: 'Des mains chaudes apaisent le système nerveux.\nLaisse la chaleur se propager sous tes paumes.\nRepose-toi dans ce doux confort.'
+            }
+          },
+          { 
+            title: 'Cinq pas en conscience', 
+            icon: 'PostureIcon',
+            description: 'Ralentis un peu.\nSens chaque levée et chaque pose.\nArrive là où tu es.',
+            details: {
+              explanation: 'Marcher devient une pratique grâce à l\'attention.\nLaisse chaque pas marquer une petite arrivée.\nRencontre le sol sous tes pieds.'
+            }
+          },
+          { 
+            title: 'Le relâchement', 
+            icon: 'ShoulderReleaseIcon',
+            description: 'Remarque un endroit à l\'intérieur qui se crispe.\nLaisse-le s\'adoucir de cinq pour cent.\nC\'est assez.',
+            details: {
+              explanation: 'S\'adoucir même un peu change tout le système.\nChoisis un endroit tendu.\nLaisse-le se desserrer sans forcer.'
+            }
+          },
+        ]
+      },
+      {
+        categoryTitle: 'Sens',
+        categorySubtitle: 'Une façon de rencontrer le monde tel qu\'il arrive.',
+        practices: [
+          { 
+            title: 'La pratique S.T.O.P.', 
+            icon: 'StopIcon',
+            description: 'Stop. Temps de respiration. Observer. Procéder.\nUne mini-pause pour la clarté.',
+            details: {
+              explanation: 'S - Stop : arrêtez ce que vous faites.\nT - Temps de respiration : prenez quelques respirations profondes.\nO - Observer vos pensées, sentiments et votre corps.\nP - Procéder avec bienveillance.'
+            }
+          },
+          { 
+            title: 'Écouter le son le plus proche', 
+            icon: 'SoundIcon',
+            description: 'Laisse le monde venir à toi.\nRemarque le son le plus proche, puis le suivant.',
+            details: {
+              explanation: 'Le son ouvre la porte à la présence.\nLaisse ton attention s\'élargir doucement.\nSuis les changements sans effort.'
+            }
+          },
+          { 
+            title: 'Trois couches de sons', 
+            icon: 'SoundIcon',
+            description: 'Entends le son le plus proche.\nEntends le son plus loin.\nEntends le son en dessous de tout.',
+            details: {
+              explanation: 'Déplace-toi à travers le son par couches douces.\nSens comment l\'attention s\'étend à chaque étape.\nRepose-toi dans tout le paysage sonore.'
+            }
+          },
+          { 
+            title: 'Ancrage du bout des doigts', 
+            icon: 'SoothingTouchIcon',
+            description: 'Touche le pouce avec chaque bout de doigt.\nSens la texture, la chaleur, le pouls.\nUn circuit calme qui te stabilise.',
+            details: {
+              explanation: 'Le toucher te ramène dans le moment.\nSens la chaleur à chaque bout de doigt.\nLaisse le circuit apaiser le corps.'
+            }
+          },
+          { 
+            title: 'Regard vers l\'horizon', 
+            icon: 'SoftenEyesIcon',
+            description: 'Lève le regard vers quelque chose au loin.\nLaisse la distance ouvrir la poitrine.',
+            details: {
+              explanation: 'Une vue plus large change le système nerveux.\nLaisse la poitrine se soulever avec le regard.\nSens le souffle s\'approfondir.'
+            }
+          },
+          { 
+            title: 'Dix secondes de silence', 
+            icon: 'StopIcon',
+            description: 'Ferme les yeux.\nDix secondes d\'immobilité.\nJuste être.',
+            details: {
+              explanation: 'Une brève pause peut réinitialiser tout le moment.\nFerme les yeux sans effort.\nRepose-toi dans le calme simple.'
+            }
+          },
+        ]
+      },
+      {
+        categoryTitle: 'Cœur',
+        categorySubtitle: 'Un contact doux vers ce qui compte.',
+        practices: [
+          { 
+            title: 'La pratique R.A.I.N.', 
+            icon: 'RainIcon',
+            description: 'Reconnaître. Accepter. Investiguer. Nourrir.\nUn chemin à travers les émotions difficiles.',
+            details: {
+              explanation: 'R - Reconnaître ce qui se passe.\nA - Accepter (Allow) que l\'expérience soit là.\nI - Investiguer avec bienveillance.\nN - Nourrir avec auto-compassion.'
+            }
+          },
+          {
+            title: 'Main au cœur',
+            icon: 'HeartIcon',
+            description: 'Pose une main sur la poitrine.\nSens la chaleur qui monte sous ta paume.\nReste pour un souffle complet.\nLaisse la douceur venir.',
+            details: {
+              explanation: 'Le toucher physique peut être incroyablement apaisant.\nLa chaleur de la main signale la sécurité au corps.\nRencontre-toi avec un moment de soin.'
+            }
+          },
+          { 
+            title: 'Une chose pour laquelle vous êtes reconnaissant', 
+            icon: 'GratitudeIcon',
+            description: 'Repose-toi avec un moment calme de gratitude.\nLaisse-le te toucher.',
+            details: {
+              explanation: 'La gratitude adoucit le cœur.\nChoisis quelque chose de petit, simple.\nSens la chaleur que cela apporte.'
+            }
+          },
+          { 
+            title: 'Nommer ce qui compte maintenant', 
+            icon: 'HeartIcon',
+            description: 'Remarque le moment.\nChoisis un mot simple.\nPorte-le doucement.',
+            details: {
+              explanation: 'Un seul mot peut guider tes prochains pas.\nLaisse-le monter naturellement.\nTiens-le légèrement dans l\'esprit.'
+            }
+          },
+          { 
+            title: 'Une phrase lente', 
+            icon: 'HeartIcon',
+            description: 'Dis-toi quelque chose de simple.\nRalentis-le jusqu\'à ce qu\'il corresponde à ton souffle.',
+            details: {
+              explanation: 'Une phrase lente adoucit la pression intérieure.\nLaisse tes mots suivre le souffle.\nParle doucement à l\'intérieur.'
+            }
+          },
+        ]
+      }
+    ],
+
+    genThemes: ['Acceptation', 'Esprit du débutant', 'Compassion', 'Énergie', 'Concentration', 'Générosité', 'Gratitude', 'Lâcher prise', 'Pleine conscience', 'Non-jugement', 'Non-effort', 'Patience', 'Relaxation', 'Sommeil', 'Soulagement du stress', 'Confiance'],
+    
+    genPrompt: (durationInMinutes: number, wordCount: number, selectedTheme: string) => `Vous êtes un expert en pleine conscience. Écrivez un script de méditation guidée court et apaisant de ${durationInMinutes} minute(s) sur le thème de '${selectedTheme}'. Le script doit être facile à suivre pour un débutant et contenir environ ${wordCount} mots. N'utilisez pas de markdown ou de formatage spécial. Fournissez simplement le texte du script.`,
+  }
+};
